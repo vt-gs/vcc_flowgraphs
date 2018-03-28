@@ -2,12 +2,12 @@
 GNU Radio Flowgraphs that work with the Astrodev Lithium radio as part of the Virginia Cubesat Constellation mission.
 
 ## WARNING: FCC and Liability
-The flowgraphs in this repository, when combined with an appropriate SDR device (in this case an Ettus Research B210 for development) WILL radiate in the FCC controlled 400 MHz Satellite Band (And so will the Lithium radio).  It is the responsibility of the user of the flowgraphs in this repository to ensure that they follow ALL FCC regulations and guidelines for the proper use of these flowgraphs.  A couple of recommendations to remain compliant with all US Laws and FCC Regulations:
-    *Obtain an FCC License for operation in this band (i.e. [Experimental License](https://apps.fcc.gov/oetcf/els/forms/442Dashboard.cfm)).
-    *Contain all Radiated Emissions in a [Faraday Cage](https://en.wikipedia.org/wiki/Faraday_cage) such as those available from [Ramsey Electronics](http://www.ramseyelectronics.com/product.php?pid=25).
-    *Utilize Coaxial Cabling between all transmitters and receivers, lowest possible output power levels, and heavy attenuation to both protect the receiver front ends and minimize leaked RF levels.
+The flowgraphs in this repository, when combined with an appropriate SDR device (in this case an Ettus Research B210 for development) WILL radiate in the FCC controlled 400 MHz Satellite Band (And so will the Lithium radio).  It is the responsibility of the user of the flowgraphs in this repository to ensure that they follow ALL FCC regulations and guidelines for the proper use of these flowgraphs.  A couple of recommendations for best practices to remain compliant with all US Laws and FCC Regulations:
+    * Obtain an FCC License for operation in this band (i.e. [Experimental License](https://apps.fcc.gov/oetcf/els/forms/442Dashboard.cfm)).
+    * Contain all Radiated Emissions in a [Faraday Cage](https://en.wikipedia.org/wiki/Faraday_cage) such as those available from [Ramsey Electronics](http://www.ramseyelectronics.com/product.php?pid=25).
+    * Utilize Coaxial Cabling between all transmitters and receivers, lowest possible output power levels, and heavy attenuation to both protect the receiver front ends and minimize leaked RF levels.
 
-###IT IS THE RESPONSIBILITY OF THE END USER TO ENSURE THEY ARE IN COMPLIANCE WITH ALL LOCAL, STATE, AND FEDERAL LAWS WHEN USING THESE FLOWGRAPHS.  THE CREATOR OF THESE FLOWGRAPHS ASSUMES NO LIABILITY FOR OTHERS ACTIONS WITH THESE FLOWGRAPHS.
+IT IS THE RESPONSIBILITY OF THE END USER TO ENSURE THEY ARE IN COMPLIANCE WITH ALL LOCAL, STATE, AND FEDERAL LAWS WHEN USING THESE FLOWGRAPHS.  THE CREATOR OF THESE FLOWGRAPHS ASSUMES NO LIABILITY FOR OTHERS ACTIONS WITH THESE FLOWGRAPHS.
 
 ## Dependencies
 These flowgraphs rely on blocks from Daniel Estevez's [gr-kiss](https://github.com/daniestevez/gr-kiss) GNU Radio Out-Of-Tree Module (OOTM).
