@@ -14,7 +14,7 @@
     </param>
     <param>
       <key>category</key>
-      <value>[GRC Hier Blocks]</value>
+      <value>[VCC Hier Blocks]</value>
     </param>
     <param>
       <key>comment</key>
@@ -22,7 +22,7 @@
     </param>
     <param>
       <key>description</key>
-      <value>Development receiver or testing Lithium Radio</value>
+      <value>Hierarchical GMSK AX.25 Receiver</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>fsk_rx_uhd</value>
+      <value>fsk_rx_hier</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>VCC Simple Downlink Receiver</value>
+      <value>VCC FSK Receiver</value>
     </param>
     <param>
       <key>placement</key>
@@ -101,7 +101,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1192, 180)</value>
+      <value>(1088, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -128,7 +128,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 188)</value>
+      <value>(320, 164)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -155,7 +155,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1024, 204)</value>
+      <value>(1000, 292)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -182,7 +182,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(408, 188)</value>
+      <value>(400, 164)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -209,7 +209,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 164)</value>
+      <value>(680, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -236,7 +236,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 164)</value>
+      <value>(768, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -267,7 +267,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(136, 336)</value>
+      <value>(128, 320)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -330,7 +330,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 336)</value>
+      <value>(16, 320)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -389,7 +389,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 12)</value>
+      <value>(192, 4)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -416,7 +416,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1272, 180)</value>
+      <value>(1168, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -459,7 +459,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 240)</value>
+      <value>(528, 216)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -515,7 +515,7 @@ demodulator</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 268)</value>
+      <value>(904, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -566,7 +566,7 @@ demodulator</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 380)</value>
+      <value>(320, 356)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -611,7 +611,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1200, 504)</value>
+      <value>(1184, 480)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -670,7 +670,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 528)</value>
+      <value>(256, 504)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -709,7 +709,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1200, 240)</value>
+      <value>(1088, 216)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -773,7 +773,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(416, 508)</value>
+      <value>(408, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -830,7 +830,7 @@ checks FCS for bit errors</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 516)</value>
+      <value>(688, 492)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -870,11 +870,11 @@ Line Decoding</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 528)</value>
+      <value>(544, 504)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -915,7 +915,7 @@ Escapes DATA bytes as needed</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 528)</value>
+      <value>(952, 504)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -970,7 +970,7 @@ Escapes DATA bytes as needed</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(760, 224)</value>
+      <value>(696, 200)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1025,7 +1025,7 @@ Escapes DATA bytes as needed</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 396)</value>
+      <value>(496, 372)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1061,7 +1061,7 @@ Some characters will not print properly</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1200, 416)</value>
+      <value>(1184, 392)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1125,7 +1125,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1240, 8)</value>
+      <value>(1136, 8)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1404,7 +1404,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 248)</value>
+      <value>(320, 224)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1412,7 +1412,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>id</key>
-      <value>rational_resampler_xxx_0</value>
+      <value>rational_resampler_xxx_0_0</value>
     </param>
     <param>
       <key>interp</key>
@@ -1451,7 +1451,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 172)</value>
+      <value>(72, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1498,7 +1498,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(152, 172)</value>
+      <value>(168, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1526,7 +1526,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>value</key>
-      <value>250e3</value>
+      <value>250e3/2</value>
     </param>
   </block>
   <block>
@@ -2713,7 +2713,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 248)</value>
+      <value>(72, 216)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2880,7 +2880,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1408, 268)</value>
+      <value>(1296, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2888,7 +2888,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>id</key>
-      <value>virtual_sink_0</value>
+      <value>virtual_sink_0_0</value>
     </param>
     <param>
       <key>stream_id</key>
@@ -2907,7 +2907,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 196)</value>
+      <value>(528, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2934,7 +2934,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 156)</value>
+      <value>(904, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2961,7 +2961,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(80, 524)</value>
+      <value>(72, 500)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2988,7 +2988,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1040, 12)</value>
+      <value>(960, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3015,7 +3015,7 @@ in1 = Spectrum after AGC and filtering</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1040, 68)</value>
+      <value>(952, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3050,7 +3050,7 @@ in1 = Spectrum after AGC and filtering</value>
   </connection>
   <connection>
     <source_block_id>digital_clock_recovery_mm_xx_0</source_block_id>
-    <sink_block_id>virtual_sink_0</sink_block_id>
+    <sink_block_id>virtual_sink_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3097,13 +3097,13 @@ in1 = Spectrum after AGC and filtering</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <source_block_id>rational_resampler_xxx_0_0</source_block_id>
     <sink_block_id>analog_agc2_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <source_block_id>rational_resampler_xxx_0_0</source_block_id>
     <sink_block_id>virtual_sink_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -3116,7 +3116,7 @@ in1 = Spectrum after AGC and filtering</value>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>rational_resampler_xxx_0</sink_block_id>
+    <sink_block_id>rational_resampler_xxx_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

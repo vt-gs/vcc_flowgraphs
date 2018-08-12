@@ -5,7 +5,7 @@
 # Title: VCC Simple Downlink Receiver
 # Author: Zach Leffke, KJ4QLP
 # Description: Development receiver or testing Lithium Radio
-# Generated: Wed Mar 28 00:46:37 2018
+# Generated: Fri Aug  3 12:41:42 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -42,7 +42,7 @@ from gnuradio import qtgui
 
 class fsk_rx_uhd(gr.top_block, Qt.QWidget):
 
-    def __init__(self, rx_freq=401.5e6, rx_offset=250e3):
+    def __init__(self, rx_freq=401.5e6, rx_offset=250e3/2):
         gr.top_block.__init__(self, "VCC Simple Downlink Receiver")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("VCC Simple Downlink Receiver")
@@ -92,10 +92,18 @@ class fsk_rx_uhd(gr.top_block, Qt.QWidget):
         ##################################################
         self._rx_gain_range = Range(0, 86, 1, 0, 200)
         self._rx_gain_win = RangeWidget(self._rx_gain_range, self.set_rx_gain, 'RX Gain', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._rx_gain_win, 4,0,1,4)
+        self.top_grid_layout.addWidget(self._rx_gain_win, 4, 0, 1, 4)
+        for r in range(4, 5):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self._rx_correct_range = Range(-10000, 10000, 1, -300, 200)
         self._rx_correct_win = RangeWidget(self._rx_correct_range, self.set_rx_correct, "rx_correct", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._rx_correct_win, 5,0,1,4)
+        self.top_grid_layout.addWidget(self._rx_correct_win, 5, 0, 1, 4)
+        for r in range(5, 6):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -155,10 +163,19 @@ class fsk_rx_uhd(gr.top_block, Qt.QWidget):
             self.qtgui_freq_sink_x_1_0.set_line_alpha(i, alphas[i])
 
         self._qtgui_freq_sink_x_1_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_1_0.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_1_0_win, 0,0,4,4)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_1_0_win, 0, 0, 4, 4)
+        for r in range(0, 4):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.pyqt_text_output_0 = pyqt.text_output()
         self._pyqt_text_output_0_win = self.pyqt_text_output_0;
-        self.top_grid_layout.addWidget(self._pyqt_text_output_0_win, 6,0,2,4)
+        self.top_grid_layout.addWidget(self._pyqt_text_output_0_win, 6, 0, 2, 4)
+        for r in range(6, 8):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
+
         self.low_pass_filter_0 = filter.fir_filter_ccf(1, firdes.low_pass(
         	1, samp_rate / decim *interp, lpf_cutoff, lpf_trans, firdes.WIN_HAMMING, 6.76))
         self.kiss_pdu_to_kiss_0 = kiss.pdu_to_kiss()
@@ -300,7 +317,7 @@ def argument_parser():
         "", "--rx-freq", dest="rx_freq", type="eng_float", default=eng_notation.num_to_str(401.5e6),
         help="Set rx_freq [default=%default]")
     parser.add_option(
-        "", "--rx-offset", dest="rx_offset", type="eng_float", default=eng_notation.num_to_str(250e3),
+        "", "--rx-offset", dest="rx_offset", type="eng_float", default=eng_notation.num_to_str(250e3/2),
         help="Set rx_offset [default=%default]")
     return parser
 

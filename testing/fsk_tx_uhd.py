@@ -5,7 +5,7 @@
 # Title: VCC Simple Uplink Transmitter
 # Author: Zach Leffke, KJ4QLP
 # Description: Development transmitter or testing Lithium Radio
-# Generated: Wed Mar 28 00:46:45 2018
+# Generated: Sun Aug 12 01:43:57 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -89,13 +89,25 @@ class fsk_tx_uhd(gr.top_block, Qt.QWidget):
         ##################################################
         self._tx_gain_range = Range(0, 86, 1, 0, 200)
         self._tx_gain_win = RangeWidget(self._tx_gain_range, self.set_tx_gain, 'TX Gain', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._tx_gain_win, 7,0,1,4)
+        self.top_grid_layout.addWidget(self._tx_gain_win, 7, 0, 1, 4)
+        for r in range(7, 8):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self._tx_correct_range = Range(-10000, 10000, 1, -300, 200)
         self._tx_correct_win = RangeWidget(self._tx_correct_range, self.set_tx_correct, "tx_correct", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._tx_correct_win, 8,0,1,4)
+        self.top_grid_layout.addWidget(self._tx_correct_win, 8, 0, 1, 4)
+        for r in range(8, 9):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self._bb_gain_range = Range(0, 1, .01, .75, 200)
         self._bb_gain_win = RangeWidget(self._bb_gain_range, self.set_bb_gain, 'bb_gain', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._bb_gain_win, 6,0,1,4)
+        self.top_grid_layout.addWidget(self._bb_gain_win, 6, 0, 1, 4)
+        for r in range(6, 7):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.uhd_usrp_sink_0_0 = uhd.usrp_sink(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -156,10 +168,19 @@ class fsk_tx_uhd(gr.top_block, Qt.QWidget):
             self.qtgui_freq_sink_x_1.set_line_alpha(i, alphas[i])
 
         self._qtgui_freq_sink_x_1_win = sip.wrapinstance(self.qtgui_freq_sink_x_1.pyqwidget(), Qt.QWidget)
-        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_1_win, 2,0,4,4)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_1_win, 2, 0, 4, 4)
+        for r in range(2, 6):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.pyqt_text_output_0_0 = pyqt.text_output()
         self._pyqt_text_output_0_0_win = self.pyqt_text_output_0_0;
-        self.top_grid_layout.addWidget(self._pyqt_text_output_0_0_win, 0,0,2,4)
+        self.top_grid_layout.addWidget(self._pyqt_text_output_0_0_win, 0, 0, 2, 4)
+        for r in range(0, 2):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
+
         self.kiss_nrzi_encode_0 = kiss.nrzi_encode()
         self.kiss_kiss_to_pdu_0 = kiss.kiss_to_pdu(True)
         self.kiss_hdlc_framer_0 = kiss.hdlc_framer(preamble_bytes=64, postamble_bytes=64)
