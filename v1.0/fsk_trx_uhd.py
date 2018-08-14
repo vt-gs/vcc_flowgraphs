@@ -1,11 +1,16 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+#
+# SPDX-License-Identifier: GPL-3.0
+#
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: VCC Simple Transceiver
+# Title: VCC Simple Transceiver, CERES_30CF9D2_20180814_053929.911184_UTC_250k.fc32
 # Author: Zach Leffke, KJ4QLP
 # Description: Development transmitter or testing Lithium Radio
-# Generated: Sun Aug 12 02:18:17 2018
+#
+# Generated: Tue Aug 14 01:39:34 2018
+# GNU Radio version: 3.7.12.0
 ##################################################
 
 if __name__ == '__main__':
@@ -28,6 +33,7 @@ from fsk_rx_hier import fsk_rx_hier  # grc-generated hier_block
 from fsk_tx_hier import fsk_tx_hier  # grc-generated hier_block
 from gnuradio import blocks
 from gnuradio import eng_notation
+from gnuradio import filter
 from gnuradio import gr
 from gnuradio import qtgui
 from gnuradio import uhd
@@ -37,15 +43,16 @@ from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import sip
 import time
+import vcc
 from gnuradio import qtgui
 
 
 class fsk_trx_uhd(gr.top_block, Qt.QWidget):
 
-    def __init__(self, radio_id='30CF9D2', rf_freq=401.12e6, rx_offset=250e3/2, sat_name='CERES', tx_offset=250e3):
-        gr.top_block.__init__(self, "VCC Simple Transceiver")
+    def __init__(self, radio_id='30CF9D2', rf_freq=401.12e6, rx_offset=250e3/4, sat_name='CERES', tx_offset=250e3):
+        gr.top_block.__init__(self, "VCC Simple Transceiver, CERES_30CF9D2_20180814_053929.911184_UTC_250k.fc32")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("VCC Simple Transceiver")
+        self.setWindowTitle("VCC Simple Transceiver, CERES_30CF9D2_20180814_053929.911184_UTC_250k.fc32")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -80,15 +87,15 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.ts_str = ts_str = dt.strftime(dt.utcnow(), "%Y%m%d_%H%M%S.%f" )+'_UTC'
-        self.samp_rate = samp_rate = 250000
+        self.samp_rate = samp_rate = float(250000)
         self.fn = fn = "{:s}_{:s}_{:s}_{:s}k.fc32".format(sat_name, radio_id, ts_str, str(int(samp_rate/1e3)))
         self.tx_gain = tx_gain = 0
         self.tx_correct = tx_correct = -300
         self.rx_gain = rx_gain = 0
-        self.rx_correct = rx_correct = -300
-        self.interp1 = interp1 = 24
+        self.rx_correct = rx_correct = 0
+        self.interp = interp = 24
         self.fp = fp = "/captures/{:s}".format(fn)
-        self.decim1 = decim1 = samp_rate/2000
+        self.decim = decim = int(samp_rate/2000)
         self.bb_gain = bb_gain = .75
 
         ##################################################
@@ -96,17 +103,17 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         ##################################################
         self._tx_gain_range = Range(0, 86, 1, 0, 200)
         self._tx_gain_win = RangeWidget(self._tx_gain_range, self.set_tx_gain, 'TX Gain', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._tx_gain_win, 7, 0, 1, 2)
-        for r in range(7, 8):
+        self.top_grid_layout.addWidget(self._tx_gain_win, 4, 8, 1, 2)
+        for r in range(4, 5):
             self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(0, 2):
+        for c in range(8, 10):
             self.top_grid_layout.setColumnStretch(c, 1)
         self._tx_correct_range = Range(-10000, 10000, 1, -300, 200)
         self._tx_correct_win = RangeWidget(self._tx_correct_range, self.set_tx_correct, "tx_correct", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._tx_correct_win, 7, 2, 1, 2)
-        for r in range(7, 8):
+        self.top_grid_layout.addWidget(self._tx_correct_win, 5, 8, 1, 2)
+        for r in range(5, 6):
             self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 4):
+        for c in range(8, 10):
             self.top_grid_layout.setColumnStretch(c, 1)
         self._rx_gain_range = Range(0, 86, 1, 0, 200)
         self._rx_gain_win = RangeWidget(self._rx_gain_range, self.set_rx_gain, 'RX Gain', "counter_slider", float)
@@ -115,7 +122,7 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._rx_correct_range = Range(-10000, 10000, 1, -300, 200)
+        self._rx_correct_range = Range(-10000, 10000, 1, 0, 200)
         self._rx_correct_win = RangeWidget(self._rx_correct_range, self.set_rx_correct, "rx_correct", "counter_slider", float)
         self.top_grid_layout.addWidget(self._rx_correct_win, 6, 2, 1, 2)
         for r in range(6, 7):
@@ -124,11 +131,19 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setColumnStretch(c, 1)
         self._bb_gain_range = Range(0, 1, .01, .75, 200)
         self._bb_gain_win = RangeWidget(self._bb_gain_range, self.set_bb_gain, 'TX bb_gain', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._bb_gain_win, 7, 4, 1, 2)
-        for r in range(7, 8):
+        self.top_grid_layout.addWidget(self._bb_gain_win, 4, 10, 1, 2)
+        for r in range(4, 5):
             self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(4, 6):
+        for c in range(10, 12):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.vcc_qt_hex_text_0 = vcc.qt_hex_text()
+        self._vcc_qt_hex_text_0_win = self.vcc_qt_hex_text_0;
+        self.top_grid_layout.addWidget(self._vcc_qt_hex_text_0_win, 6, 8, 2, 4)
+        for r in range(6, 8):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(8, 12):
+            self.top_grid_layout.setColumnStretch(c, 1)
+
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -152,11 +167,17 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0_0.set_center_freq(uhd.tune_request(rf_freq+tx_correct, tx_offset), 0)
         self.uhd_usrp_sink_0_0.set_gain(tx_gain, 0)
         self.uhd_usrp_sink_0_0.set_antenna('TX/RX', 0)
+        self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
+                interpolation=interp,
+                decimation=decim,
+                taps=None,
+                fractional_bw=None,
+        )
         self.qtgui_waterfall_sink_x_0 = qtgui.waterfall_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
         	0, #fc
-        	samp_rate, #bw
+        	samp_rate / decim*interp, #bw
         	"", #name
                 1 #number of inputs
         )
@@ -192,11 +213,58 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 8):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.qtgui_freq_sink_x_1_0_0 = qtgui.freq_sink_c(
+        	2048, #size
+        	firdes.WIN_BLACKMAN_hARRIS, #wintype
+        	0, #fc
+        	samp_rate/decim*interp, #bw
+        	"TX Spectrum", #name
+        	1 #number of inputs
+        )
+        self.qtgui_freq_sink_x_1_0_0.set_update_time(0.010)
+        self.qtgui_freq_sink_x_1_0_0.set_y_axis(-150, 0)
+        self.qtgui_freq_sink_x_1_0_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_1_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_1_0_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_1_0_0.enable_grid(True)
+        self.qtgui_freq_sink_x_1_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_1_0_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_1_0_0.enable_control_panel(False)
+
+        if not True:
+          self.qtgui_freq_sink_x_1_0_0.disable_legend()
+
+        if "complex" == "float" or "complex" == "msg_float":
+          self.qtgui_freq_sink_x_1_0_0.set_plot_pos_half(not True)
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_1_0_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_1_0_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_1_0_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_1_0_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_1_0_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_1_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_1_0_0.pyqwidget(), Qt.QWidget)
+        self.top_grid_layout.addWidget(self._qtgui_freq_sink_x_1_0_0_win, 0, 8, 4, 4)
+        for r in range(0, 4):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(8, 12):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.qtgui_freq_sink_x_1_0 = qtgui.freq_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
         	0, #fc
-        	samp_rate / decim1*interp1, #bw
+        	samp_rate / decim*interp, #bw
         	"RX Spectrum", #name
         	2 #number of inputs
         )
@@ -210,13 +278,13 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_1_0.enable_axis_labels(True)
         self.qtgui_freq_sink_x_1_0.enable_control_panel(False)
 
-        if not True:
+        if not False:
           self.qtgui_freq_sink_x_1_0.disable_legend()
 
         if "complex" == "float" or "complex" == "msg_float":
           self.qtgui_freq_sink_x_1_0.set_plot_pos_half(not True)
 
-        labels = ['', '', '', '', '',
+        labels = ['pre-d', 'agc_filt', '', '', '',
                   '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
@@ -258,10 +326,13 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         ##################################################
         self.msg_connect((self.blocks_socket_pdu_0_2, 'pdus'), (self.fsk_tx_hier_0, 'kiss/ax25'))
         self.msg_connect((self.fsk_rx_hier_0, 'kiss/ax25'), (self.blocks_socket_pdu_0_2, 'pdus'))
+        self.msg_connect((self.fsk_tx_hier_0, 'out'), (self.vcc_qt_hex_text_0, 'pdus'))
         self.connect((self.fsk_rx_hier_0, 0), (self.qtgui_freq_sink_x_1_0, 0))
         self.connect((self.fsk_rx_hier_0, 1), (self.qtgui_freq_sink_x_1_0, 1))
         self.connect((self.fsk_rx_hier_0, 1), (self.qtgui_waterfall_sink_x_0, 0))
+        self.connect((self.fsk_tx_hier_0, 0), (self.rational_resampler_xxx_0, 0))
         self.connect((self.fsk_tx_hier_0, 0), (self.uhd_usrp_sink_0_0, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.qtgui_freq_sink_x_1_0_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.fsk_rx_hier_0, 0))
 
     def closeEvent(self, event):
@@ -317,10 +388,11 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.set_decim1(self.samp_rate/2000)
+        self.set_decim(int(self.samp_rate/2000))
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
-        self.qtgui_waterfall_sink_x_0.set_frequency_range(0, self.samp_rate)
-        self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim1*self.interp1)
+        self.qtgui_waterfall_sink_x_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp)
+        self.qtgui_freq_sink_x_1_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp)
+        self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp)
         self.set_fn("{:s}_{:s}_{:s}_{:s}k.fc32".format(self.sat_name, self.radio_id, self.ts_str, str(int(self.samp_rate/1e3))))
 
     def get_fn(self):
@@ -360,12 +432,14 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.rx_correct = rx_correct
         self.uhd_usrp_source_0.set_center_freq(uhd.tune_request(self.rf_freq+self.rx_correct, self.rx_offset), 0)
 
-    def get_interp1(self):
-        return self.interp1
+    def get_interp(self):
+        return self.interp
 
-    def set_interp1(self, interp1):
-        self.interp1 = interp1
-        self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim1*self.interp1)
+    def set_interp(self, interp):
+        self.interp = interp
+        self.qtgui_waterfall_sink_x_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp)
+        self.qtgui_freq_sink_x_1_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp)
+        self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp)
 
     def get_fp(self):
         return self.fp
@@ -373,12 +447,14 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
     def set_fp(self, fp):
         self.fp = fp
 
-    def get_decim1(self):
-        return self.decim1
+    def get_decim(self):
+        return self.decim
 
-    def set_decim1(self, decim1):
-        self.decim1 = decim1
-        self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim1*self.interp1)
+    def set_decim(self, decim):
+        self.decim = decim
+        self.qtgui_waterfall_sink_x_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp)
+        self.qtgui_freq_sink_x_1_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp)
+        self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp)
 
     def get_bb_gain(self):
         return self.bb_gain
@@ -397,7 +473,7 @@ def argument_parser():
         "", "--rf-freq", dest="rf_freq", type="eng_float", default=eng_notation.num_to_str(401.12e6),
         help="Set rf_freq [default=%default]")
     parser.add_option(
-        "", "--rx-offset", dest="rx_offset", type="eng_float", default=eng_notation.num_to_str(250e3/2),
+        "", "--rx-offset", dest="rx_offset", type="eng_float", default=eng_notation.num_to_str(250e3/4),
         help="Set rx_offset [default=%default]")
     parser.add_option(
         "", "--sat-name", dest="sat_name", type="string", default='CERES',

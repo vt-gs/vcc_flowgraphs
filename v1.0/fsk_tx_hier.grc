@@ -21,6 +21,10 @@
       <value></value>
     </param>
     <param>
+      <key>copyright</key>
+      <value></value>
+    </param>
+    <param>
       <key>description</key>
       <value>Hierarchical GMSK Transmitter</value>
     </param>
@@ -817,7 +821,7 @@ Some characters will not print properly</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(616, 68)</value>
+      <value>(584, 36)</value>
     </param>
     <param>
       <key>_rotation</key>
