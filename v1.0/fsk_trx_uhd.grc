@@ -4438,11 +4438,11 @@ One per uplink packet</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 152)</value>
+      <value>(576, 464)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>6,8,2,4</value>
+      <value>6,4,1,6</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4450,7 +4450,42 @@ One per uplink packet</value>
     </param>
     <param>
       <key>id</key>
-      <value>vcc_qt_hex_text_0</value>
+      <value>vcc_qt_hex_text_rx</value>
+    </param>
+  </block>
+  <block>
+    <key>vcc_qt_hex_text</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1000, 144)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>6,10,1,4</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>vcc_qt_hex_text_tx</value>
     </param>
   </block>
   <block>
@@ -4616,7 +4651,11 @@ One per uplink packet</value>
   </connection>
   <connection>
     <source_block_id>fsk_rx_hier_0</source_block_id>
+<<<<<<< HEAD
     <sink_block_id>vcc_qt_hex_text_0_0</sink_block_id>
+=======
+    <sink_block_id>vcc_qt_hex_text_rx</sink_block_id>
+>>>>>>> f0502fb227f28bdf1c6eb5f4311ec4d28b13ef0e
     <source_key>kiss/ax25</source_key>
     <sink_key>pdus</sink_key>
   </connection>
@@ -4646,7 +4685,7 @@ One per uplink packet</value>
   </connection>
   <connection>
     <source_block_id>fsk_tx_hier_0</source_block_id>
-    <sink_block_id>vcc_qt_hex_text_0</sink_block_id>
+    <sink_block_id>vcc_qt_hex_text_tx</sink_block_id>
     <source_key>out</source_key>
     <sink_key>pdus</sink_key>
   </connection>

@@ -149,7 +149,15 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.top_grid_layout.addWidget(self._vcc_qt_hex_text_0_win, 6, 8, 2, 4)
         for r in range(6, 8):
             self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(8, 12):
+        for c in range(10, 14):
+            self.top_grid_layout.setColumnStretch(c, 1)
+
+        self.vcc_qt_hex_text_rx = vcc.qt_hex_text()
+        self._vcc_qt_hex_text_rx_win = self.vcc_qt_hex_text_rx;
+        self.top_grid_layout.addWidget(self._vcc_qt_hex_text_rx_win, 6, 4, 1, 6)
+        for r in range(6, 7):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(4, 10):
             self.top_grid_layout.setColumnStretch(c, 1)
 
         self.uhd_usrp_source_0 = uhd.usrp_source(
