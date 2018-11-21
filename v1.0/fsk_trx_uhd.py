@@ -5,11 +5,11 @@
 #
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: VCC Simple Transceiver, CERES_30CF9D2_20181114_200254.017186_UTC_250k.fc32
+# Title: VCC Simple Transceiver, CERES_30CF9D2_20181121_024025.791842_UTC_250k.fc32
 # Author: Zach Leffke, KJ4QLP
 # Description: Development transmitter or testing Lithium Radio
 #
-# Generated: Wed Nov 14 15:02:55 2018
+# Generated: Tue Nov 20 21:40:29 2018
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -50,9 +50,9 @@ from gnuradio import qtgui
 class fsk_trx_uhd(gr.top_block, Qt.QWidget):
 
     def __init__(self, radio_id='30CF9D2', rf_freq=401.12e6, rx_offset=250e3/4, sat_name='CERES', tx_offset=250e3):
-        gr.top_block.__init__(self, "VCC Simple Transceiver, CERES_30CF9D2_20181114_200254.017186_UTC_250k.fc32")
+        gr.top_block.__init__(self, "VCC Simple Transceiver, CERES_30CF9D2_20181121_024025.791842_UTC_250k.fc32")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("VCC Simple Transceiver, CERES_30CF9D2_20181114_200254.017186_UTC_250k.fc32")
+        self.setWindowTitle("VCC Simple Transceiver, CERES_30CF9D2_20181121_024025.791842_UTC_250k.fc32")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -136,28 +136,20 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(10, 12):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.vcc_qt_hex_text_tx = vcc.qt_hex_text()
+        self._vcc_qt_hex_text_tx_win = self.vcc_qt_hex_text_tx;
+        self.top_grid_layout.addWidget(self._vcc_qt_hex_text_tx_win, 6, 10, 1, 4)
+        for r in range(6, 7):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(10, 14):
+            self.top_grid_layout.setColumnStretch(c, 1)
+
         self.vcc_qt_hex_text_0_0 = vcc.qt_hex_text()
         self._vcc_qt_hex_text_0_0_win = self.vcc_qt_hex_text_0_0;
         self.top_grid_layout.addWidget(self._vcc_qt_hex_text_0_0_win, 6, 4, 2, 4)
         for r in range(6, 8):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(4, 8):
-            self.top_grid_layout.setColumnStretch(c, 1)
-
-        self.vcc_qt_hex_text_0 = vcc.qt_hex_text()
-        self._vcc_qt_hex_text_0_win = self.vcc_qt_hex_text_0;
-        self.top_grid_layout.addWidget(self._vcc_qt_hex_text_0_win, 6, 8, 2, 4)
-        for r in range(6, 8):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(10, 14):
-            self.top_grid_layout.setColumnStretch(c, 1)
-
-        self.vcc_qt_hex_text_rx = vcc.qt_hex_text()
-        self._vcc_qt_hex_text_rx_win = self.vcc_qt_hex_text_rx;
-        self.top_grid_layout.addWidget(self._vcc_qt_hex_text_rx_win, 6, 4, 1, 6)
-        for r in range(6, 7):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(4, 10):
             self.top_grid_layout.setColumnStretch(c, 1)
 
         self.uhd_usrp_source_0 = uhd.usrp_source(
@@ -343,7 +335,7 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.msg_connect((self.blocks_socket_pdu_0_2, 'pdus'), (self.fsk_tx_hier_0, 'kiss/ax25'))
         self.msg_connect((self.fsk_rx_hier_0, 'kiss/ax25'), (self.blocks_socket_pdu_0_2, 'pdus'))
         self.msg_connect((self.fsk_rx_hier_0, 'kiss/ax25'), (self.vcc_qt_hex_text_0_0, 'pdus'))
-        self.msg_connect((self.fsk_tx_hier_0, 'out'), (self.vcc_qt_hex_text_0, 'pdus'))
+        self.msg_connect((self.fsk_tx_hier_0, 'out'), (self.vcc_qt_hex_text_tx, 'pdus'))
         self.connect((self.fsk_rx_hier_0, 0), (self.qtgui_freq_sink_x_1_0, 0))
         self.connect((self.fsk_rx_hier_0, 1), (self.qtgui_freq_sink_x_1_0, 1))
         self.connect((self.fsk_rx_hier_0, 1), (self.qtgui_waterfall_sink_x_0, 0))
