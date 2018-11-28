@@ -4477,7 +4477,7 @@ One per uplink packet</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>6,10,1,4</value>
+      <value>6,8,2,4</value>
     </param>
     <param>
       <key>_rotation</key>
