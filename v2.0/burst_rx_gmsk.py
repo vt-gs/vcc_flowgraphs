@@ -1,9 +1,13 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+#
+# SPDX-License-Identifier: GPL-3.0
+#
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Burst Rx Gmsk
-# GNU Radio version: 3.7.13.4
+# Generated: Thu Jun 27 15:44:22 2019
+# GNU Radio version: 3.7.12.0
 ##################################################
 
 if __name__ == '__main__':

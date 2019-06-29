@@ -1,11 +1,16 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+#
+# SPDX-License-Identifier: GPL-3.0
+#
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Burst Tx Gmsk Dev
 # Author: Zach Leffke, KJ4QLP
 # Description: Generates GMSK spectrum, testing...
-# GNU Radio version: 3.7.13.4
+#
+# Generated: Sat Jun 29 15:19:01 2019
+# GNU Radio version: 3.7.12.0
 ##################################################
 
 if __name__ == '__main__':
@@ -23,6 +28,7 @@ import sys
 sys.path.append(os.environ.get('GRC_HIER_PATH', os.path.expanduser('~/.grc_gnuradio')))
 
 from PyQt4 import Qt
+from datetime import datetime as dt; import string
 from gmsk_tx_burst_hier2 import gmsk_tx_burst_hier2  # grc-generated hier_block
 from gnuradio import blocks
 from gnuradio import eng_notation
@@ -31,7 +37,10 @@ from gnuradio import gr
 from gnuradio import qtgui
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
+from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
+import pyqt
+import rffe_ctl
 import sip
 import vcc
 from gnuradio import qtgui
@@ -68,14 +77,21 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = float(250000)
-        self.interp_0 = interp_0 = 25.0
+        self.ts_str = ts_str = dt.strftime(dt.utcnow(), "%Y-%m-%dT%H:%M:%S.%fZ")
         self.interp = interp = 24
-        self.decim_0 = decim_0 = 24.0
         self.decim = decim = int(samp_rate/2000)
+        self.bb_gain = bb_gain = .75
 
         ##################################################
         # Blocks
         ##################################################
+        self._bb_gain_range = Range(0, 1, .01, .75, 200)
+        self._bb_gain_win = RangeWidget(self._bb_gain_range, self.set_bb_gain, 'TX bb_gain', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._bb_gain_win, 4, 0, 1, 2)
+        for r in range(4, 5):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 2):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self.vcc_qt_hex_text_tx = vcc.qt_hex_text()
         self._vcc_qt_hex_text_tx_win = self.vcc_qt_hex_text_tx;
         self.top_grid_layout.addWidget(self._vcc_qt_hex_text_tx_win, 6, 0, 2, 4)
@@ -84,6 +100,7 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
         for c in range(0, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
 
+        self.rffe_ctl_tag_ptt_pdu_0 = rffe_ctl.tag_ptt_pdu(samp_rate,"tx_sob","tx_eob","tx_time","TX")
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=interp,
                 decimation=decim,
@@ -192,26 +209,41 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.pyqt_text_output_0 = pyqt.text_output()
+        self._pyqt_text_output_0_win = self.pyqt_text_output_0;
+        self.top_grid_layout.addWidget(self._pyqt_text_output_0_win, 6, 4, 2, 4)
+        for r in range(6, 8):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(4, 8):
+            self.top_grid_layout.setColumnStretch(c, 1)
+
         self.gmsk_tx_burst_hier2_0 = gmsk_tx_burst_hier2(
             bt=.5,
+            delay_enable=1,
+            pad_front=0,
+            pad_tail=0,
+            ptt_delay=.5,
             samp_rate=samp_rate,
         )
         self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
-        self.blocks_tag_debug_0 = blocks.tag_debug(gr.sizeof_gr_complex*1, '1', ""); self.blocks_tag_debug_0.set_display(True)
         self.blocks_socket_pdu_0_2 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8000', 1024, False)
+        self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8001', 1024, True)
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((bb_gain, ))
 
 
 
         ##################################################
         # Connections
         ##################################################
+        self.msg_connect((self.blocks_socket_pdu_0, 'pdus'), (self.pyqt_text_output_0, 'pdus'))
         self.msg_connect((self.blocks_socket_pdu_0_2, 'pdus'), (self.gmsk_tx_burst_hier2_0, 'kiss/ax25'))
-        self.msg_connect((self.blocks_socket_pdu_0_2, 'pdus'), (self.vcc_qt_hex_text_tx, 'pdus'))
         self.msg_connect((self.gmsk_tx_burst_hier2_0, 'ax25'), (self.vcc_qt_hex_text_tx, 'pdus'))
-        self.connect((self.blocks_throttle_0_0, 0), (self.qtgui_time_sink_x_0, 0))
-        self.connect((self.blocks_throttle_0_0, 0), (self.rational_resampler_xxx_0, 0))
-        self.connect((self.gmsk_tx_burst_hier2_0, 0), (self.blocks_tag_debug_0, 0))
+        self.msg_connect((self.rffe_ctl_tag_ptt_pdu_0, 'ptt'), (self.blocks_socket_pdu_0, 'pdus'))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.rational_resampler_xxx_0, 0))
+        self.connect((self.blocks_throttle_0_0, 0), (self.blocks_multiply_const_vxx_0, 0))
         self.connect((self.gmsk_tx_burst_hier2_0, 0), (self.blocks_throttle_0_0, 0))
+        self.connect((self.gmsk_tx_burst_hier2_0, 0), (self.rffe_ctl_tag_ptt_pdu_0, 0))
         self.connect((self.rational_resampler_xxx_0, 0), (self.qtgui_freq_sink_x_1_0_0, 0))
 
     def closeEvent(self, event):
@@ -230,11 +262,11 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
         self.gmsk_tx_burst_hier2_0.set_samp_rate(self.samp_rate)
         self.blocks_throttle_0_0.set_sample_rate(self.samp_rate)
 
-    def get_interp_0(self):
-        return self.interp_0
+    def get_ts_str(self):
+        return self.ts_str
 
-    def set_interp_0(self, interp_0):
-        self.interp_0 = interp_0
+    def set_ts_str(self, ts_str):
+        self.ts_str = ts_str
 
     def get_interp(self):
         return self.interp
@@ -243,18 +275,19 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
         self.interp = interp
         self.qtgui_freq_sink_x_1_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp)
 
-    def get_decim_0(self):
-        return self.decim_0
-
-    def set_decim_0(self, decim_0):
-        self.decim_0 = decim_0
-
     def get_decim(self):
         return self.decim
 
     def set_decim(self, decim):
         self.decim = decim
         self.qtgui_freq_sink_x_1_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp)
+
+    def get_bb_gain(self):
+        return self.bb_gain
+
+    def set_bb_gain(self, bb_gain):
+        self.bb_gain = bb_gain
+        self.blocks_multiply_const_vxx_0.set_k((self.bb_gain, ))
 
 
 def main(top_block_cls=burst_tx_gmsk_dev, options=None):

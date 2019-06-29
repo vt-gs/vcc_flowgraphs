@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.13'?>
+<?grc format='1' created='3.7.12'?>
 <flow_graph>
   <timestamp>Mon Mar 12 23:34:27 2018</timestamp>
   <block>
@@ -18,6 +18,10 @@
     </param>
     <param>
       <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>copyright</key>
       <value></value>
     </param>
     <param>
@@ -101,7 +105,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 468)</value>
+      <value>(184, 508)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -221,7 +225,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>25</value>
+      <value>samp_rate_var/baud</value>
     </param>
   </block>
   <block>
@@ -236,7 +240,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 540)</value>
+      <value>(184, 444)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -440,7 +444,7 @@ GMSK Mod Block</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 344)</value>
+      <value>(568, 528)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -520,6 +524,53 @@ GMSK Mod Block</value>
     <param>
       <key>value</key>
       <value>.5</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1024, 496)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>delay_enable</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Delay Enable</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -650,7 +701,7 @@ byte stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(848, 348)</value>
+      <value>(672, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -697,11 +748,11 @@ byte stream</value>
     </param>
     <param>
       <key>delay_sec</key>
-      <value>.5</value>
+      <value>ptt_delay</value>
     </param>
     <param>
       <key>delay</key>
-      <value>True</value>
+      <value>bool(delay_enable)</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -709,7 +760,7 @@ byte stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1064, 324)</value>
+      <value>(912, 304)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -729,70 +780,11 @@ byte stream</value>
     </param>
     <param>
       <key>pad_front</key>
-      <value>250</value>
+      <value>pad_front</value>
     </param>
     <param>
       <key>pad_tail</key>
-      <value>250</value>
-    </param>
-  </block>
-  <block>
-    <key>foo_packet_pad</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>delay_sec</key>
-      <value>.5</value>
-    </param>
-    <param>
-      <key>delay</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1240, 324)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>foo_packet_pad_0_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>pad_front</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>pad_tail</key>
-      <value>1000</value>
+      <value>pad_tail</value>
     </param>
   </block>
   <block>
@@ -930,6 +922,53 @@ Line Encoding</value>
     </param>
   </block>
   <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(912, 496)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pad_front</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Pad Front</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>200</value>
+    </param>
+  </block>
+  <block>
     <key>pad_sink</key>
     <param>
       <key>comment</key>
@@ -985,7 +1024,7 @@ Some characters will not print properly</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1424, 356)</value>
+      <value>(1072, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1062,6 +1101,53 @@ DATA = AX.25 Frame</value>
     </param>
   </block>
   <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(912, 408)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pad_tail</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Pad Front</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>200</value>
+    </param>
+  </block>
+  <block>
     <key>pdu_utils_pack_unpack</key>
     <param>
       <key>bit_order</key>
@@ -1107,6 +1193,53 @@ GMSK Mod Block</value>
     <param>
       <key>mode</key>
       <value>pdu_utils.MODE_PACK_BYTE</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1024, 408)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>ptt_delay</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>PTT Delay</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0.001</value>
     </param>
   </block>
   <block>
@@ -1440,12 +1573,6 @@ Line Encoding</value>
   </connection>
   <connection>
     <source_block_id>foo_packet_pad_0</source_block_id>
-    <sink_block_id>foo_packet_pad_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>foo_packet_pad_0_0</source_block_id>
     <sink_block_id>pad_sink_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
