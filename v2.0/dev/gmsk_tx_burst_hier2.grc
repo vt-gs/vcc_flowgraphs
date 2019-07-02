@@ -101,11 +101,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 508)</value>
+      <value>(304, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -132,7 +132,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 252)</value>
+      <value>(456, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -159,7 +159,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(384, 252)</value>
+      <value>(384, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -213,7 +213,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 268)</value>
+      <value>(176, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -226,108 +226,6 @@
     <param>
       <key>value</key>
       <value>samp_rate_var/baud</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(184, 444)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>samps_per_symb_0</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>samps_per_symb * baud</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_message_debug</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1336, 496)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_message_debug_0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_pack_k_bits_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>pack bytes for 
-GMSK Mod Block</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1320, 28)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_pack_k_bits_bb_0</value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
     </param>
   </block>
   <block>
@@ -425,61 +323,6 @@ GMSK Mod Block</value>
     </param>
   </block>
   <block>
-    <key>blocks_tagged_stream_multiply_length</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(568, 528)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_tagged_stream_multiply_length_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>c</key>
-      <value>samps_per_symb * 8.0 * interp / decim</value>
-    </param>
-    <param>
-      <key>lengthtagname</key>
-      <value>packet_len</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>50000</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>parameter</key>
     <param>
       <key>alias</key>
@@ -542,7 +385,7 @@ GMSK Mod Block</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1024, 496)</value>
+      <value>(536, 248)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -598,7 +441,7 @@ byte stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 332)</value>
+      <value>(184, 356)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -630,58 +473,6 @@ byte stream</value>
     </param>
   </block>
   <block>
-    <key>digital_scrambler_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>G3RUH Polynomial
-1+x^12+x^17</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(992, 4)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_scrambler_bb_0</value>
-    </param>
-    <param>
-      <key>len</key>
-      <value>16</value>
-    </param>
-    <param>
-      <key>mask</key>
-      <value>0x21</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0x0</value>
-    </param>
-  </block>
-  <block>
     <key>foo_burst_tagger</key>
     <param>
       <key>alias</key>
@@ -701,7 +492,7 @@ byte stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 324)</value>
+      <value>(592, 356)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -760,7 +551,7 @@ byte stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(912, 304)</value>
+      <value>(776, 336)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -882,46 +673,6 @@ Removes KISS CMD Byte</value>
     </param>
   </block>
   <block>
-    <key>kiss_nrzi_encode</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>NRZI Differential
-Line Encoding</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1136, 24)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>kiss_nrzi_encode_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
     <key>parameter</key>
     <param>
       <key>alias</key>
@@ -937,7 +688,7 @@ Line Encoding</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(912, 496)</value>
+      <value>(776, 248)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -981,7 +732,7 @@ Some characters will not print properly</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(584, 28)</value>
+      <value>(584, 20)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1024,7 +775,7 @@ Some characters will not print properly</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1072, 332)</value>
+      <value>(936, 364)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1116,7 +867,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(912, 408)</value>
+      <value>(880, 248)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1128,7 +879,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>label</key>
-      <value>Pad Front</value>
+      <value>Pad Tail</value>
     </param>
     <param>
       <key>short_id</key>
@@ -1211,7 +962,7 @@ GMSK Mod Block</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1024, 408)</value>
+      <value>(664, 248)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1270,7 +1021,7 @@ GMSK Mod Block</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(384, 316)</value>
+      <value>(384, 344)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1346,53 +1097,6 @@ GMSK Mod Block</value>
     <param>
       <key>value</key>
       <value>250000</value>
-    </param>
-  </block>
-  <block>
-    <key>vcc_burst_extract_fc</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1112, 612)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vcc_burst_extract_fc_0</value>
-    </param>
-    <param>
-      <key>len_tag</key>
-      <value>"packet_len"</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mult</key>
-      <value>samps_per_symb</value>
     </param>
   </block>
   <block>
@@ -1526,7 +1230,7 @@ Line Encoding</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 340)</value>
+      <value>(16, 364)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1550,12 +1254,6 @@ Line Encoding</value>
   <connection>
     <source_block_id>blocks_pdu_to_tagged_stream_1</source_block_id>
     <sink_block_id>kiss_kiss_to_pdu_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_tagged_stream_multiply_length_0</source_block_id>
-    <sink_block_id>foo_burst_tagger_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -1606,12 +1304,6 @@ Line Encoding</value>
     <sink_block_id>blocks_pdu_to_tagged_stream_0_0</sink_block_id>
     <source_key>pdu_out</source_key>
     <sink_key>pdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>rational_resampler_xxx_0</source_block_id>
-    <sink_block_id>blocks_tagged_stream_multiply_length_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>rational_resampler_xxx_0</source_block_id>
