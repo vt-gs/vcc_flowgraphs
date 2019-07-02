@@ -1,16 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-#
-# SPDX-License-Identifier: GPL-3.0
-#
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Burst Tx Gmsk Dev
 # Author: Zach Leffke, KJ4QLP
 # Description: Generates GMSK spectrum, testing...
-#
-# Generated: Sun Jun 30 20:55:47 2019
-# GNU Radio version: 3.7.12.0
+# GNU Radio version: 3.7.13.5
 ##################################################
 
 if __name__ == '__main__':
@@ -84,13 +79,13 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
         ##################################################
         self.samp_rate = samp_rate = float(250e3)
         self.tx_offset = tx_offset = 0
-        self.tx_gain = tx_gain = 67
+        self.tx_gain = tx_gain = 18
         self.ts_str = ts_str = dt.strftime(dt.utcnow(), "%Y-%m-%dT%H:%M:%S.%fZ")
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 10
         self.interp = interp = 24
         self.decim = decim = int(samp_rate/2000)
-        self.bb_gain = bb_gain = 1
+        self.bb_gain = bb_gain = .75
 
         ##################################################
         # Blocks
@@ -136,17 +131,22 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
         for c in range(0, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
 
-        self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("", "")),
+        self.uhd_usrp_source_1 = uhd.usrp_source(
+        	",".join(("addr=192.168.10.6", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
         	),
         )
-        self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-        self.uhd_usrp_source_0.set_center_freq(uhd.tune_request(rf_freq, rx_offset), 0)
-        self.uhd_usrp_source_0.set_gain(rx_gain, 0)
-        self.uhd_usrp_source_0.set_antenna('RX2', 0)
+        self.uhd_usrp_source_1.set_clock_source('external', 0)
+        self.uhd_usrp_source_1.set_time_source('external', 0)
+        self.uhd_usrp_source_1.set_samp_rate(samp_rate)
+        self.uhd_usrp_source_1.set_time_now(uhd.time_spec(time.time()), uhd.ALL_MBOARDS)
+        self.uhd_usrp_source_1.set_center_freq(uhd.tune_request(rf_freq, rx_offset), 0)
+        self.uhd_usrp_source_1.set_gain(rx_gain, 0)
+        self.uhd_usrp_source_1.set_antenna('RX2', 0)
+        self.uhd_usrp_source_1.set_auto_dc_offset(True, 0)
+        self.uhd_usrp_source_1.set_auto_iq_balance(True, 0)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -303,7 +303,7 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
         self.connect((self.gmsk_tx_burst_hier2_0, 0), (self.rffe_ctl_tag_ptt_pdu_0, 0))
         self.connect((self.rational_resampler_xxx_0, 0), (self.qtgui_freq_sink_x_1_0_0, 0))
         self.connect((self.rational_resampler_xxx_0_0, 0), (self.qtgui_freq_sink_x_1_0_0_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.rational_resampler_xxx_0_0, 0))
+        self.connect((self.uhd_usrp_source_1, 0), (self.rational_resampler_xxx_0_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "burst_tx_gmsk_dev")
@@ -315,7 +315,7 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
 
     def set_rf_freq(self, rf_freq):
         self.rf_freq = rf_freq
-        self.uhd_usrp_source_0.set_center_freq(uhd.tune_request(self.rf_freq, self.rx_offset), 0)
+        self.uhd_usrp_source_1.set_center_freq(uhd.tune_request(self.rf_freq, self.rx_offset), 0)
         self.uhd_usrp_sink_0.set_center_freq(uhd.tune_request(self.rf_freq, self.tx_offset), 0)
 
     def get_samp_rate(self):
@@ -325,7 +325,7 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.set_rx_offset(self.samp_rate/2.0)
         self.set_decim(int(self.samp_rate/2000))
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
+        self.uhd_usrp_source_1.set_samp_rate(self.samp_rate)
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
         self.qtgui_freq_sink_x_1_0_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp)
         self.qtgui_freq_sink_x_1_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp)
@@ -358,7 +358,7 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
 
     def set_rx_offset(self, rx_offset):
         self.rx_offset = rx_offset
-        self.uhd_usrp_source_0.set_center_freq(uhd.tune_request(self.rf_freq, self.rx_offset), 0)
+        self.uhd_usrp_source_1.set_center_freq(uhd.tune_request(self.rf_freq, self.rx_offset), 0)
 
     def get_rx_gain(self):
         return self.rx_gain
@@ -366,7 +366,7 @@ class burst_tx_gmsk_dev(gr.top_block, Qt.QWidget):
     def set_rx_gain(self, rx_gain):
         self.rx_gain = rx_gain
         Qt.QMetaObject.invokeMethod(self._rx_gain_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.rx_gain)))
-        self.uhd_usrp_source_0.set_gain(self.rx_gain, 0)
+        self.uhd_usrp_source_1.set_gain(self.rx_gain, 0)
 
 
     def get_interp(self):
