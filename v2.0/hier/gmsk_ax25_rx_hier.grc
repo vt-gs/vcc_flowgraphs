@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <?grc format='1' created='3.7.13'?>
 <flow_graph>
-  <timestamp>Mon Mar 12 23:34:27 2018</timestamp>
+  <timestamp>Tue Jul  2 22:31:03 2019</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value>1400,500</value>
+      <value>1100,500</value>
     </param>
     <param>
       <key>category</key>
@@ -22,7 +22,7 @@
     </param>
     <param>
       <key>description</key>
-      <value>Hierarchical GMSK Burst Transmitter</value>
+      <value>GMSK Demod, AX.25 Decode</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>gmsk_tx_burst_hier2</value>
+      <value>gmsk_ax25_rx_hier</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>GMSK TX Burst tagger</value>
+      <value>GMSK/AX.25 RX</value>
     </param>
     <param>
       <key>placement</key>
@@ -90,149 +90,15 @@
     </param>
   </block>
   <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(568, 276)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>baud</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>9600</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(720, 276)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>decim</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>24</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(648, 276)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>interp</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>25</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(312, 12)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>samp_rate_var</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>samp_rate / interp * decim</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(440, 276)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>samps_per_symb</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>samp_rate_var/baud</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_pdu_to_tagged_stream</key>
+    <key>analog_quadrature_demod_cf</key>
     <param>
       <key>alias</key>
       <value></value>
     </param>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>FSK/GMSK
+demodulator</value>
     </param>
     <param>
       <key>affinity</key>
@@ -244,23 +110,19 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 364)</value>
+      <value>(360, 188)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
     <param>
+      <key>gain</key>
+      <value>quad_demod_gain</value>
+    </param>
+    <param>
       <key>id</key>
-      <value>blocks_pdu_to_tagged_stream_0_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>tag</key>
-      <value>packet_len</value>
+      <value>analog_quadrature_demod_cf_1_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -272,14 +134,14 @@
     </param>
   </block>
   <block>
-    <key>blocks_pdu_to_tagged_stream</key>
+    <key>digital_binary_slicer_fb</key>
     <param>
       <key>alias</key>
       <value></value>
     </param>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>soft bits to hard bits</value>
     </param>
     <param>
       <key>affinity</key>
@@ -287,11 +149,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(160, 132)</value>
+      <value>(744, 192)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -299,15 +161,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_pdu_to_tagged_stream_1</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>tag</key>
-      <value>packet_len</value>
+      <value>digital_binary_slicer_fb_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -316,6 +170,326 @@
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_clock_recovery_mm_xx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value>Timing Recovery</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(536, 160)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gain_mu</key>
+      <value>0.175</value>
+    </param>
+    <param>
+      <key>gain_omega</key>
+      <value>0.25*0.175*0.175</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_clock_recovery_mm_xx_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>mu</key>
+      <value>0.25</value>
+    </param>
+    <param>
+      <key>omega_relative_limit</key>
+      <value>0.005</value>
+    </param>
+    <param>
+      <key>omega</key>
+      <value>samps_per_symb*(1+0.0)</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_descrambler_bb</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value>G3RUH Polynomial
+1+x^12+x^17</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(336, 276)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>digital_descrambler_bb_0</value>
+    </param>
+    <param>
+      <key>len</key>
+      <value>16</value>
+    </param>
+    <param>
+      <key>mask</key>
+      <value>0x21</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>kiss_hdlc_deframer</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>check_fcs</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value>Searches for flags to detect Frame
+'unstuffs' tx bit stuffing
+checks FCS for bit errors</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(480, 340)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>kiss_hdlc_deframer_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>max_length</key>
+      <value>300</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>kiss_nrzi_decode</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value>NRZI Differential
+Line Decoding</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(200, 352)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>kiss_nrzi_decode_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>kiss_pdu_to_kiss</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value>Wraps AX.25 Frame in KISS protocol
+&lt;FEND&gt;&lt;CMD&gt;&lt;DATA&gt;&lt;FEND&gt;
+Escapes DATA bytes as needed</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(752, 352)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>kiss_pdu_to_kiss_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>low_pass_filter</key>
+    <param>
+      <key>beta</key>
+      <value>6.76</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value>narrow signal filter</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>cutoff_freq</key>
+      <value>lpf_cutoff</value>
+    </param>
+    <param>
+      <key>decim</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>fir_filter_ccf</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(184, 144)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gain</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>low_pass_filter_0_0</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>width</key>
+      <value>lpf_trans</value>
+    </param>
+    <param>
+      <key>win</key>
+      <value>firdes.WIN_HAMMING</value>
     </param>
   </block>
   <block>
@@ -334,7 +508,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(424, 12)</value>
+      <value>(288, 8)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -342,11 +516,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>bt</value>
+      <value>lpf_cutoff</value>
     </param>
     <param>
       <key>label</key>
-      <value>BT</value>
+      <value>LPF Cutoff</value>
     </param>
     <param>
       <key>short_id</key>
@@ -362,7 +536,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>.5</value>
+      <value>7.2e3</value>
     </param>
   </block>
   <block>
@@ -381,7 +555,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 248)</value>
+      <value>(400, 8)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -389,11 +563,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>delay_enable</value>
+      <value>lpf_trans</value>
     </param>
     <param>
       <key>label</key>
-      <value>Delay Enable</value>
+      <value>LPF Trans Width</value>
     </param>
     <param>
       <key>short_id</key>
@@ -405,322 +579,18 @@
     </param>
     <param>
       <key>type</key>
-      <value>intx</value>
+      <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_gmsk_mod</key>
-    <param>
-      <key>bt</key>
-      <value>bt</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>expects packed 
-byte stream</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(448, 356)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>digital_gmsk_mod_0</value>
-    </param>
-    <param>
-      <key>log</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>samples_per_symbol</key>
-      <value>int(samps_per_symb)</value>
-    </param>
-    <param>
-      <key>verbose</key>
-      <value>False</value>
-    </param>
-  </block>
-  <block>
-    <key>foo_burst_tagger</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>adds eob/sob tags</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(856, 356)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>foo_burst_tagger_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>50000</value>
-    </param>
-    <param>
-      <key>mult</key>
-      <value>int(samps_per_symb * 8.0 * interp / decim)</value>
-    </param>
-    <param>
-      <key>tag_name</key>
-      <value>pmt.intern("packet_len")</value>
-    </param>
-  </block>
-  <block>
-    <key>foo_packet_pad</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>adds tx_time tag</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>debug</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>delay_sec</key>
-      <value>ptt_delay</value>
-    </param>
-    <param>
-      <key>delay</key>
-      <value>bool(delay_enable)</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1040, 336)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>foo_packet_pad_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>pad_front</key>
-      <value>pad_front</value>
-    </param>
-    <param>
-      <key>pad_tail</key>
-      <value>pad_tail</value>
-    </param>
-  </block>
-  <block>
-    <key>kiss_hdlc_framer</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>Computes FCS, append
-Bit Stuff Frame
-Append/Prepend Flags</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(576, 124)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>kiss_hdlc_framer_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>postamble_bytes</key>
-      <value>64</value>
-    </param>
-    <param>
-      <key>preamble_bytes</key>
-      <value>64</value>
-    </param>
-  </block>
-  <block>
-    <key>kiss_kiss_to_pdu</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>Discard KISS FEND bytes
-Escapes Bytes as necessary
-Removes KISS CMD Byte</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>control_byte</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(376, 132)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>kiss_kiss_to_pdu_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1040, 248)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pad_front</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Pad Front</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>intx</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>200</value>
+      <value>1e3</value>
     </param>
   </block>
   <block>
     <key>pad_sink</key>
     <param>
       <key>comment</key>
-      <value>AX.25 header is not ASCII printable
-Some characters will not print properly</value>
+      <value></value>
     </param>
     <param>
       <key>_enabled</key>
@@ -728,7 +598,50 @@ Some characters will not print properly</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(584, 20)</value>
+      <value>(384, 140)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pad_sink_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>filt</value>
+    </param>
+    <param>
+      <key>num_streams</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>optional</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>pad_sink</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(760, 268)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -771,7 +684,7 @@ Some characters will not print properly</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1200, 364)</value>
+      <value>(920, 348)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -783,11 +696,11 @@ Some characters will not print properly</value>
     </param>
     <param>
       <key>type</key>
-      <value>complex</value>
+      <value>message</value>
     </param>
     <param>
       <key>label</key>
-      <value>out</value>
+      <value>kiss</value>
     </param>
     <param>
       <key>num_streams</key>
@@ -806,17 +719,15 @@ Some characters will not print properly</value>
     <key>pad_source</key>
     <param>
       <key>comment</key>
-      <value>Expects KISS Frames on input
-&lt;FEND&gt;&lt;CMD&gt;&lt;DATA&gt;&lt;FEND&gt;
-DATA = AX.25 Frame</value>
+      <value></value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 132)</value>
+      <value>(32, 188)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -828,7 +739,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>label</key>
-      <value>kiss/ax25</value>
+      <value>burst_corr</value>
     </param>
     <param>
       <key>num_streams</key>
@@ -840,7 +751,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>type</key>
-      <value>message</value>
+      <value>complex</value>
     </param>
     <param>
       <key>vlen</key>
@@ -863,7 +774,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1144, 248)</value>
+      <value>(536, 8)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -871,106 +782,11 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>id</key>
-      <value>pad_tail</value>
+      <value>quad_demod_gain</value>
     </param>
     <param>
       <key>label</key>
-      <value>Pad Tail</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>intx</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>200</value>
-    </param>
-  </block>
-  <block>
-    <key>pdu_utils_pack_unpack</key>
-    <param>
-      <key>bit_order</key>
-      <value>pdu_utils.BIT_ORDER_MSB_FIRST</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>pack bytes for 
-GMSK Mod Block</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1088, 124)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pdu_utils_pack_unpack_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>pdu_utils.MODE_PACK_BYTE</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(928, 248)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>ptt_delay</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>PTT Delay</value>
+      <value>Quad Demod Gain</value>
     </param>
     <param>
       <key>short_id</key>
@@ -986,66 +802,7 @@ GMSK Mod Block</value>
     </param>
     <param>
       <key>value</key>
-      <value>0.001</value>
-    </param>
-  </block>
-  <block>
-    <key>rational_resampler_xxx</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>upsample to 250k for UHD</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>decim</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>fbw</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(648, 344)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rational_resampler_xxx_0</value>
-    </param>
-    <param>
-      <key>interp</key>
-      <value>interp</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value></value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccc</value>
+      <value>6.1</value>
     </param>
   </block>
   <block>
@@ -1076,7 +833,7 @@ GMSK Mod Block</value>
     </param>
     <param>
       <key>label</key>
-      <value>Sample Rate</value>
+      <value></value>
     </param>
     <param>
       <key>short_id</key>
@@ -1088,26 +845,21 @@ GMSK Mod Block</value>
     </param>
     <param>
       <key>type</key>
-      <value></value>
+      <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
-      <value>250000</value>
+      <value>48000</value>
     </param>
   </block>
   <block>
-    <key>vcc_burst_nrzi_encode</key>
+    <key>parameter</key>
     <param>
       <key>alias</key>
       <value></value>
     </param>
     <param>
       <key>comment</key>
-      <value>NRZI Differential
-Line Encoding</value>
-    </param>
-    <param>
-      <key>affinity</key>
       <value></value>
     </param>
     <param>
@@ -1116,7 +868,7 @@ Line Encoding</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(904, 136)</value>
+      <value>(688, 8)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1124,67 +876,27 @@ Line Encoding</value>
     </param>
     <param>
       <key>id</key>
-      <value>vcc_burst_nrzi_encode_0</value>
+      <value>samps_per_symb</value>
     </param>
     <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
+      <key>label</key>
+      <value>MM Clk Rcvr Samps/Symb</value>
     </param>
     <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>vcc_burst_scramble_bb</key>
-    <param>
-      <key>alias</key>
+      <key>short_id</key>
       <value></value>
     </param>
     <param>
-      <key>comment</key>
-      <value>G3RUH Polynomial
-1+x^12+x^17</value>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
-      <key>affinity</key>
-      <value></value>
+      <key>type</key>
+      <value>eng_float</value>
     </param>
     <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(752, 116)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vcc_burst_scramble_bb_0</value>
-    </param>
-    <param>
-      <key>len</key>
-      <value>16</value>
-    </param>
-    <param>
-      <key>mask</key>
-      <value>0x21</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>seed</key>
-      <value>0x0</value>
+      <key>value</key>
+      <value>5</value>
     </param>
   </block>
   <block>
@@ -1195,11 +907,11 @@ Line Encoding</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1256, 132)</value>
+      <value>(888, 188)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1211,7 +923,7 @@ Line Encoding</value>
     </param>
     <param>
       <key>stream_id</key>
-      <value>bytes</value>
+      <value>hard_bits</value>
     </param>
   </block>
   <block>
@@ -1226,7 +938,7 @@ Line Encoding</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(72, 364)</value>
+      <value>(32, 348)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1234,95 +946,83 @@ Line Encoding</value>
     </param>
     <param>
       <key>id</key>
-      <value>virtual_source_0_2_0_1</value>
+      <value>virtual_source_0</value>
     </param>
     <param>
       <key>stream_id</key>
-      <value>bytes</value>
+      <value>hard_bits</value>
     </param>
   </block>
   <connection>
-    <source_block_id>blocks_pdu_to_tagged_stream_0_0</source_block_id>
-    <sink_block_id>digital_gmsk_mod_0</sink_block_id>
+    <source_block_id>analog_quadrature_demod_cf_1_0</source_block_id>
+    <sink_block_id>digital_clock_recovery_mm_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_pdu_to_tagged_stream_1</source_block_id>
-    <sink_block_id>kiss_kiss_to_pdu_0</sink_block_id>
+    <source_block_id>digital_binary_slicer_fb_0</source_block_id>
+    <sink_block_id>virtual_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_gmsk_mod_0</source_block_id>
-    <sink_block_id>rational_resampler_xxx_0</sink_block_id>
+    <source_block_id>digital_clock_recovery_mm_xx_0</source_block_id>
+    <sink_block_id>digital_binary_slicer_fb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>foo_burst_tagger_0</source_block_id>
-    <sink_block_id>foo_packet_pad_0</sink_block_id>
+    <source_block_id>digital_descrambler_bb_0</source_block_id>
+    <sink_block_id>kiss_hdlc_deframer_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>foo_packet_pad_0</source_block_id>
-    <sink_block_id>pad_sink_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>kiss_hdlc_framer_0</source_block_id>
-    <sink_block_id>vcc_burst_scramble_bb_0</sink_block_id>
+    <source_block_id>kiss_hdlc_deframer_0</source_block_id>
+    <sink_block_id>kiss_pdu_to_kiss_0</sink_block_id>
     <source_key>out</source_key>
     <sink_key>in</sink_key>
   </connection>
   <connection>
-    <source_block_id>kiss_kiss_to_pdu_0</source_block_id>
-    <sink_block_id>kiss_hdlc_framer_0</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>kiss_kiss_to_pdu_0</source_block_id>
+    <source_block_id>kiss_hdlc_deframer_0</source_block_id>
     <sink_block_id>pad_sink_1</sink_block_id>
     <source_key>out</source_key>
     <sink_key>in</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
-    <sink_block_id>blocks_pdu_to_tagged_stream_1</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>pdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>pdu_utils_pack_unpack_0</source_block_id>
-    <sink_block_id>virtual_sink_0</sink_block_id>
-    <source_key>pdu_out</source_key>
-    <sink_key>in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>rational_resampler_xxx_0</source_block_id>
-    <sink_block_id>foo_burst_tagger_0</sink_block_id>
+    <source_block_id>kiss_nrzi_decode_0</source_block_id>
+    <sink_block_id>digital_descrambler_bb_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>vcc_burst_nrzi_encode_0</source_block_id>
-    <sink_block_id>pdu_utils_pack_unpack_0</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>pdu_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>vcc_burst_scramble_bb_0</source_block_id>
-    <sink_block_id>vcc_burst_nrzi_encode_0</sink_block_id>
+    <source_block_id>kiss_pdu_to_kiss_0</source_block_id>
+    <sink_block_id>pad_sink_2</sink_block_id>
     <source_key>out</source_key>
     <sink_key>in</sink_key>
   </connection>
   <connection>
-    <source_block_id>virtual_source_0_2_0_1</source_block_id>
-    <sink_block_id>blocks_pdu_to_tagged_stream_0_0</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>pdus</sink_key>
+    <source_block_id>low_pass_filter_0_0</source_block_id>
+    <sink_block_id>analog_quadrature_demod_cf_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>low_pass_filter_0_0</source_block_id>
+    <sink_block_id>pad_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pad_source_0</source_block_id>
+    <sink_block_id>low_pass_filter_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>virtual_source_0</source_block_id>
+    <sink_block_id>kiss_nrzi_decode_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
 </flow_graph>

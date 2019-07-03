@@ -1,16 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-#
-# SPDX-License-Identifier: GPL-3.0
-#
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: VCC Simple Transceiver, CERES_30CF9D2_20181128_210625.837851_UTC_250k.fc32
+# Title: VCC Simple Transceiver, CERES_30CF9D2_20190703_063921.669257_UTC_250k.fc32
 # Author: Zach Leffke, KJ4QLP
 # Description: Development transmitter or testing Lithium Radio
-#
-# Generated: Wed Nov 28 16:06:27 2018
-# GNU Radio version: 3.7.12.0
+# GNU Radio version: 3.7.13.5
 ##################################################
 
 if __name__ == '__main__':
@@ -50,9 +45,9 @@ from gnuradio import qtgui
 class fsk_trx_uhd(gr.top_block, Qt.QWidget):
 
     def __init__(self, radio_id='30CF9D2', rf_freq=401.12e6, rx_offset=250e3/4, sat_name='CERES', tx_offset=250e3):
-        gr.top_block.__init__(self, "VCC Simple Transceiver, CERES_30CF9D2_20181128_210625.837851_UTC_250k.fc32")
+        gr.top_block.__init__(self, "VCC Simple Transceiver, CERES_30CF9D2_20190703_063921.669257_UTC_250k.fc32")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("VCC Simple Transceiver, CERES_30CF9D2_20181128_210625.837851_UTC_250k.fc32")
+        self.setWindowTitle("VCC Simple Transceiver, CERES_30CF9D2_20190703_063921.669257_UTC_250k.fc32")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -163,6 +158,8 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0.set_center_freq(uhd.tune_request(rf_freq+rx_correct, rx_offset), 0)
         self.uhd_usrp_source_0.set_gain(rx_gain, 0)
         self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
+        self.uhd_usrp_source_0.set_auto_dc_offset("", 0)
+        self.uhd_usrp_source_0.set_auto_iq_balance("", 0)
         self.uhd_usrp_sink_0_0 = uhd.usrp_sink(
         	",".join(("", "")),
         	uhd.stream_args(

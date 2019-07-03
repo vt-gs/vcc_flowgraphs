@@ -550,7 +550,7 @@ demodulator</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 1020)</value>
+      <value>(736, 1028)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -707,7 +707,7 @@ demodulator</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1064, 404)</value>
+      <value>(1072, 404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -907,7 +907,7 @@ demodulator</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(904, 404)</value>
+      <value>(912, 404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1483,7 +1483,7 @@ demodulator</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 992)</value>
+      <value>(936, 996)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3233,7 +3233,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>comment</key>
-      <value>reduce from 96k to 48k</value>
+      <value></value>
     </param>
     <param>
       <key>affinity</key>
@@ -3574,7 +3574,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1152, 1020)</value>
+      <value>(1152, 1028)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3979,7 +3979,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(88, 844)</value>
+      <value>(88, 852)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4033,7 +4033,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(80, 1020)</value>
+      <value>(80, 1028)</value>
     </param>
     <param>
       <key>_rotation</key>
