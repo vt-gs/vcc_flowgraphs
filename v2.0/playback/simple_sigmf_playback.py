@@ -65,7 +65,7 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/VCC_VTGS_20190703_162226.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
+        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/keep/VCC_VTGS_20190703_162226.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
         self.qtgui_waterfall_sink_x_0 = qtgui.waterfall_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype

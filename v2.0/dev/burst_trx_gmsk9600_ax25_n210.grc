@@ -4384,7 +4384,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>time_mode</key>
-      <value>gr_sigmf.sigmf_time_mode_relative</value>
+      <value>gr_sigmf.sigmf_time_mode_absolute</value>
     </param>
   </block>
   <block>

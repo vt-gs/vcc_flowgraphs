@@ -608,8 +608,8 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.gmsk_tx_burst_hier2_0 = gmsk_tx_burst_hier2(
             bt=.5,
             delay_enable=1,
-            pad_front=0,
-            pad_tail=0,
+            pad_front=1000,
+            pad_tail=1000,
             ptt_delay=.2,
             samp_rate=samp_rate,
         )

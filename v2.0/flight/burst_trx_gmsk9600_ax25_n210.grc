@@ -1533,11 +1533,11 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>pad_front</key>
-      <value>0</value>
+      <value>1000</value>
     </param>
     <param>
       <key>pad_tail</key>
-      <value>0</value>
+      <value>1000</value>
     </param>
     <param>
       <key>samp_rate</key>
@@ -4384,7 +4384,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>time_mode</key>
-      <value>gr_sigmf.sigmf_time_mode_relative</value>
+      <value>gr_sigmf.sigmf_time_mode_absolute</value>
     </param>
   </block>
   <block>
