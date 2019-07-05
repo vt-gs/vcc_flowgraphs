@@ -17,8 +17,10 @@ if __name__ == '__main__':
             print "Warning: failed to XInitThreads()"
 
 from PyQt4 import Qt
+from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import eng_notation
+from gnuradio import filter
 from gnuradio import gr
 from gnuradio import qtgui
 from gnuradio.eng_option import eng_option
@@ -61,16 +63,30 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 250000
+        self.ceres_offset = ceres_offset = 40e3
 
         ##################################################
         # Blocks
         ##################################################
-        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/keep/VCC_VTGS_20190703_162226.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
+        self._ceres_offset_tool_bar = Qt.QToolBar(self)
+        self._ceres_offset_tool_bar.addWidget(Qt.QLabel('Ceres Offset'+": "))
+        self._ceres_offset_line_edit = Qt.QLineEdit(str(self.ceres_offset))
+        self._ceres_offset_tool_bar.addWidget(self._ceres_offset_line_edit)
+        self._ceres_offset_line_edit.returnPressed.connect(
+        	lambda: self.set_ceres_offset(eng_notation.str_to_num(str(self._ceres_offset_line_edit.text().toAscii()))))
+        self.top_grid_layout.addWidget(self._ceres_offset_tool_bar)
+        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/keep/VCC_VTGS_20190705_144404.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
+        self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
+                interpolation=1,
+                decimation=5,
+                taps=None,
+                fractional_bw=None,
+        )
         self.qtgui_waterfall_sink_x_0 = qtgui.waterfall_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	401.08e6, #fc
-        	samp_rate, #bw
+        	401.08e6 + ceres_offset, #fc
+        	samp_rate /5, #bw
         	"", #name
                 1 #number of inputs
         )
@@ -109,8 +125,8 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_1_0_1 = qtgui.freq_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	401.08e6, #fc
-        	samp_rate, #bw
+        	401.08e6 + ceres_offset, #fc
+        	samp_rate / 5, #bw
         	"VCC RX Spectrum", #name
         	1 #number of inputs
         )
@@ -153,15 +169,20 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 8):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate*10,True)
+        self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate*5,True)
+        self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
+        self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * ceres_offset, 1, 0)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_throttle_0, 0), (self.qtgui_freq_sink_x_1_0_1, 0))
-        self.connect((self.blocks_throttle_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
+        self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))
+        self.connect((self.blocks_multiply_xx_0_0, 0), (self.rational_resampler_xxx_0, 0))
+        self.connect((self.blocks_throttle_0, 0), (self.blocks_multiply_xx_0_0, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.qtgui_freq_sink_x_1_0_1, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
         self.connect((self.sigmf_source_0, 0), (self.blocks_throttle_0, 0))
 
     def closeEvent(self, event):
@@ -174,9 +195,20 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.qtgui_waterfall_sink_x_0.set_frequency_range(401.08e6, self.samp_rate)
-        self.qtgui_freq_sink_x_1_0_1.set_frequency_range(401.08e6, self.samp_rate)
-        self.blocks_throttle_0.set_sample_rate(self.samp_rate*10)
+        self.qtgui_waterfall_sink_x_0.set_frequency_range(401.08e6 + self.ceres_offset, self.samp_rate /5)
+        self.qtgui_freq_sink_x_1_0_1.set_frequency_range(401.08e6 + self.ceres_offset, self.samp_rate / 5)
+        self.blocks_throttle_0.set_sample_rate(self.samp_rate*5)
+        self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
+
+    def get_ceres_offset(self):
+        return self.ceres_offset
+
+    def set_ceres_offset(self, ceres_offset):
+        self.ceres_offset = ceres_offset
+        Qt.QMetaObject.invokeMethod(self._ceres_offset_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.ceres_offset)))
+        self.qtgui_waterfall_sink_x_0.set_frequency_range(401.08e6 + self.ceres_offset, self.samp_rate /5)
+        self.qtgui_freq_sink_x_1_0_1.set_frequency_range(401.08e6 + self.ceres_offset, self.samp_rate / 5)
+        self.analog_sig_source_x_0_0.set_frequency(-1 * self.ceres_offset)
 
 
 def main(top_block_cls=simple_sigmf_playback, options=None):

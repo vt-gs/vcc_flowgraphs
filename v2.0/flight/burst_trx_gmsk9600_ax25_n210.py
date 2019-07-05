@@ -23,6 +23,7 @@ import sys
 sys.path.append(os.environ.get('GRC_HIER_PATH', os.path.expanduser('~/.grc_gnuradio')))
 
 from PyQt4 import Qt
+from PyQt4.QtCore import QObject, pyqtSlot
 from burst_rx_es_hier import burst_rx_es_hier  # grc-generated hier_block
 from datetime import datetime as dt; import string; import math
 from fsk_burst_detector import fsk_burst_detector  # grc-generated hier_block
@@ -40,6 +41,7 @@ from gnuradio.filter import firdes
 from optparse import OptionParser
 import gpredict
 import gr_sigmf
+import pmt
 import pyqt
 import rffe_ctl
 import sip
@@ -84,8 +86,11 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.gs_id = gs_id = "VTGS"
         self.tx_tune = tx_tune = tx_freq - uplink_freq
         self.samp_rate = samp_rate = float(250e3)
+        self.man_tune = man_tune = 0.0
         self.fn = fn = "VCC_{:s}_{:s}".format(gs_id, ts_str)
         self.uplink_offset = uplink_offset = -1* tx_tune
+        self.tx_tune_sel = tx_tune_sel = 0
+        self.tx_sel = tx_sel = [tx_tune, -1*man_tune]
         self.tx_offset = tx_offset = 0
         self.tx_gain = tx_gain = 10
         self.trigger_thresh = trigger_thresh = -2
@@ -127,6 +132,22 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 8):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self._tx_tune_sel_options = (0, 1, )
+        self._tx_tune_sel_labels = ('Auto', 'Manual', )
+        self._tx_tune_sel_tool_bar = Qt.QToolBar(self)
+        self._tx_tune_sel_tool_bar.addWidget(Qt.QLabel('TX Tune Mode'+": "))
+        self._tx_tune_sel_combo_box = Qt.QComboBox()
+        self._tx_tune_sel_tool_bar.addWidget(self._tx_tune_sel_combo_box)
+        for label in self._tx_tune_sel_labels: self._tx_tune_sel_combo_box.addItem(label)
+        self._tx_tune_sel_callback = lambda i: Qt.QMetaObject.invokeMethod(self._tx_tune_sel_combo_box, "setCurrentIndex", Qt.Q_ARG("int", self._tx_tune_sel_options.index(i)))
+        self._tx_tune_sel_callback(self.tx_tune_sel)
+        self._tx_tune_sel_combo_box.currentIndexChanged.connect(
+        	lambda i: self.set_tx_tune_sel(self._tx_tune_sel_options[i]))
+        self.main_tab_grid_layout_2.addWidget(self._tx_tune_sel_tool_bar, 3, 1, 1, 1)
+        for r in range(3, 4):
+            self.main_tab_grid_layout_2.setRowStretch(r, 1)
+        for c in range(1, 2):
+            self.main_tab_grid_layout_2.setColumnStretch(c, 1)
         self._tx_gain_tool_bar = Qt.QToolBar(self)
         self._tx_gain_tool_bar.addWidget(Qt.QLabel('TX Gain'+": "))
         self._tx_gain_line_edit = Qt.QLineEdit(str(self.tx_gain))
@@ -579,8 +600,8 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
         self.pyqt_text_output_0 = pyqt.text_output()
         self._pyqt_text_output_0_win = self.pyqt_text_output_0;
-        self.main_tab_grid_layout_2.addWidget(self._pyqt_text_output_0_win, 3, 0, 1, 4)
-        for r in range(3, 4):
+        self.main_tab_grid_layout_2.addWidget(self._pyqt_text_output_0_win, 4, 0, 1, 4)
+        for r in range(4, 5):
             self.main_tab_grid_layout_2.setRowStretch(r, 1)
         for c in range(0, 4):
             self.main_tab_grid_layout_2.setColumnStretch(c, 1)
@@ -601,15 +622,27 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         for c in range(4, 8):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
 
+        self._man_tune_tool_bar = Qt.QToolBar(self)
+        self._man_tune_tool_bar.addWidget(Qt.QLabel('TX Freq Offset'+": "))
+        self._man_tune_line_edit = Qt.QLineEdit(str(self.man_tune))
+        self._man_tune_tool_bar.addWidget(self._man_tune_line_edit)
+        self._man_tune_line_edit.returnPressed.connect(
+        	lambda: self.set_man_tune(eng_notation.str_to_num(str(self._man_tune_line_edit.text().toAscii()))))
+        self.main_tab_grid_layout_2.addWidget(self._man_tune_tool_bar, 3, 0, 1, 1)
+        for r in range(3, 4):
+            self.main_tab_grid_layout_2.setRowStretch(r, 1)
+        for c in range(0, 1):
+            self.main_tab_grid_layout_2.setColumnStretch(c, 1)
         self.low_pass_filter_0 = filter.fir_filter_ccf(1, firdes.low_pass(
         	1, samp_rate / decim *interp, chan_filt_cutoff, chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gpredict_doppler_0 = gpredict.doppler("0.0.0.0", 7356, True)
         self.gpredict_MsgPairToVar_1 = gpredict.MsgPairToVar(self.set_uplink_freq)
         self.gmsk_tx_burst_hier2_0 = gmsk_tx_burst_hier2(
+            bb_gain=0.75,
             bt=.5,
             delay_enable=1,
-            pad_front=1000,
-            pad_tail=1000,
+            pad_front=0,
+            pad_tail=0,
             ptt_delay=.2,
             samp_rate=samp_rate,
         )
@@ -639,9 +672,9 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8001', 1024, True)
         self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((bb_gain, ))
+        self.blocks_message_strobe_0 = blocks.message_strobe(pmt.intern("TEST"), 1000)
         self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * ceres_offset, 1, 0)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * tx_tune, 1, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * tx_sel[tx_tune_sel], 1, 0)
         self.analog_agc2_xx_0 = analog.agc2_cc(10, 1e-1, 65536, 1)
         self.analog_agc2_xx_0.set_max_gain(65536)
 
@@ -662,7 +695,6 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.connect((self.analog_agc2_xx_0, 0), (self.low_pass_filter_0, 0))
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 1))
         self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_multiply_xx_0, 0))
         self.connect((self.blocks_multiply_xx_0, 0), (self.rational_resampler_xxx_4, 0))
         self.connect((self.blocks_multiply_xx_0, 0), (self.uhd_usrp_sink_0, 0))
         self.connect((self.blocks_multiply_xx_0_0, 0), (self.rational_resampler_xxx_1, 0))
@@ -670,7 +702,7 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.connect((self.burst_rx_es_hier_0, 1), (self.rational_resampler_xxx_3, 0))
         self.connect((self.fsk_burst_detector_0, 0), (self.burst_rx_es_hier_0, 1))
         self.connect((self.gmsk_ax25_rx_hier_0, 0), (self.qtgui_freq_sink_x_1, 1))
-        self.connect((self.gmsk_tx_burst_hier2_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+        self.connect((self.gmsk_tx_burst_hier2_0, 0), (self.blocks_multiply_xx_0, 0))
         self.connect((self.gmsk_tx_burst_hier2_0, 0), (self.rffe_ctl_tag_ptt_pdu_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.burst_rx_es_hier_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.fsk_burst_detector_0, 0))
@@ -697,10 +729,10 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
 
     def set_tx_freq(self, tx_freq):
         self.tx_freq = tx_freq
-        self.set_tx_tune(self.tx_freq - self.uplink_freq)
         Qt.QMetaObject.invokeMethod(self._tx_freq_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.tx_freq)))
         self.set_uplink_freq(self.tx_freq)
         self.uhd_usrp_sink_0.set_center_freq(uhd.tune_request(self.tx_freq, self.tx_offset), 0)
+        self.set_tx_tune(self.tx_freq - self.uplink_freq)
 
     def get_uplink_freq(self):
         return self.uplink_freq
@@ -728,8 +760,8 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
 
     def set_tx_tune(self, tx_tune):
         self.tx_tune = tx_tune
+        self.set_tx_sel([self.tx_tune, -1*self.man_tune])
         self.set_uplink_offset(self._uplink_offset_formatter(-1* self.tx_tune))
-        self.analog_sig_source_x_0.set_frequency(-1 * self.tx_tune)
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -754,6 +786,14 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
 
+    def get_man_tune(self):
+        return self.man_tune
+
+    def set_man_tune(self, man_tune):
+        self.man_tune = man_tune
+        self.set_tx_sel([self.tx_tune, -1*self.man_tune])
+        Qt.QMetaObject.invokeMethod(self._man_tune_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.man_tune)))
+
     def get_fn(self):
         return self.fn
 
@@ -767,6 +807,21 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
     def set_uplink_offset(self, uplink_offset):
         self.uplink_offset = uplink_offset
         Qt.QMetaObject.invokeMethod(self._uplink_offset_label, "setText", Qt.Q_ARG("QString", self.uplink_offset))
+
+    def get_tx_tune_sel(self):
+        return self.tx_tune_sel
+
+    def set_tx_tune_sel(self, tx_tune_sel):
+        self.tx_tune_sel = tx_tune_sel
+        self._tx_tune_sel_callback(self.tx_tune_sel)
+        self.analog_sig_source_x_0.set_frequency(-1 * self.tx_sel[self.tx_tune_sel])
+
+    def get_tx_sel(self):
+        return self.tx_sel
+
+    def set_tx_sel(self, tx_sel):
+        self.tx_sel = tx_sel
+        self.analog_sig_source_x_0.set_frequency(-1 * self.tx_sel[self.tx_tune_sel])
 
     def get_tx_offset(self):
         return self.tx_offset
@@ -908,7 +963,6 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
     def set_bb_gain(self, bb_gain):
         self.bb_gain = bb_gain
         Qt.QMetaObject.invokeMethod(self._bb_gain_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.bb_gain)))
-        self.blocks_multiply_const_vxx_0.set_k((self.bb_gain, ))
 
 
 def main(top_block_cls=burst_trx_gmsk9600_ax25_n210, options=None):

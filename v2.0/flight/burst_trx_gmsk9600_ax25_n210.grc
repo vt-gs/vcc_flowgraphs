@@ -105,7 +105,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 1132)</value>
+      <value>(240, 1156)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -445,6 +445,45 @@
     </param>
     <param>
       <key>value</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1344, 1236)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>main_tab@2:3,0,1,1</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>man_tune</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>TX Freq Offset</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>real</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_entry</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
       <value>401.08e6</value>
     </param>
     <param>
@@ -752,6 +791,33 @@
     </param>
     <param>
       <key>_coordinate</key>
+      <value>(536, 1372)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_sel</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>[tx_tune, -1*man_tune]</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
       <value>(1248, 284)</value>
     </param>
     <param>
@@ -765,6 +831,105 @@
     <param>
       <key>value</key>
       <value>tx_freq - uplink_freq</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_chooser</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(248, 1236)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>main_tab@2:3,1,1,1</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_tune_sel</value>
+    </param>
+    <param>
+      <key>label0</key>
+      <value>Auto</value>
+    </param>
+    <param>
+      <key>label1</key>
+      <value>Manual</value>
+    </param>
+    <param>
+      <key>label2</key>
+      <value>c</value>
+    </param>
+    <param>
+      <key>label3</key>
+      <value></value>
+    </param>
+    <param>
+      <key>label4</key>
+      <value></value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>TX Tune Mode</value>
+    </param>
+    <param>
+      <key>labels</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>num_opts</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>option0</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>option1</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>option2</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>option3</key>
+      <value>3</value>
+    </param>
+    <param>
+      <key>option4</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>options</key>
+      <value>[0, 1, 2]</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.QVBoxLayout</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>combo_box</value>
     </param>
   </block>
   <block>
@@ -924,7 +1089,7 @@
     </param>
     <param>
       <key>freq</key>
-      <value>-1 * tx_tune</value>
+      <value>-1 * tx_sel[tx_tune_sel]</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1027,7 +1192,7 @@
     </param>
   </block>
   <block>
-    <key>blocks_multiply_const_vxx</key>
+    <key>blocks_message_strobe</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1035,10 +1200,6 @@
     <param>
       <key>comment</key>
       <value></value>
-    </param>
-    <param>
-      <key>const</key>
-      <value>bb_gain</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1050,7 +1211,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 1084)</value>
+      <value>(56, 1180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1058,23 +1219,23 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_multiply_const_vxx_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
+      <value>blocks_message_strobe_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
       <value>0</value>
     </param>
     <param>
+      <key>msg</key>
+      <value>pmt.intern("TEST")</value>
+    </param>
+    <param>
       <key>minoutbuf</key>
       <value>0</value>
     </param>
     <param>
-      <key>vlen</key>
-      <value>1</value>
+      <key>period</key>
+      <value>1000</value>
     </param>
   </block>
   <block>
@@ -1484,6 +1645,10 @@ DATA = AX.25 Frame</value>
   <block>
     <key>gmsk_tx_burst_hier2</key>
     <param>
+      <key>bb_gain</key>
+      <value>0.75</value>
+    </param>
+    <param>
       <key>bt</key>
       <value>.5</value>
     </param>
@@ -1509,7 +1674,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 1032)</value>
+      <value>(232, 1024)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1533,11 +1698,11 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>pad_front</key>
-      <value>1000</value>
+      <value>0</value>
     </param>
     <param>
       <key>pad_tail</key>
-      <value>1000</value>
+      <value>0</value>
     </param>
     <param>
       <key>samp_rate</key>
@@ -1950,7 +2115,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>main_tab@2:3,0,1,4</value>
+      <value>main_tab@2:4,0,1,4</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -6800,12 +6965,6 @@ Wide enough for doppler spread</value>
     <sink_key>1</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_multiply_const_vxx_0</source_block_id>
-    <sink_block_id>blocks_multiply_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_multiply_xx_0</source_block_id>
     <sink_block_id>rational_resampler_xxx_4</sink_block_id>
     <source_key>0</source_key>
@@ -6891,7 +7050,7 @@ Wide enough for doppler spread</value>
   </connection>
   <connection>
     <source_block_id>gmsk_tx_burst_hier2_0</source_block_id>
-    <sink_block_id>blocks_multiply_const_vxx_0</sink_block_id>
+    <sink_block_id>blocks_multiply_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
