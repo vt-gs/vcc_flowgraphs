@@ -5,11 +5,11 @@
 #
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: VCC Simple Transceiver, CERES_30CF9D2_20190705_152115.853507_UTC_250k.fc32
+# Title: VCC Simple Transceiver, CERES_30CF9D2_20190705_185244.384322_UTC_250k.fc32
 # Author: Zach Leffke, KJ4QLP
 # Description: Development transmitter or testing Lithium Radio
 #
-# Generated: Fri Jul  5 12:19:33 2019
+# Generated: Fri Jul  5 15:02:46 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -34,10 +34,12 @@ from fsk_tx_hier import fsk_tx_hier  # grc-generated hier_block
 from gnuradio import blocks
 from gnuradio import eng_notation
 from gnuradio import filter
+from gnuradio import fosphor
 from gnuradio import gr
 from gnuradio import qtgui
 from gnuradio import uhd
 from gnuradio.eng_option import eng_option
+from gnuradio.fft import window
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
@@ -47,12 +49,12 @@ import vcc
 from gnuradio import qtgui
 
 
-class fsk_trx_uhd(gr.top_block, Qt.QWidget):
+class fsk_trx_uhd_test(gr.top_block, Qt.QWidget):
 
     def __init__(self, radio_id='30CF9D2', rf_freq=401.12e6, rx_offset=250e3/4, sat_name='CERES', tx_offset=250e3):
-        gr.top_block.__init__(self, "VCC Simple Transceiver, CERES_30CF9D2_20190705_152115.853507_UTC_250k.fc32")
+        gr.top_block.__init__(self, "VCC Simple Transceiver, CERES_30CF9D2_20190705_185244.384322_UTC_250k.fc32")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("VCC Simple Transceiver, CERES_30CF9D2_20190705_152115.853507_UTC_250k.fc32")
+        self.setWindowTitle("VCC Simple Transceiver, CERES_30CF9D2_20190705_185244.384322_UTC_250k.fc32")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -70,7 +72,7 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "fsk_trx_uhd")
+        self.settings = Qt.QSettings("GNU Radio", "fsk_trx_uhd_test")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -277,7 +279,7 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         	2 #number of inputs
         )
         self.qtgui_freq_sink_x_1_0.set_update_time(0.010)
-        self.qtgui_freq_sink_x_1_0.set_y_axis(-150, 0)
+        self.qtgui_freq_sink_x_1_0.set_y_axis(-150, 40)
         self.qtgui_freq_sink_x_1_0.set_y_label('Relative Gain', 'dB')
         self.qtgui_freq_sink_x_1_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
         self.qtgui_freq_sink_x_1_0.enable_autoscale(False)
@@ -325,6 +327,9 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
             lpf_trans=1e3,
             samp_rate=250000,
         )
+        self.fosphor_glfw_sink_c_0 = fosphor.glfw_sink_c()
+        self.fosphor_glfw_sink_c_0.set_fft_window(window.WIN_BLACKMAN_hARRIS)
+        self.fosphor_glfw_sink_c_0.set_frequency_range(0, samp_rate)
         self.blocks_socket_pdu_0_2 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8000', 1024, False)
 
 
@@ -338,14 +343,15 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.msg_connect((self.fsk_tx_hier_0, 'out'), (self.vcc_qt_hex_text_tx, 'pdus'))
         self.connect((self.fsk_rx_hier_0, 0), (self.qtgui_freq_sink_x_1_0, 0))
         self.connect((self.fsk_rx_hier_0, 1), (self.qtgui_freq_sink_x_1_0, 1))
-        self.connect((self.fsk_rx_hier_0, 1), (self.qtgui_waterfall_sink_x_0, 0))
+        self.connect((self.fsk_rx_hier_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
         self.connect((self.fsk_tx_hier_0, 0), (self.rational_resampler_xxx_0, 0))
         self.connect((self.fsk_tx_hier_0, 0), (self.uhd_usrp_sink_0_0, 0))
         self.connect((self.rational_resampler_xxx_0, 0), (self.qtgui_freq_sink_x_1_0_0, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.fosphor_glfw_sink_c_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.fsk_rx_hier_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "fsk_trx_uhd")
+        self.settings = Qt.QSettings("GNU Radio", "fsk_trx_uhd_test")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -402,6 +408,7 @@ class fsk_trx_uhd(gr.top_block, Qt.QWidget):
         self.qtgui_waterfall_sink_x_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp)
         self.qtgui_freq_sink_x_1_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp)
+        self.fosphor_glfw_sink_c_0.set_frequency_range(0, self.samp_rate)
         self.set_fn("{:s}_{:s}_{:s}_{:s}k.fc32".format(self.sat_name, self.radio_id, self.ts_str, str(int(self.samp_rate/1e3))))
 
     def get_fn(self):
@@ -493,7 +500,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=fsk_trx_uhd, options=None):
+def main(top_block_cls=fsk_trx_uhd_test, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 
