@@ -41,7 +41,6 @@ from gnuradio.filter import firdes
 from optparse import OptionParser
 import gpredict
 import gr_sigmf
-import pmt
 import pyqt
 import rffe_ctl
 import sip
@@ -92,7 +91,7 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.tx_tune_sel = tx_tune_sel = 0
         self.tx_sel = tx_sel = [tx_tune, -1*man_tune]
         self.tx_offset = tx_offset = 0
-        self.tx_gain = tx_gain = 10
+        self.tx_gain = tx_gain = 14
         self.trigger_thresh = trigger_thresh = -2
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 20
@@ -672,7 +671,6 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8001', 1024, True)
         self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
-        self.blocks_message_strobe_0 = blocks.message_strobe(pmt.intern("TEST"), 1000)
         self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * ceres_offset, 1, 0)
         self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * tx_sel[tx_tune_sel], 1, 0)
         self.analog_agc2_xx_0 = analog.agc2_cc(10, 1e-1, 65536, 1)

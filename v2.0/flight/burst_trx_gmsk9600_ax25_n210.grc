@@ -721,7 +721,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>10</value>
+      <value>14</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -791,7 +791,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(536, 1372)</value>
+      <value>(504, 1156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1189,53 +1189,6 @@
     <param>
       <key>waveform</key>
       <value>analog.GR_COS_WAVE</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_message_strobe</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(56, 1180)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_message_strobe_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>msg</key>
-      <value>pmt.intern("TEST")</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>period</key>
-      <value>1000</value>
     </param>
   </block>
   <block>
