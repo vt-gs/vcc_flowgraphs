@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Simple Sigmf Playback
+# Title: Simple Sigmf Playback 1Chan
 # GNU Radio version: 3.7.13.5
 ##################################################
 
@@ -32,12 +32,12 @@ import sys
 from gnuradio import qtgui
 
 
-class simple_sigmf_playback(gr.top_block, Qt.QWidget):
+class simple_sigmf_playback_1chan(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Simple Sigmf Playback")
+        gr.top_block.__init__(self, "Simple Sigmf Playback 1Chan")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Simple Sigmf Playback")
+        self.setWindowTitle("Simple Sigmf Playback 1Chan")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -55,7 +55,7 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "simple_sigmf_playback")
+        self.settings = Qt.QSettings("GNU Radio", "simple_sigmf_playback_1chan")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -63,12 +63,24 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 250000
-        self.decim = decim = 1
-        self.ceres_offset = ceres_offset = 0
+        self.rate_factor = rate_factor = 2
+        self.decim = decim = 5
+        self.ceres_offset = ceres_offset = 40e3
 
         ##################################################
         # Blocks
         ##################################################
+        self._rate_factor_tool_bar = Qt.QToolBar(self)
+        self._rate_factor_tool_bar.addWidget(Qt.QLabel("rate_factor"+": "))
+        self._rate_factor_line_edit = Qt.QLineEdit(str(self.rate_factor))
+        self._rate_factor_tool_bar.addWidget(self._rate_factor_line_edit)
+        self._rate_factor_line_edit.returnPressed.connect(
+        	lambda: self.set_rate_factor(eng_notation.str_to_num(str(self._rate_factor_line_edit.text().toAscii()))))
+        self.top_grid_layout.addWidget(self._rate_factor_tool_bar, 2, 0, 1, 8)
+        for r in range(2, 3):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 8):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self._ceres_offset_tool_bar = Qt.QToolBar(self)
         self._ceres_offset_tool_bar.addWidget(Qt.QLabel('Ceres Offset'+": "))
         self._ceres_offset_line_edit = Qt.QLineEdit(str(self.ceres_offset))
@@ -76,7 +88,13 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         self._ceres_offset_line_edit.returnPressed.connect(
         	lambda: self.set_ceres_offset(eng_notation.str_to_num(str(self._ceres_offset_line_edit.text().toAscii()))))
         self.top_grid_layout.addWidget(self._ceres_offset_tool_bar)
-        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/VCC_VTGS_20190711_125805.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
+        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/VCC_VTGS_20190716_071133.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
+        self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
+                interpolation=1,
+                decimation=decim,
+                taps=None,
+                fractional_bw=None,
+        )
         self.qtgui_waterfall_sink_x_0 = qtgui.waterfall_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -164,7 +182,7 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 8):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate*2,True)
+        self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate*rate_factor,True)
         self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
         self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * ceres_offset, 1, 0)
 
@@ -174,13 +192,14 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))
-        self.connect((self.blocks_multiply_xx_0_0, 0), (self.qtgui_freq_sink_x_1_0_1, 0))
-        self.connect((self.blocks_multiply_xx_0_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
+        self.connect((self.blocks_multiply_xx_0_0, 0), (self.rational_resampler_xxx_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.blocks_multiply_xx_0_0, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.qtgui_freq_sink_x_1_0_1, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
         self.connect((self.sigmf_source_0, 0), (self.blocks_throttle_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "simple_sigmf_playback")
+        self.settings = Qt.QSettings("GNU Radio", "simple_sigmf_playback_1chan")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -191,8 +210,16 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.qtgui_waterfall_sink_x_0.set_frequency_range(401.08e6 + self.ceres_offset, self.samp_rate /self.decim)
         self.qtgui_freq_sink_x_1_0_1.set_frequency_range(401.08e6 + self.ceres_offset, self.samp_rate / self.decim)
-        self.blocks_throttle_0.set_sample_rate(self.samp_rate*2)
+        self.blocks_throttle_0.set_sample_rate(self.samp_rate*self.rate_factor)
         self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
+
+    def get_rate_factor(self):
+        return self.rate_factor
+
+    def set_rate_factor(self, rate_factor):
+        self.rate_factor = rate_factor
+        Qt.QMetaObject.invokeMethod(self._rate_factor_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.rate_factor)))
+        self.blocks_throttle_0.set_sample_rate(self.samp_rate*self.rate_factor)
 
     def get_decim(self):
         return self.decim
@@ -213,7 +240,7 @@ class simple_sigmf_playback(gr.top_block, Qt.QWidget):
         self.analog_sig_source_x_0_0.set_frequency(-1 * self.ceres_offset)
 
 
-def main(top_block_cls=simple_sigmf_playback, options=None):
+def main(top_block_cls=simple_sigmf_playback_1chan, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):

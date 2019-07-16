@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>simple_sigmf_playback</value>
+      <value>simple_sigmf_playback_1chan</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -97,7 +97,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>0</value>
+      <value>40e3</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -152,7 +152,46 @@
     </param>
     <param>
       <key>value</key>
-      <value>1</value>
+      <value>5</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_entry</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(360, 352)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>2,0,1,8</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>rate_factor</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>real</value>
     </param>
   </block>
   <block>
@@ -340,7 +379,7 @@
     </param>
     <param>
       <key>samples_per_second</key>
-      <value>samp_rate*2</value>
+      <value>samp_rate*rate_factor</value>
     </param>
     <param>
       <key>type</key>
@@ -893,7 +932,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>fbw</key>
@@ -952,7 +991,7 @@
     </param>
     <param>
       <key>filename</key>
-      <value>/vtgs/captures/vcc/VCC_VTGS_20190711_125805.sigmf-data</value>
+      <value>/vtgs/captures/vcc/VCC_VTGS_20190716_071133.sigmf-data</value>
     </param>
     <param>
       <key>_coordinate</key>

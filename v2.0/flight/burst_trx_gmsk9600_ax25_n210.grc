@@ -776,7 +776,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>0</value>
+      <value>samp_rate/2</value>
     </param>
   </block>
   <block>
@@ -2984,7 +2984,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>average</key>
-      <value>1.0</value>
+      <value>0.2</value>
     </param>
     <param>
       <key>axislabels</key>
@@ -2992,7 +2992,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>bw</key>
-      <value>samp_rate / 2</value>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>alias</key>
@@ -3283,7 +3283,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>bw</key>
-      <value>samp_rate/2</value>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>alias</key>
@@ -3741,7 +3741,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>2</value>
     </param>
     <param>
       <key>fbw</key>
