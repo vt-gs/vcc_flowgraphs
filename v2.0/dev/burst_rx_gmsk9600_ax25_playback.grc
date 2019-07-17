@@ -3660,7 +3660,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>filename</key>
-      <value>/vtgs/captures/vcc/VCC_VTGS_20190716_071133.sigmf-data</value>
+      <value>/vtgs/captures/vcc/decode/VCC_VTGS_20190716_035412.sigmf-data</value>
     </param>
     <param>
       <key>_coordinate</key>

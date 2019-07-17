@@ -176,7 +176,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         for c in range(0, 6):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
 
-        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/VCC_VTGS_20190716_071133.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
+        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/decode/VCC_VTGS_20190716_035412.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
         self._rx_gain_tool_bar = Qt.QToolBar(self)
         self._rx_gain_tool_bar.addWidget(Qt.QLabel('RX Gain'+": "))
         self._rx_gain_line_edit = Qt.QLineEdit(str(self.rx_gain))
