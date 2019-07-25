@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.13'?>
+<?grc format='1' created='3.7.12'?>
 <flow_graph>
   <timestamp>Mon Mar 12 23:34:27 2018</timestamp>
   <block>
@@ -18,6 +18,10 @@
     </param>
     <param>
       <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>copyright</key>
       <value></value>
     </param>
     <param>
@@ -105,7 +109,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 140)</value>
+      <value>(16, 124)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -140,7 +144,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 356)</value>
+      <value>(1352, 308)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -167,7 +171,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 292)</value>
+      <value>(1352, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -221,7 +225,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 884)</value>
+      <value>(720, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -233,7 +237,46 @@
     </param>
     <param>
       <key>value</key>
-      <value>2</value>
+      <value>4</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_entry</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>8e3</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(296, 788)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>filt_cut</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>real</value>
     </param>
   </block>
   <block>
@@ -252,7 +295,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 340)</value>
+      <value>(1304, 564)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -341,7 +384,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 908)</value>
+      <value>(1208, 980)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -422,7 +465,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 884)</value>
+      <value>(800, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -445,7 +488,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1</value>
+      <value>10</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -453,7 +496,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(280, 248)</value>
+      <value>(296, 76)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -492,7 +535,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(144, 140)</value>
+      <value>(144, 124)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -531,7 +574,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 228)</value>
+      <value>(408, 124)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -566,7 +609,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 244)</value>
+      <value>(296, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -624,7 +667,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 908)</value>
+      <value>(504, 828)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -702,7 +745,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 432)</value>
+      <value>(824, 400)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -738,6 +781,53 @@
     </param>
   </block>
   <block>
+    <key>analog_const_source_x</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>const</key>
+      <value>trigger_thresh</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(488, 1060)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_const_source_x_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+  </block>
+  <block>
     <key>analog_sig_source_x</key>
     <param>
       <key>amp</key>
@@ -765,7 +855,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(112, 448)</value>
+      <value>(320, 416)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -828,7 +918,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(952, 600)</value>
+      <value>(1016, 552)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -864,6 +954,37 @@
     </param>
   </block>
   <block>
+    <key>blocks_message_debug</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1336, 1176)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_message_debug_0</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_multiply_xx</key>
     <param>
       <key>alias</key>
@@ -883,7 +1004,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(304, 448)</value>
+      <value>(512, 416)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -934,7 +1055,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1024, 496)</value>
+      <value>(1208, 432)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -984,7 +1105,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1047,7 +1168,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(112, 308)</value>
+      <value>(328, 268)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1106,7 +1227,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 776)</value>
+      <value>(720, 864)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1142,10 +1263,53 @@ DATA = AX.25 Frame</value>
     </param>
   </block>
   <block>
+    <key>fosphor_glfw_sink_c</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>freq_center</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1160, 188)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fosphor_glfw_sink_c_0</value>
+    </param>
+    <param>
+      <key>freq_span</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>wintype</key>
+      <value>window.WIN_BLACKMAN_hARRIS</value>
+    </param>
+  </block>
+  <block>
     <key>fsk_burst_detector</key>
     <param>
       <key>avg_len</key>
-      <value>100.0</value>
+      <value>100</value>
     </param>
     <param>
       <key>alias</key>
@@ -1177,7 +1341,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 840)</value>
+      <value>(504, 928)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1224,7 +1388,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(856, 808)</value>
+      <value>(1112, 880)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1331,7 +1495,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(840, 416)</value>
+      <value>(1000, 384)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1391,7 +1555,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>cutoff_freq</key>
-      <value>15e3</value>
+      <value>filt_cut</value>
     </param>
     <param>
       <key>decim</key>
@@ -1407,7 +1571,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(96, 736)</value>
+      <value>(280, 848)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1526,7 +1690,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>label2</key>
-      <value>TX Channel</value>
+      <value></value>
     </param>
     <param>
       <key>label3</key>
@@ -1558,7 +1722,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>num_tabs</key>
-      <value>3</value>
+      <value>2</value>
     </param>
   </block>
   <block>
@@ -1581,7 +1745,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 676)</value>
+      <value>(944, 1004)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1620,7 +1784,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 632)</value>
+      <value>(944, 1048)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1683,7 +1847,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 744)</value>
+      <value>(1352, 800)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1982,7 +2146,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 616)</value>
+      <value>(712, 704)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2281,7 +2445,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 256)</value>
+      <value>(1160, 248)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2521,11 +2685,11 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>ymax</key>
-      <value>-40</value>
+      <value>-60</value>
     </param>
     <param>
       <key>ymin</key>
-      <value>-150</value>
+      <value>-130</value>
     </param>
     <param>
       <key>units</key>
@@ -2568,7 +2732,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 988)</value>
+      <value>(488, 972)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2576,7 +2740,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>grid</key>
@@ -2832,11 +2996,11 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>name</key>
-      <value>""</value>
+      <value>"Threshold"</value>
     </param>
     <param>
       <key>nconnections</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>size</key>
@@ -2880,7 +3044,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>update_time</key>
-      <value>0.10</value>
+      <value>0.010</value>
     </param>
     <param>
       <key>ylabel</key>
@@ -2935,7 +3099,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 340)</value>
+      <value>(1160, 332)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3115,7 +3279,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>update_time</key>
-      <value>0.010</value>
+      <value>0.0010</value>
     </param>
     <param>
       <key>wintype</key>
@@ -3158,7 +3322,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 700)</value>
+      <value>(712, 788)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3373,7 +3537,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 336)</value>
+      <value>(920, 248)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3432,7 +3596,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(480, 440)</value>
+      <value>(632, 408)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3491,7 +3655,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 696)</value>
+      <value>(504, 704)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3550,7 +3714,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 728)</value>
+      <value>(928, 784)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3609,7 +3773,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 816)</value>
+      <value>(928, 888)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3660,11 +3824,11 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>filename</key>
-      <value>/vtgs/captures/vcc/VCC_VTGS_20190716_071133.sigmf-data</value>
+      <value>/home/zleffke/captures/vcc/VCC_VTGS_20190716_035412.sigmf-data</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 368)</value>
+      <value>(80, 272)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3711,7 +3875,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1112, 840)</value>
+      <value>(1376, 944)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3727,6 +3891,57 @@ Wide enough for doppler spread</value>
     </param>
   </block>
   <block>
+    <key>vcc_vstp_aggregator_simple</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>fc</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>d_type</key>
+      <value>"live"</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(936, 1180)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>vcc_vstp_aggregator_simple_0</value>
+    </param>
+    <param>
+      <key>l_type</key>
+      <value>"downlink"</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>virtual_sink</key>
     <param>
       <key>comment</key>
@@ -3738,7 +3953,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1128, 460)</value>
+      <value>(1320, 444)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3765,7 +3980,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1112, 876)</value>
+      <value>(1376, 1012)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3788,7 +4003,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3819,7 +4034,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 804)</value>
+      <value>(80, 892)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3842,7 +4057,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3866,6 +4081,12 @@ Wide enough for doppler spread</value>
     <sink_block_id>low_pass_filter_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_const_source_x_0</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>analog_sig_source_x_0_0</source_block_id>
@@ -3895,7 +4116,7 @@ Wide enough for doppler spread</value>
     <source_block_id>blocks_socket_pdu_0_2</source_block_id>
     <sink_block_id>virtual_sink_tx_kiss</sink_block_id>
     <source_key>pdus</source_key>
-    <sink_key>in</sink_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_throttle_0</source_block_id>
@@ -3912,13 +4133,13 @@ Wide enough for doppler spread</value>
   <connection>
     <source_block_id>burst_rx_es_hier_0</source_block_id>
     <sink_block_id>pyqt_ctime_plot_0</sink_block_id>
-    <source_key>brst_orig</source_key>
+    <source_key>brst_corr</source_key>
     <sink_key>cpdus</sink_key>
   </connection>
   <connection>
     <source_block_id>burst_rx_es_hier_0</source_block_id>
     <sink_block_id>pyqt_meta_text_output_0</sink_block_id>
-    <source_key>brst_orig</source_key>
+    <source_key>brst_corr</source_key>
     <sink_key>pdus</sink_key>
   </connection>
   <connection>
@@ -3934,6 +4155,12 @@ Wide enough for doppler spread</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>burst_rx_es_hier_0</source_block_id>
+    <sink_block_id>vcc_vstp_aggregator_simple_0</sink_block_id>
+    <source_key>meta</source_key>
+    <sink_key>meta</sink_key>
+  </connection>
+  <connection>
     <source_block_id>fsk_burst_detector_0</source_block_id>
     <sink_block_id>burst_rx_es_hier_0</sink_block_id>
     <source_key>0</source_key>
@@ -3944,6 +4171,12 @@ Wide enough for doppler spread</value>
     <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gmsk_ax25_rx_hier_0</source_block_id>
+    <sink_block_id>vcc_vstp_aggregator_simple_0</sink_block_id>
+    <source_key>ax25</source_key>
+    <sink_key>raw</sink_key>
   </connection>
   <connection>
     <source_block_id>gmsk_ax25_rx_hier_0</source_block_id>
@@ -3984,6 +4217,12 @@ Wide enough for doppler spread</value>
   <connection>
     <source_block_id>low_pass_filter_0_0</source_block_id>
     <sink_block_id>rational_resampler_xxx_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>fosphor_glfw_sink_c_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4034,6 +4273,12 @@ Wide enough for doppler spread</value>
     <sink_block_id>blocks_throttle_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>vcc_vstp_aggregator_simple_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>out</source_key>
+    <sink_key>print</sink_key>
   </connection>
   <connection>
     <source_block_id>virtual_source_1_0</source_block_id>
