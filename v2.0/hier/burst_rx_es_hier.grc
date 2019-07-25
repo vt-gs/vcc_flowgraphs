@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.13'?>
+<?grc format='1' created='3.7.12'?>
 <flow_graph>
   <timestamp>Tue Jul  2 21:43:44 2019</timestamp>
   <block>
@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value>1200,600</value>
+      <value>1400,800</value>
     </param>
     <param>
       <key>category</key>
@@ -18,6 +18,10 @@
     </param>
     <param>
       <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>copyright</key>
       <value></value>
     </param>
     <param>
@@ -203,7 +207,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(752, 268)</value>
+      <value>(744, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -246,7 +250,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 388)</value>
+      <value>(960, 404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -293,7 +297,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 436)</value>
+      <value>(960, 452)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -340,7 +344,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(208, 408)</value>
+      <value>(304, 424)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -383,7 +387,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 268)</value>
+      <value>(512, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -497,7 +501,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 176)</value>
+      <value>(176, 176)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -540,7 +544,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 340)</value>
+      <value>(1160, 404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -549,49 +553,6 @@
     <param>
       <key>id</key>
       <value>pad_sink_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>message</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>brst_orig</value>
-    </param>
-    <param>
-      <key>num_streams</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>optional</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>pad_sink</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1064, 388)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pad_sink_1</value>
     </param>
     <param>
       <key>type</key>
@@ -626,7 +587,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1064, 436)</value>
+      <value>(1160, 452)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -634,7 +595,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>pad_sink_2</value>
+      <value>pad_sink_1</value>
     </param>
     <param>
       <key>type</key>
@@ -669,7 +630,93 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1080, 508)</value>
+      <value>(960, 500)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pad_sink_2</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>message</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>brst_corr</value>
+    </param>
+    <param>
+      <key>num_streams</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>optional</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>pad_sink</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(224, 548)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pad_sink_3</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>message</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>meta</value>
+    </param>
+    <param>
+      <key>num_streams</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>optional</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>pad_sink</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1232, 596)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -806,11 +853,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 484)</value>
+      <value>(88, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -857,11 +904,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(656, 508)</value>
+      <value>(88, 532)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -870,6 +917,210 @@
     <param>
       <key>id</key>
       <value>pdu_utils_extract_metadata_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>scale</key>
+      <value>1.0</value>
+    </param>
+  </block>
+  <block>
+    <key>pdu_utils_extract_metadata</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>key</key>
+      <value>pmt.intern("cfo_est")</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(960, 596)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pdu_utils_extract_metadata_0_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>scale</key>
+      <value>1.0</value>
+    </param>
+  </block>
+  <block>
+    <key>pdu_utils_extract_metadata</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>key</key>
+      <value>pmt.intern("rx_freq")</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(960, 644)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pdu_utils_extract_metadata_0_0_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>scale</key>
+      <value>1.0</value>
+    </param>
+  </block>
+  <block>
+    <key>pdu_utils_extract_metadata</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>key</key>
+      <value>pmt.intern("snr")</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(960, 548)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pdu_utils_extract_metadata_0_0_1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>scale</key>
+      <value>1.0</value>
+    </param>
+  </block>
+  <block>
+    <key>pdu_utils_extract_metadata</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>key</key>
+      <value>pmt.intern("datetime")</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(960, 692)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pdu_utils_extract_metadata_0_1</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1049,7 +1300,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 392)</value>
+      <value>(744, 408)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1096,7 +1347,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(448, 396)</value>
+      <value>(544, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1120,7 +1371,7 @@
     </param>
   </block>
   <block>
-    <key>vcc_trigger_timestamp_pdu</key>
+    <key>vcc_es_tag_to_utc</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1136,6 +1387,49 @@
     <param>
       <key>_enabled</key>
       <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(912, 276)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>vcc_es_tag_to_utc_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+    </param>
+  </block>
+  <block>
+    <key>vcc_trigger_timestamp_pdu</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1170,7 +1464,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1201,7 +1495,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(920, 268)</value>
+      <value>(1136, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1228,7 +1522,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 404)</value>
+      <value>(120, 420)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1251,11 +1545,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(888, 532)</value>
+      <value>(64, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1272,19 +1566,19 @@
   </block>
   <connection>
     <source_block_id>blocks_pdu_remove_0</source_block_id>
-    <sink_block_id>virtual_sink_2_2_0</sink_block_id>
+    <sink_block_id>vcc_es_tag_to_utc_0</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>in</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_pdu_to_tagged_stream_0</source_block_id>
-    <sink_block_id>pad_sink_1</sink_block_id>
+    <sink_block_id>pad_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_pdu_to_tagged_stream_0_0</source_block_id>
-    <sink_block_id>pad_sink_2</sink_block_id>
+    <sink_block_id>pad_sink_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -1337,13 +1631,25 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pdu_utils_extract_metadata_0</source_block_id>
+    <source_block_id>pdu_utils_extract_metadata_0_0_0</source_block_id>
     <sink_block_id>pad_sink_3</sink_block_id>
     <source_key>msg</source_key>
     <sink_key>in</sink_key>
   </connection>
   <connection>
-    <source_block_id>pdu_utils_extract_metadata_0_0</source_block_id>
+    <source_block_id>pdu_utils_extract_metadata_0_0_0_0</source_block_id>
+    <sink_block_id>pad_sink_3</sink_block_id>
+    <source_key>msg</source_key>
+    <sink_key>in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pdu_utils_extract_metadata_0_0_1</source_block_id>
+    <sink_block_id>pad_sink_3</sink_block_id>
+    <source_key>msg</source_key>
+    <sink_key>in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pdu_utils_extract_metadata_0_1</source_block_id>
     <sink_block_id>pad_sink_3</sink_block_id>
     <source_key>msg</source_key>
     <sink_key>in</sink_key>
@@ -1356,7 +1662,31 @@
   </connection>
   <connection>
     <source_block_id>vcc_burst_cfo_est_gmsk_0</source_block_id>
-    <sink_block_id>pdu_utils_extract_metadata_0</sink_block_id>
+    <sink_block_id>pad_sink_2</sink_block_id>
+    <source_key>corrected</source_key>
+    <sink_key>in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>vcc_burst_cfo_est_gmsk_0</source_block_id>
+    <sink_block_id>pdu_utils_extract_metadata_0_0_0</sink_block_id>
+    <source_key>corrected</source_key>
+    <sink_key>dict</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>vcc_burst_cfo_est_gmsk_0</source_block_id>
+    <sink_block_id>pdu_utils_extract_metadata_0_0_0_0</sink_block_id>
+    <source_key>corrected</source_key>
+    <sink_key>dict</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>vcc_burst_cfo_est_gmsk_0</source_block_id>
+    <sink_block_id>pdu_utils_extract_metadata_0_0_1</sink_block_id>
+    <source_key>corrected</source_key>
+    <sink_key>dict</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>vcc_burst_cfo_est_gmsk_0</source_block_id>
+    <sink_block_id>pdu_utils_extract_metadata_0_1</sink_block_id>
     <source_key>corrected</source_key>
     <sink_key>dict</sink_key>
   </connection>
@@ -1367,20 +1697,14 @@
     <sink_key>pdus</sink_key>
   </connection>
   <connection>
-    <source_block_id>vcc_burst_cfo_est_gmsk_0</source_block_id>
-    <sink_block_id>pad_sink_0</sink_block_id>
+    <source_block_id>vcc_burst_snr_0</source_block_id>
+    <sink_block_id>vcc_burst_cfo_est_gmsk_0</sink_block_id>
     <source_key>out</source_key>
     <sink_key>in</sink_key>
   </connection>
   <connection>
-    <source_block_id>vcc_burst_snr_0</source_block_id>
-    <sink_block_id>pdu_utils_extract_metadata_0_0</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>dict</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>vcc_burst_snr_0</source_block_id>
-    <sink_block_id>vcc_burst_cfo_est_gmsk_0</sink_block_id>
+    <source_block_id>vcc_es_tag_to_utc_0</source_block_id>
+    <sink_block_id>virtual_sink_2_2_0</sink_block_id>
     <source_key>out</source_key>
     <sink_key>in</sink_key>
   </connection>
@@ -1388,18 +1712,12 @@
     <source_block_id>vcc_trigger_timestamp_pdu_0</source_block_id>
     <sink_block_id>virtual_sink_1</sink_block_id>
     <source_key>ts</source_key>
-    <sink_key>in</sink_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>virtual_source_0</source_block_id>
     <sink_block_id>burst_length_detect_c_0</sink_block_id>
     <source_key>out</source_key>
     <sink_key>cpdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>virtual_source_1</source_block_id>
-    <sink_block_id>pad_sink_3</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>in</sink_key>
   </connection>
 </flow_graph>
