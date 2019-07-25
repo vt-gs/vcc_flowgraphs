@@ -4158,7 +4158,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>num_extra_fields</key>

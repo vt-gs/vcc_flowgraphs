@@ -97,7 +97,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>-40e3</value>
+      <value>40e3</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -244,7 +244,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>7.5e3</value>
+      <value>0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -616,7 +616,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2.7</value>
+      <value>-2</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1399,7 +1399,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>type</key>
@@ -1407,7 +1407,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(96, 736)</value>
+      <value>(48, 752)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3660,7 +3660,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>filename</key>
-      <value>/vtgs/captures/vcc/decode/VCC_VTGS_20190716_035412.sigmf-data</value>
+      <value>/vtgs/captures/vcc/keep/VCC_VTGS_20190724_233516.sigmf-data</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3819,7 +3819,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 804)</value>
+      <value>(48, 628)</value>
     </param>
     <param>
       <key>_rotation</key>
