@@ -1544,7 +1544,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>bt</key>
-      <value>0.5</value>
+      <value>0.7</value>
     </param>
     <param>
       <key>alias</key>

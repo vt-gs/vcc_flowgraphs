@@ -639,7 +639,7 @@ class burst_trx_gfsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         )
         self.gfsk_tx_burst_hier_0 = gfsk_tx_burst_hier(
             bb_gain=bb_gain,
-            bt=0.5,
+            bt=0.7,
             delay_enable=1,
             deviation=3000,
             pad_front=0,
