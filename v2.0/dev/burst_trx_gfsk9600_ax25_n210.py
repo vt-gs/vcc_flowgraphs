@@ -40,7 +40,6 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
 import gpredict
-import gr_sigmf
 import pyqt
 import rffe_ctl
 import sip
@@ -91,7 +90,7 @@ class burst_trx_gfsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.tx_tune_sel = tx_tune_sel = 0
         self.tx_sel = tx_sel = [tx_tune, -1*man_tune]
         self.tx_offset = tx_offset = samp_rate/2
-        self.tx_gain = tx_gain = 14
+        self.tx_gain = tx_gain = 10
         self.trigger_thresh = trigger_thresh = -2
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 20
@@ -285,13 +284,6 @@ class burst_trx_gfsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_center_freq(uhd.tune_request(tx_freq, tx_offset), 0)
         self.uhd_usrp_sink_0.set_gain(tx_gain, 0)
         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
-        self.sigmf_sink_0 = gr_sigmf.sink("cf32", fp, gr_sigmf.sigmf_time_mode_absolute, False)
-        self.sigmf_sink_0.set_global_meta("core:sample_rate", samp_rate)
-        self.sigmf_sink_0.set_global_meta("core:description", 'VCC TM/TC v1.0.0, GMSK9600, AX.25, w/ PTT')
-        self.sigmf_sink_0.set_global_meta("core:author", 'Zach Leffke')
-        self.sigmf_sink_0.set_global_meta("core:license", 'MIT')
-        self.sigmf_sink_0.set_global_meta("core:hw", '2X M2 400CP30, ARR Preamp, N210 w/ UBX')
-
         self.rffe_ctl_tag_ptt_pdu_0 = rffe_ctl.tag_ptt_pdu(samp_rate,"tx_sob","tx_eob","tx_time","TX")
         self.rational_resampler_xxx_4 = filter.rational_resampler_ccc(
                 interpolation=interp/2,
@@ -644,7 +636,7 @@ class burst_trx_gfsk9600_ax25_n210(gr.top_block, Qt.QWidget):
             deviation=3000,
             pad_front=0,
             pad_tail=0,
-            ptt_delay=.2,
+            ptt_delay=.25,
             samp_rate=250000,
         )
         self.fsk_burst_detector_0 = fsk_burst_detector(
@@ -709,7 +701,6 @@ class burst_trx_gfsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.connect((self.uhd_usrp_source_1, 0), (self.blocks_multiply_xx_0_0, 0))
         self.connect((self.uhd_usrp_source_1, 0), (self.qtgui_freq_sink_x_1_0_1, 0))
         self.connect((self.uhd_usrp_source_1, 0), (self.qtgui_waterfall_sink_x_0, 0))
-        self.connect((self.uhd_usrp_source_1, 0), (self.sigmf_sink_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "burst_trx_gfsk9600_ax25_n210")

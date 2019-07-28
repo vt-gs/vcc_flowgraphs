@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.12'?>
+<?grc format='1' created='3.7.13'?>
 <flow_graph>
   <timestamp>Mon Mar 12 23:34:27 2018</timestamp>
   <block>
@@ -18,10 +18,6 @@
     </param>
     <param>
       <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>copyright</key>
       <value></value>
     </param>
     <param>
@@ -3824,7 +3820,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>filename</key>
-      <value>/home/zleffke/captures/vcc/VCC_VTGS_20190716_035412.sigmf-data</value>
+      <value>/vtgs/captures/vcc/VCC_VTGS_20190726_065251.sigmf-data</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4129,18 +4125,6 @@ Wide enough for doppler spread</value>
     <sink_block_id>rational_resampler_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>burst_rx_es_hier_0</source_block_id>
-    <sink_block_id>pyqt_ctime_plot_0</sink_block_id>
-    <source_key>brst_corr</source_key>
-    <sink_key>cpdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>burst_rx_es_hier_0</source_block_id>
-    <sink_block_id>pyqt_meta_text_output_0</sink_block_id>
-    <source_key>brst_corr</source_key>
-    <sink_key>pdus</sink_key>
   </connection>
   <connection>
     <source_block_id>burst_rx_es_hier_0</source_block_id>

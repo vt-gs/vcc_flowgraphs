@@ -1,16 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-#
-# SPDX-License-Identifier: GPL-3.0
-#
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: VCC Burst TX/RX, 9600 Baud GMSK, AX.25, w/ PTT
 # Author: Zach Leffke, KJ4QLP
 # Description: VCC Burst TX/RX, 9600 Baud GMSK, AX.25
-#
-# Generated: Wed Jul 24 23:07:31 2019
-# GNU Radio version: 3.7.12.0
+# GNU Radio version: 3.7.13.5
 ##################################################
 
 if __name__ == '__main__':
@@ -91,7 +86,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.interp = interp = 48
         self.fsk_dev = fsk_dev = 10000
         self.fp = fp = "/vtgs/captures/vcc/{:s}".format(fn)
-        self.fine_offset = fine_offset = 7.5e3
+        self.fine_offset = fine_offset = 0
         self.filt_cut = filt_cut = 8e3
         self.decim_2 = decim_2 = 4
         self.decim = decim = int(samp_rate/2000)
@@ -158,13 +153,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self._fine_offset_line_edit.returnPressed.connect(
         	lambda: self.set_fine_offset(eng_notation.str_to_num(str(self._fine_offset_line_edit.text().toAscii()))))
         self.top_grid_layout.addWidget(self._fine_offset_tool_bar)
-        self._filt_cut_tool_bar = Qt.QToolBar(self)
-        self._filt_cut_tool_bar.addWidget(Qt.QLabel("filt_cut"+": "))
-        self._filt_cut_line_edit = Qt.QLineEdit(str(self.filt_cut))
-        self._filt_cut_tool_bar.addWidget(self._filt_cut_line_edit)
-        self._filt_cut_line_edit.returnPressed.connect(
-        	lambda: self.set_filt_cut(eng_notation.str_to_num(str(self._filt_cut_line_edit.text().toAscii()))))
-        self.top_grid_layout.addWidget(self._filt_cut_tool_bar)
         self._ceres_offset_tool_bar = Qt.QToolBar(self)
         self._ceres_offset_tool_bar.addWidget(Qt.QLabel('Ceres Offset'+": "))
         self._ceres_offset_line_edit = Qt.QLineEdit(str(self.ceres_offset))
@@ -185,7 +173,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         for c in range(0, 6):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
 
-        self.sigmf_source_0 = gr_sigmf.source('/home/zleffke/captures/vcc/VCC_VTGS_20190716_035412.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
+        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/VCC_VTGS_20190726_065251.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
         self._rx_gain_tool_bar = Qt.QToolBar(self)
         self._rx_gain_tool_bar.addWidget(Qt.QLabel('RX Gain'+": "))
         self._rx_gain_line_edit = Qt.QLineEdit(str(self.rx_gain))
@@ -458,8 +446,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         for c in range(4, 8):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
 
-        self.low_pass_filter_0_0 = filter.fir_filter_ccf(1, firdes.low_pass(
-        	1, samp_rate / decim *interp, filt_cut, chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0 = filter.fir_filter_ccf(1, firdes.low_pass(
         	1, samp_rate / decim *interp, chan_filt_cutoff, chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0 = gmsk_ax25_rx_hier(
@@ -477,6 +463,13 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
             interp=interp,
             samp_rate=samp_rate,
         )
+        self._filt_cut_tool_bar = Qt.QToolBar(self)
+        self._filt_cut_tool_bar.addWidget(Qt.QLabel("filt_cut"+": "))
+        self._filt_cut_line_edit = Qt.QLineEdit(str(self.filt_cut))
+        self._filt_cut_tool_bar.addWidget(self._filt_cut_line_edit)
+        self._filt_cut_line_edit.returnPressed.connect(
+        	lambda: self.set_filt_cut(eng_notation.str_to_num(str(self._filt_cut_line_edit.text().toAscii()))))
+        self.top_grid_layout.addWidget(self._filt_cut_tool_bar)
         self.burst_rx_es_hier_0 = burst_rx_es_hier(
             avg_len=100,
             baud=9600,
@@ -498,8 +491,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.burst_rx_es_hier_0, 'brst_corr'), (self.pyqt_ctime_plot_0, 'cpdus'))
-        self.msg_connect((self.burst_rx_es_hier_0, 'brst_corr'), (self.pyqt_meta_text_output_0, 'pdus'))
         self.msg_connect((self.burst_rx_es_hier_0, 'meta'), (self.vcc_vstp_aggregator_simple_0, 'meta'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.vcc_qt_hex_text_tx_0, 'pdus'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'ax25'), (self.vcc_vstp_aggregator_simple_0, 'raw'))
@@ -557,7 +548,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_1_0_1.set_frequency_range(self.rx_freq, self.samp_rate)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate*self.interp/self.decim*self.interp_2/self.decim_2)
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0.set_quad_demod_gain((self.samp_rate/self.decim*self.interp/self.decim_2*self.interp_2)/(2*math.pi*self.fsk_dev/8.0))
         self.fsk_burst_detector_0.set_samp_rate(self.samp_rate)
@@ -629,7 +619,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.qtgui_waterfall_sink_x_0_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate*self.interp/self.decim*self.interp_2/self.decim_2)
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0.set_quad_demod_gain((self.samp_rate/self.decim*self.interp/self.decim_2*self.interp_2)/(2*math.pi*self.fsk_dev/8.0))
         self.fsk_burst_detector_0.set_interp(self.interp)
@@ -664,7 +653,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
     def set_filt_cut(self, filt_cut):
         self.filt_cut = filt_cut
         Qt.QMetaObject.invokeMethod(self._filt_cut_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.filt_cut)))
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
 
     def get_decim_2(self):
         return self.decim_2
@@ -684,7 +672,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.qtgui_waterfall_sink_x_0_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate*self.interp/self.decim*self.interp_2/self.decim_2)
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0.set_quad_demod_gain((self.samp_rate/self.decim*self.interp/self.decim_2*self.interp_2)/(2*math.pi*self.fsk_dev/8.0))
         self.fsk_burst_detector_0.set_decim(self.decim)
@@ -696,7 +683,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
 
     def set_chan_filt_trans(self, chan_filt_trans):
         self.chan_filt_trans = chan_filt_trans
-        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
 
     def get_chan_filt_cutoff(self):

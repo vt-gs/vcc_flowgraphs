@@ -91,7 +91,7 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.tx_tune_sel = tx_tune_sel = 0
         self.tx_sel = tx_sel = [tx_tune, -1*man_tune]
         self.tx_offset = tx_offset = samp_rate/2
-        self.tx_gain = tx_gain = 14
+        self.tx_gain = tx_gain = 10
         self.trigger_thresh = trigger_thresh = -2
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 20
@@ -631,12 +631,12 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         self.gpredict_doppler_0 = gpredict.doppler("0.0.0.0", 7356, True)
         self.gpredict_MsgPairToVar_1 = gpredict.MsgPairToVar(self.set_uplink_freq)
         self.gmsk_tx_burst_hier2_0 = gmsk_tx_burst_hier2(
-            bb_gain=0.75,
+            bb_gain=bb_gain,
             bt=.5,
             delay_enable=1,
             pad_front=0,
             pad_tail=0,
-            ptt_delay=.2,
+            ptt_delay=.25,
             samp_rate=samp_rate,
         )
         self.gmsk_ax25_rx_hier_0 = gmsk_ax25_rx_hier(
@@ -955,6 +955,7 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
     def set_bb_gain(self, bb_gain):
         self.bb_gain = bb_gain
         Qt.QMetaObject.invokeMethod(self._bb_gain_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.bb_gain)))
+        self.gmsk_tx_burst_hier2_0.set_bb_gain(self.bb_gain)
 
 
 def main(top_block_cls=burst_trx_gmsk9600_ax25_n210, options=None):

@@ -721,7 +721,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>14</value>
+      <value>10</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1588,7 +1588,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>ptt_delay</key>
-      <value>.2</value>
+      <value>.25</value>
     </param>
     <param>
       <key>pad_front</key>
@@ -4162,7 +4162,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>num_extra_fields</key>
