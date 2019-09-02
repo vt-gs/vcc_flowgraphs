@@ -633,7 +633,7 @@ class burst_trx_gfsk9600_ax25_n210(gr.top_block, Qt.QWidget):
             bb_gain=bb_gain,
             bt=0.7,
             delay_enable=1,
-            deviation=3000,
+            deviation=3200,
             pad_front=0,
             pad_tail=0,
             ptt_delay=.25,

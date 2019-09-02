@@ -97,7 +97,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>40e3</value>
+      <value>-40e3</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -484,7 +484,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>10</value>
+      <value>.5</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -3820,7 +3820,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>filename</key>
-      <value>/vtgs/captures/vcc/VCC_VTGS_20190726_065251.sigmf-data</value>
+      <value>/vtgs/captures/vcc/VCC_VTGS_20190805_182315.sigmf-data</value>
     </param>
     <param>
       <key>_coordinate</key>

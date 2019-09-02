@@ -1604,7 +1604,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>deviation</key>
-      <value>3000</value>
+      <value>3200</value>
     </param>
   </block>
   <block>
