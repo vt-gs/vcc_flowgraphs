@@ -274,7 +274,7 @@
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>baud*samps_per_symb</value>
+      <value>baud*samps_per_symb*4</value>
     </param>
   </block>
   <block>
@@ -321,7 +321,7 @@
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>baud*samps_per_symb</value>
+      <value>baud*samps_per_symb*4</value>
     </param>
   </block>
   <block>
@@ -669,54 +669,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(224, 548)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pad_sink_3</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>message</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>meta</value>
-    </param>
-    <param>
-      <key>num_streams</key>
       <value>1</value>
     </param>
     <param>
-      <key>optional</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>pad_sink</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>_coordinate</key>
-      <value>(1232, 596)</value>
+      <value>(1208, 692)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -908,7 +865,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(88, 532)</value>
+      <value>(184, 620)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1549,7 +1506,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 540)</value>
+      <value>(80, 612)</value>
     </param>
     <param>
       <key>_rotation</key>
