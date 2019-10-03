@@ -50,7 +50,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>wff_nogui_loopback</value>
+      <value>wff_nogui_loopback_v1</value>
     </param>
     <param>
       <key>max_nouts</key>

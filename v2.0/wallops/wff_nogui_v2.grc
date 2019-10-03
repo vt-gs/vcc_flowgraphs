@@ -50,7 +50,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>wff_nogui_loopback</value>
+      <value>wff_nogui_v2</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -229,6 +229,62 @@
     </param>
   </block>
   <block>
+    <key>blocks_packed_to_unpacked_xx</key>
+    <param>
+      <key>bits_per_chunk</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value>Unpack bytes from
+Wallops NRZ-I(S) Decoder</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>endianness</key>
+      <value>gr.GR_MSB_FIRST</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(904, 532)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_packed_to_unpacked_xx_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_ports</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_pdu_to_tagged_stream</key>
     <param>
       <key>alias</key>
@@ -248,7 +304,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1152, 540)</value>
+      <value>(1168, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -295,7 +351,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(104, 284)</value>
+      <value>(184, 284)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -344,7 +400,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 376)</value>
+      <value>(96, 376)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -391,7 +447,8 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>comment</key>
-      <value>Uplink Connection to Wallops</value>
+      <value>Uplink Connection to Wallops
+Expects packed byte bursts</value>
     </param>
     <param>
       <key>affinity</key>
@@ -403,7 +460,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1376, 264)</value>
+      <value>(1384, 264)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -450,7 +507,8 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>comment</key>
-      <value>Downlink connection from Wallops</value>
+      <value>Downlink connection from Wallops
+Expect packed byte stream</value>
     </param>
     <param>
       <key>affinity</key>
@@ -462,7 +520,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1376, 520)</value>
+      <value>(1400, 520)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -796,7 +854,7 @@ Append/Prepend Flags</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1016, 276)</value>
+      <value>(840, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -849,7 +907,7 @@ Removes KISS CMD Byte</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(608, 284)</value>
+      <value>(416, 284)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -910,15 +968,23 @@ Escapes DATA bytes as needed</value>
     </param>
   </block>
   <block>
-    <key>note</key>
+    <key>pdu_utils_pack_unpack</key>
+    <param>
+      <key>bit_order</key>
+      <value>pdu_utils.BIT_ORDER_MSB_FIRST</value>
+    </param>
     <param>
       <key>alias</key>
       <value></value>
     </param>
     <param>
       <key>comment</key>
-      <value>Wallops handles NRZ-I encode/decode
-Confirm polarity of the NRZ-I stream</value>
+      <value>pack bytes for 
+Wallops NRZ-I(S) Encoder</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
     </param>
     <param>
       <key>_enabled</key>
@@ -926,7 +992,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1288, 404)</value>
+      <value>(1200, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -934,11 +1000,19 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>id</key>
-      <value>note_0</value>
+      <value>pdu_utils_pack_unpack_0</value>
     </param>
     <param>
-      <key>note</key>
-      <value></value>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>mode</key>
+      <value>pdu_utils.MODE_PACK_BYTE</value>
     </param>
   </block>
   <block>
@@ -1133,7 +1207,7 @@ Confirm polarity of the NRZ-I stream</value>
     <key>sigmf_sink</key>
     <param>
       <key>author</key>
-      <value>Zach Leffke, zleffke@vt.edu</value>
+      <value></value>
     </param>
     <param>
       <key>alias</key>
@@ -1149,7 +1223,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>description</key>
-      <value>Wallops Flight Facility Interface, Uplink</value>
+      <value></value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1157,7 +1231,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>num_extra_fields</key>
-      <value>4</value>
+      <value>3</value>
     </param>
     <param>
       <key>field_1_key</key>
@@ -1389,7 +1463,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>field_4_key</key>
-      <value>"vcc:tap_point"</value>
+      <value></value>
     </param>
     <param>
       <key>field_4_type</key>
@@ -1397,7 +1471,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>field_4_value</key>
-      <value>"KISS input"</value>
+      <value></value>
     </param>
     <param>
       <key>field_5_key</key>
@@ -1465,7 +1539,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(544, 392)</value>
+      <value>(432, 392)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1473,7 +1547,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>hardware</key>
-      <value>WFF UHF Ground Station</value>
+      <value></value>
     </param>
     <param>
       <key>id</key>
@@ -1485,7 +1559,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>license</key>
-      <value>MIT</value>
+      <value></value>
     </param>
     <param>
       <key>append</key>
@@ -1504,7 +1578,7 @@ Confirm polarity of the NRZ-I stream</value>
     <key>sigmf_sink</key>
     <param>
       <key>author</key>
-      <value>Zach Leffke, zleffke@vt.edu</value>
+      <value></value>
     </param>
     <param>
       <key>alias</key>
@@ -1520,7 +1594,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>description</key>
-      <value>Wallops Flight Facility Interface, Downlink</value>
+      <value></value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1528,7 +1602,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>num_extra_fields</key>
-      <value>4</value>
+      <value>3</value>
     </param>
     <param>
       <key>field_1_key</key>
@@ -1760,7 +1834,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>field_4_key</key>
-      <value>"vcc:tap_point"</value>
+      <value></value>
     </param>
     <param>
       <key>field_4_type</key>
@@ -1768,7 +1842,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>field_4_value</key>
-      <value>"Packed Bytes, NRZ-I decoded, before descrambling"</value>
+      <value></value>
     </param>
     <param>
       <key>field_5_key</key>
@@ -1836,7 +1910,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 392)</value>
+      <value>(864, 400)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1844,7 +1918,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>hardware</key>
-      <value>WFF UHF Ground Station</value>
+      <value></value>
     </param>
     <param>
       <key>id</key>
@@ -1856,7 +1930,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>license</key>
-      <value>MIT</value>
+      <value></value>
     </param>
     <param>
       <key>append</key>
@@ -1939,7 +2013,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1200, 268)</value>
+      <value>(1032, 268)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1994,7 +2068,7 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(808, 268)</value>
+      <value>(632, 268)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2019,100 +2093,6 @@ Confirm polarity of the NRZ-I stream</value>
     <param>
       <key>ssid</key>
       <value>ssid</value>
-    </param>
-  </block>
-  <block>
-    <key>vcc_insert_time_tag_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dt_key</key>
-      <value>core:datetime</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(344, 276)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vcc_insert_time_tag_bb_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>trig_key</key>
-      <value>packet_len</value>
-    </param>
-  </block>
-  <block>
-    <key>vcc_insert_time_tag_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>dt_key</key>
-      <value>core:datetime</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(904, 532)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>180</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>vcc_insert_time_tag_bb_1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>trig_key</key>
-      <value>packet_len</value>
     </param>
   </block>
   <block>
@@ -2257,14 +2237,32 @@ Confirm polarity of the NRZ-I stream</value>
     </param>
   </block>
   <connection>
+    <source_block_id>blocks_packed_to_unpacked_xx_0</source_block_id>
+    <sink_block_id>digital_descrambler_bb_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_pdu_to_tagged_stream_0_0</source_block_id>
-    <sink_block_id>vcc_insert_time_tag_bb_1</sink_block_id>
+    <sink_block_id>blocks_packed_to_unpacked_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_pdu_to_tagged_stream_0_0</source_block_id>
+    <sink_block_id>sigmf_sink_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_pdu_to_tagged_stream_1</source_block_id>
-    <sink_block_id>vcc_insert_time_tag_bb_0</sink_block_id>
+    <sink_block_id>kiss_kiss_to_pdu_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_pdu_to_tagged_stream_1</source_block_id>
+    <sink_block_id>sigmf_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -2311,45 +2309,21 @@ Confirm polarity of the NRZ-I stream</value>
     <sink_key>pdus</sink_key>
   </connection>
   <connection>
-    <source_block_id>vcc_burst_scramble_bb_0</source_block_id>
-    <sink_block_id>blocks_pdu_to_tagged_stream_0_0</sink_block_id>
-    <source_key>out</source_key>
+    <source_block_id>pdu_utils_pack_unpack_0</source_block_id>
+    <sink_block_id>blocks_socket_pdu_1</sink_block_id>
+    <source_key>pdu_out</source_key>
     <sink_key>pdus</sink_key>
   </connection>
   <connection>
     <source_block_id>vcc_burst_scramble_bb_0</source_block_id>
-    <sink_block_id>blocks_socket_pdu_1</sink_block_id>
+    <sink_block_id>pdu_utils_pack_unpack_0</sink_block_id>
     <source_key>out</source_key>
-    <sink_key>pdus</sink_key>
+    <sink_key>pdu_in</sink_key>
   </connection>
   <connection>
     <source_block_id>vcc_insert_src_callsign_pdu_0</source_block_id>
     <sink_block_id>kiss_hdlc_framer_0</sink_block_id>
     <source_key>out</source_key>
     <sink_key>in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>vcc_insert_time_tag_bb_0</source_block_id>
-    <sink_block_id>kiss_kiss_to_pdu_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>vcc_insert_time_tag_bb_0</source_block_id>
-    <sink_block_id>sigmf_sink_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>vcc_insert_time_tag_bb_1</source_block_id>
-    <sink_block_id>digital_descrambler_bb_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>vcc_insert_time_tag_bb_1</source_block_id>
-    <sink_block_id>sigmf_sink_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
   </connection>
 </flow_graph>

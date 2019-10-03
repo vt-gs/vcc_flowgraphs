@@ -5,11 +5,11 @@
 #
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Wff Nogui Loopback
+# Title: Wff Nogui Loopback V1
 # Author: Zach Leffke, KJ4QLP
 # Description: Wallops Interface, No GUI
 #
-# Generated: Thu Oct  3 13:44:00 2019
+# Generated: Thu Oct  3 13:45:09 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -26,10 +26,10 @@ import kiss
 import vcc
 
 
-class wff_nogui_loopback(gr.top_block):
+class wff_nogui_loopback_v1(gr.top_block):
 
     def __init__(self, callsign='WJ2XMS', client_port='8000', gs_id='WFF', post_bytes=64, pre_bytes=64, sc_id='VCC-A', server_ip='0.0.0.0', ssid=0, verbose=0, wallops_dn_port='56101', wallops_up_port='56100'):
-        gr.top_block.__init__(self, "Wff Nogui Loopback")
+        gr.top_block.__init__(self, "Wff Nogui Loopback V1")
 
         ##################################################
         # Parameters
@@ -264,7 +264,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=wff_nogui_loopback, options=None):
+def main(top_block_cls=wff_nogui_loopback_v1, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 

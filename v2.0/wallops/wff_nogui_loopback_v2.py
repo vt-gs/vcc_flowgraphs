@@ -5,11 +5,11 @@
 #
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Wff Nogui Loopback
+# Title: Wff Nogui Loopback V2
 # Author: Zach Leffke, KJ4QLP
 # Description: Wallops Interface, No GUI
 #
-# Generated: Thu Oct  3 13:44:00 2019
+# Generated: Thu Oct  3 13:52:08 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -23,13 +23,14 @@ from gnuradio.filter import firdes
 from optparse import OptionParser
 import gr_sigmf
 import kiss
+import pdu_utils
 import vcc
 
 
-class wff_nogui_loopback(gr.top_block):
+class wff_nogui_loopback_v2(gr.top_block):
 
     def __init__(self, callsign='WJ2XMS', client_port='8000', gs_id='WFF', post_bytes=64, pre_bytes=64, sc_id='VCC-A', server_ip='0.0.0.0', ssid=0, verbose=0, wallops_dn_port='56101', wallops_up_port='56100'):
-        gr.top_block.__init__(self, "Wff Nogui Loopback")
+        gr.top_block.__init__(self, "Wff Nogui Loopback V2")
 
         ##################################################
         # Parameters
@@ -84,6 +85,7 @@ class wff_nogui_loopback(gr.top_block):
         self.sigmf_sink_0.set_global_meta('vcc:uplink_callsign', 'WJ2XMS-0')
         self.sigmf_sink_0.set_global_meta('vcc:tap_point', 'KISS input')
 
+        self.pdu_utils_pack_unpack_0 = pdu_utils.pack_unpack(pdu_utils.MODE_PACK_BYTE, pdu_utils.BIT_ORDER_MSB_FIRST)
         self.kiss_pdu_to_kiss_0 = kiss.pdu_to_kiss()
         self.kiss_kiss_to_pdu_0 = kiss.kiss_to_pdu(True)
         self.kiss_hdlc_framer_0 = kiss.hdlc_framer(preamble_bytes=pre_bytes, postamble_bytes=post_bytes)
@@ -94,6 +96,7 @@ class wff_nogui_loopback(gr.top_block):
         self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_SERVER", server_ip, client_port, 1024, False)
         self.blocks_pdu_to_tagged_stream_1 = blocks.pdu_to_tagged_stream(blocks.byte_t, 'packet_len')
         self.blocks_pdu_to_tagged_stream_0_0 = blocks.pdu_to_tagged_stream(blocks.byte_t, 'packet_len')
+        self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(1, gr.GR_MSB_FIRST)
 
 
 
@@ -106,15 +109,17 @@ class wff_nogui_loopback(gr.top_block):
         self.msg_connect((self.kiss_hdlc_framer_0, 'out'), (self.vcc_burst_scramble_bb_0, 'in'))
         self.msg_connect((self.kiss_kiss_to_pdu_0, 'out'), (self.vcc_insert_src_callsign_pdu_0, 'in'))
         self.msg_connect((self.kiss_pdu_to_kiss_0, 'out'), (self.blocks_socket_pdu_0, 'pdus'))
-        self.msg_connect((self.vcc_burst_scramble_bb_0, 'out'), (self.blocks_pdu_to_tagged_stream_0_0, 'pdus'))
-        self.msg_connect((self.vcc_burst_scramble_bb_0, 'out'), (self.blocks_socket_pdu_1, 'pdus'))
+        self.msg_connect((self.pdu_utils_pack_unpack_0, 'pdu_out'), (self.blocks_pdu_to_tagged_stream_0_0, 'pdus'))
+        self.msg_connect((self.pdu_utils_pack_unpack_0, 'pdu_out'), (self.blocks_socket_pdu_1, 'pdus'))
+        self.msg_connect((self.vcc_burst_scramble_bb_0, 'out'), (self.pdu_utils_pack_unpack_0, 'pdu_in'))
         self.msg_connect((self.vcc_insert_src_callsign_pdu_0, 'out'), (self.kiss_hdlc_framer_0, 'in'))
+        self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.digital_descrambler_bb_0, 0))
         self.connect((self.blocks_pdu_to_tagged_stream_0_0, 0), (self.vcc_insert_time_tag_bb_1, 0))
         self.connect((self.blocks_pdu_to_tagged_stream_1, 0), (self.vcc_insert_time_tag_bb_0, 0))
         self.connect((self.digital_descrambler_bb_0, 0), (self.kiss_hdlc_deframer_0, 0))
         self.connect((self.vcc_insert_time_tag_bb_0, 0), (self.kiss_kiss_to_pdu_0, 0))
         self.connect((self.vcc_insert_time_tag_bb_0, 0), (self.sigmf_sink_0, 0))
-        self.connect((self.vcc_insert_time_tag_bb_1, 0), (self.digital_descrambler_bb_0, 0))
+        self.connect((self.vcc_insert_time_tag_bb_1, 0), (self.blocks_packed_to_unpacked_xx_0, 0))
         self.connect((self.vcc_insert_time_tag_bb_1, 0), (self.sigmf_sink_1, 0))
 
     def get_callsign(self):
@@ -264,7 +269,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=wff_nogui_loopback, options=None):
+def main(top_block_cls=wff_nogui_loopback_v2, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 
