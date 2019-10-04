@@ -5,11 +5,11 @@
 #
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Wff Nogui V3
+# Title: Wff Nogui V3 Verbose
 # Author: Zach Leffke, KJ4QLP
 # Description: Wallops Interface, No GUI
 #
-# Generated: Thu Oct  3 14:36:33 2019
+# Generated: Fri Oct  4 10:07:21 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -27,10 +27,10 @@ import pdu_utils
 import vcc
 
 
-class wff_nogui_v3(gr.top_block):
+class wff_nogui_v3_verbose(gr.top_block):
 
     def __init__(self, callsign='WJ2XMS', client_port='8000', gs_id='WFF', post_bytes=64, pre_bytes=64, sc_id='VCC-A', server_ip='0.0.0.0', ssid=0, verbose=0, wallops_dn_port='56101', wallops_up_port='56100'):
-        gr.top_block.__init__(self, "Wff Nogui V3")
+        gr.top_block.__init__(self, "Wff Nogui V3 Verbose")
 
         ##################################################
         # Parameters
@@ -97,6 +97,7 @@ class wff_nogui_v3(gr.top_block):
         self.blocks_pdu_to_tagged_stream_1 = blocks.pdu_to_tagged_stream(blocks.byte_t, 'packet_len')
         self.blocks_pdu_to_tagged_stream_0_0 = blocks.pdu_to_tagged_stream(blocks.byte_t, 'packet_len')
         self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(1, gr.GR_MSB_FIRST)
+        self.blocks_message_debug_0 = blocks.message_debug()
 
 
 
@@ -108,6 +109,8 @@ class wff_nogui_v3(gr.top_block):
         self.msg_connect((self.kiss_hdlc_deframer_0, 'out'), (self.kiss_pdu_to_kiss_0, 'in'))
         self.msg_connect((self.kiss_hdlc_framer_0, 'out'), (self.vcc_burst_scramble_bb_0, 'in'))
         self.msg_connect((self.kiss_kiss_to_pdu_0, 'out'), (self.vcc_insert_src_callsign_pdu_0, 'in'))
+        self.msg_connect((self.kiss_pdu_to_kiss_0, 'out'), (self.blocks_message_debug_0, 'print'))
+        self.msg_connect((self.kiss_pdu_to_kiss_0, 'out'), (self.blocks_message_debug_0, 'print_pdu'))
         self.msg_connect((self.kiss_pdu_to_kiss_0, 'out'), (self.blocks_socket_pdu_0, 'pdus'))
         self.msg_connect((self.pdu_utils_pack_unpack_0, 'pdu_out'), (self.blocks_socket_pdu_1, 'pdus'))
         self.msg_connect((self.vcc_burst_scramble_bb_0, 'out'), (self.pdu_utils_pack_unpack_0, 'pdu_in'))
@@ -268,7 +271,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=wff_nogui_v3, options=None):
+def main(top_block_cls=wff_nogui_v3_verbose, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 

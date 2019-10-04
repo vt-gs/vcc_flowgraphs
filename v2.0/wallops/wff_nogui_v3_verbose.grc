@@ -50,7 +50,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>wff_nogui_v3</value>
+      <value>wff_nogui_v3_verbose</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -226,6 +226,37 @@
     <param>
       <key>value</key>
       <value>dt.strftime(dt.utcnow(), "%Y%m%d_%H%M%S" )</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_message_debug</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(192, 440)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_message_debug_0</value>
     </param>
   </block>
   <block>
@@ -2383,6 +2414,18 @@ Wallops NRZ-I(S) Encoder</value>
     <sink_block_id>vcc_insert_src_callsign_pdu_0</sink_block_id>
     <source_key>out</source_key>
     <sink_key>in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>kiss_pdu_to_kiss_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>out</source_key>
+    <sink_key>print</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>kiss_pdu_to_kiss_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>out</source_key>
+    <sink_key>print_pdu</sink_key>
   </connection>
   <connection>
     <source_block_id>kiss_pdu_to_kiss_0</source_block_id>
