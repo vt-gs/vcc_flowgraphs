@@ -6362,12 +6362,6 @@ Wide enough for doppler spread</value>
     <sink_key>pdus</sink_key>
   </connection>
   <connection>
-    <source_block_id>virtual_source_rx_kiss</source_block_id>
-    <sink_block_id>virtual_sink_tx_kiss</sink_block_id>
-    <source_key>out</source_key>
-    <sink_key>in</sink_key>
-  </connection>
-  <connection>
     <source_block_id>virtual_source_tx_kiss</source_block_id>
     <sink_block_id>gmsk_tx_burst_hier2_0</sink_block_id>
     <source_key>out</source_key>

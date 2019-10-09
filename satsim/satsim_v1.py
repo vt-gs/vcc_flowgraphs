@@ -10,7 +10,7 @@
 # Copyright: MIT
 # Description: Simulates a GMSK 9600 baud half duplex flight radio
 #
-# Generated: Tue Oct  8 21:11:00 2019
+# Generated: Tue Oct  8 21:19:33 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -625,7 +625,6 @@ class satsim_v1(gr.top_block, Qt.QWidget):
         self.msg_connect((self.burst_rx_es_hier_0, 'brst_corr'), (self.pyqt_ctime_plot_0, 'cpdus'))
         self.msg_connect((self.burst_rx_es_hier_0, 'meta'), (self.pyqt_meta_text_output_0, 'pdus'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.blocks_socket_pdu_0, 'pdus'))
-        self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.gmsk_tx_burst_hier2_0, 'kiss/ax25'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.vcc_qt_hex_text_tx_0, 'pdus'))
         self.msg_connect((self.gmsk_tx_burst_hier2_0, 'ax25'), (self.vcc_qt_hex_text_tx, 'pdus'))
         self.connect((self.analog_agc2_xx_0, 0), (self.low_pass_filter_0, 0))
