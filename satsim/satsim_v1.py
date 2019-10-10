@@ -10,7 +10,7 @@
 # Copyright: MIT
 # Description: Simulates a GMSK 9600 baud half duplex flight radio
 #
-# Generated: Tue Oct  8 21:19:33 2019
+# Generated: Thu Oct 10 00:58:36 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -45,7 +45,6 @@ from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from optparse import OptionParser
-import pmt
 import pyqt
 import sip
 import time
@@ -611,7 +610,6 @@ class satsim_v1(gr.top_block, Qt.QWidget):
         )
         self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8000', 1024, False)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
-        self.blocks_message_strobe_random_0 = blocks.message_strobe_random(pmt.intern("TEST"), blocks.STROBE_POISSON, 1000, 100)
         self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, man_tune, 1, 0)
         self.analog_agc2_xx_0 = analog.agc2_cc(10, 1e-1, 65536, 1)
         self.analog_agc2_xx_0.set_max_gain(65536)
