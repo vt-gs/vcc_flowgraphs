@@ -1,16 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-#
-# SPDX-License-Identifier: GPL-3.0
-#
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Wff Nogui V3 Verbose
 # Author: Zach Leffke, KJ4QLP
 # Description: Wallops Interface, No GUI
-#
-# Generated: Fri Oct  4 10:07:21 2019
-# GNU Radio version: 3.7.12.0
+# GNU Radio version: 3.7.13.4
 ##################################################
 
 from datetime import datetime as dt; import string; import math
