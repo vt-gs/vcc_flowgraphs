@@ -7,10 +7,9 @@
 # GNU Radio Python Flow Graph
 # Title: VCC Satellite Simulator
 # Author: Zach Leffke, KJ4QLP
-# Copyright: MIT
 # Description: Simulates a GMSK 9600 baud half duplex flight radio
 #
-# Generated: Thu Oct 10 01:28:29 2019
+# Generated: Thu Oct 10 13:31:59 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -86,11 +85,12 @@ class satsim_v1(gr.top_block, Qt.QWidget):
         self.tx_tune_sel = tx_tune_sel = 0
         self.tx_offset = tx_offset = samp_rate/2
         self.tx_gain = tx_gain = 40
-        self.tx_freq = tx_freq = 401.12e6
+        self.tx_freq = tx_freq = 401.04e6
         self.trigger_thresh = trigger_thresh = -2
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 40
-        self.rx_freq = rx_freq = 401.12e6
+        self.rx_freq = rx_freq = 401.04e6
+        self.rx_fine_tune = rx_fine_tune = 0
         self.man_tune = man_tune = 0.0
         self.interp_2 = interp_2 = 1
         self.interp = interp = 48
@@ -181,6 +181,17 @@ class satsim_v1(gr.top_block, Qt.QWidget):
             self.main_tab_grid_layout_0.setRowStretch(r, 1)
         for c in range(0, 2):
             self.main_tab_grid_layout_0.setColumnStretch(c, 1)
+        self._rx_fine_tune_tool_bar = Qt.QToolBar(self)
+        self._rx_fine_tune_tool_bar.addWidget(Qt.QLabel('RX Fine Tune'+": "))
+        self._rx_fine_tune_line_edit = Qt.QLineEdit(str(self.rx_fine_tune))
+        self._rx_fine_tune_tool_bar.addWidget(self._rx_fine_tune_line_edit)
+        self._rx_fine_tune_line_edit.returnPressed.connect(
+        	lambda: self.set_rx_fine_tune(eng_notation.str_to_num(str(self._rx_fine_tune_line_edit.text().toAscii()))))
+        self.main_tab_grid_layout_1.addWidget(self._rx_fine_tune_tool_bar, 3, 4, 1, 2)
+        for r in range(3, 4):
+            self.main_tab_grid_layout_1.setRowStretch(r, 1)
+        for c in range(4, 6):
+            self.main_tab_grid_layout_1.setColumnStretch(c, 1)
         self._man_tune_tool_bar = Qt.QToolBar(self)
         self._man_tune_tool_bar.addWidget(Qt.QLabel('TX Freq Offset'+": "))
         self._man_tune_line_edit = Qt.QLineEdit(str(self.man_tune))
@@ -609,7 +620,9 @@ class satsim_v1(gr.top_block, Qt.QWidget):
             trigger_thresh=trigger_thresh,
         )
         self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8000', 1024, False)
+        self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
+        self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * rx_fine_tune, 1, 0)
         self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, man_tune, 1, 0)
         self.analog_agc2_xx_0 = analog.agc2_cc(10, 1e-1, 65536, 1)
         self.analog_agc2_xx_0.set_max_gain(65536)
@@ -627,8 +640,10 @@ class satsim_v1(gr.top_block, Qt.QWidget):
         self.msg_connect((self.gmsk_tx_burst_hier2_0, 'ax25'), (self.vcc_qt_hex_text_tx, 'pdus'))
         self.connect((self.analog_agc2_xx_0, 0), (self.low_pass_filter_0, 0))
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 1))
+        self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))
         self.connect((self.blocks_multiply_xx_0, 0), (self.rational_resampler_xxx_4, 0))
         self.connect((self.blocks_multiply_xx_0, 0), (self.uhd_usrp_sink_0, 0))
+        self.connect((self.blocks_multiply_xx_0_0, 0), (self.rational_resampler_xxx_1, 0))
         self.connect((self.burst_rx_es_hier_0, 0), (self.rational_resampler_xxx_2, 0))
         self.connect((self.burst_rx_es_hier_0, 1), (self.rational_resampler_xxx_3, 0))
         self.connect((self.fsk_burst_detector_0, 0), (self.burst_rx_es_hier_0, 1))
@@ -643,9 +658,9 @@ class satsim_v1(gr.top_block, Qt.QWidget):
         self.connect((self.rational_resampler_xxx_2, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.rational_resampler_xxx_3, 0), (self.gmsk_ax25_rx_hier_0, 0))
         self.connect((self.rational_resampler_xxx_4, 0), (self.qtgui_freq_sink_x_1_0_0, 0))
+        self.connect((self.uhd_usrp_source_1, 0), (self.blocks_multiply_xx_0_0, 0))
         self.connect((self.uhd_usrp_source_1, 0), (self.qtgui_freq_sink_x_1_0_1, 0))
         self.connect((self.uhd_usrp_source_1, 0), (self.qtgui_waterfall_sink_x_0, 0))
-        self.connect((self.uhd_usrp_source_1, 0), (self.rational_resampler_xxx_1, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "satsim_v1")
@@ -676,6 +691,7 @@ class satsim_v1(gr.top_block, Qt.QWidget):
         self.fsk_burst_detector_0.set_samp_rate(self.samp_rate)
         self.burst_rx_es_hier_0.set_samp_rate(self.samp_rate/self.decim*self.interp)
         self.burst_rx_es_hier_0.set_samps_per_symb(self.samp_rate/self.decim*self.interp / self.baud)
+        self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
 
     def get_tx_tune_sel(self):
@@ -742,6 +758,14 @@ class satsim_v1(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_1.set_center_freq(uhd.tune_request(self.rx_freq, self.rx_offset), 0)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.rx_freq, self.samp_rate)
         self.qtgui_freq_sink_x_1_0_1.set_frequency_range(self.rx_freq, self.samp_rate)
+
+    def get_rx_fine_tune(self):
+        return self.rx_fine_tune
+
+    def set_rx_fine_tune(self, rx_fine_tune):
+        self.rx_fine_tune = rx_fine_tune
+        Qt.QMetaObject.invokeMethod(self._rx_fine_tune_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.rx_fine_tune)))
+        self.analog_sig_source_x_0_0.set_frequency(-1 * self.rx_fine_tune)
 
     def get_man_tune(self):
         return self.man_tune
