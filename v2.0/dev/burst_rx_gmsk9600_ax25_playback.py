@@ -77,7 +77,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.gs_id = gs_id = "VTGS"
         self.samp_rate = samp_rate = float(250e3)
         self.fn = fn = "VCC_{:s}_{:s}".format(gs_id, ts_str)
-        self.trigger_thresh = trigger_thresh = -2
+        self.trigger_thresh = trigger_thresh = 2
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 20
         self.rx_freq = rx_freq = 401.08e6
@@ -164,7 +164,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
             self.main_tab_grid_layout_1.setRowStretch(r, 1)
         for c in range(4, 6):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
-        self.vcc_vstp_aggregator_simple_0 = vcc.vstp_aggregator_simple(fc=0, l_type="downlink", d_type="live")
         self.vcc_qt_hex_text_tx_0 = vcc.qt_hex_text()
         self._vcc_qt_hex_text_tx_0_win = self.vcc_qt_hex_text_tx_0;
         self.main_tab_grid_layout_1.addWidget(self._vcc_qt_hex_text_tx_0_win, 5, 0, 2, 6)
@@ -173,7 +172,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         for c in range(0, 6):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
 
-        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/VCC_VTGS_20190805_182315.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
+        self.sigmf_source_0 = gr_sigmf.source('/vtgs/captures/vcc/uva_keep/VCC_VTGS_20191123_060818.sigmf-data', "cf32" + ("_le" if sys.byteorder == "little" else "_be"), False)
         self._rx_gain_tool_bar = Qt.QToolBar(self)
         self._rx_gain_tool_bar.addWidget(Qt.QLabel('RX Gain'+": "))
         self._rx_gain_line_edit = Qt.QLineEdit(str(self.rx_gain))
@@ -289,6 +288,58 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
             self.main_tab_grid_layout_0.setRowStretch(r, 1)
         for c in range(0, 8):
             self.main_tab_grid_layout_0.setColumnStretch(c, 1)
+        self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
+        	1024, #size
+        	samp_rate, #samp_rate
+        	"Threshold", #name
+        	2 #number of inputs
+        )
+        self.qtgui_time_sink_x_0.set_update_time(0.010)
+        self.qtgui_time_sink_x_0.set_y_axis(-1, 1)
+
+        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
+
+        self.qtgui_time_sink_x_0.enable_tags(-1, True)
+        self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
+        self.qtgui_time_sink_x_0.enable_autoscale(False)
+        self.qtgui_time_sink_x_0.enable_grid(False)
+        self.qtgui_time_sink_x_0.enable_axis_labels(True)
+        self.qtgui_time_sink_x_0.enable_control_panel(False)
+        self.qtgui_time_sink_x_0.enable_stem_plot(False)
+
+        if not True:
+          self.qtgui_time_sink_x_0.disable_legend()
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "blue"]
+        styles = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        markers = [-1, -1, -1, -1, -1,
+                   -1, -1, -1, -1, -1]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in xrange(2):
+            if len(labels[i]) == 0:
+                self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_time_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_time_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_time_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_time_sink_x_0.set_line_style(i, styles[i])
+            self.qtgui_time_sink_x_0.set_line_marker(i, markers[i])
+            self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.main_tab_grid_layout_1.addWidget(self._qtgui_time_sink_x_0_win, 2, 4, 1, 4)
+        for r in range(2, 3):
+            self.main_tab_grid_layout_1.setRowStretch(r, 1)
+        for c in range(4, 8):
+            self.main_tab_grid_layout_1.setColumnStretch(c, 1)
         self.qtgui_freq_sink_x_1_0_1 = qtgui.freq_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -438,14 +489,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         for c in range(6, 8):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
 
-        self.pyqt_ctime_plot_0 = pyqt.ctime_plot('')
-        self._pyqt_ctime_plot_0_win = self.pyqt_ctime_plot_0;
-        self.main_tab_grid_layout_1.addWidget(self._pyqt_ctime_plot_0_win, 2, 4, 1, 4)
-        for r in range(2, 3):
-            self.main_tab_grid_layout_1.setRowStretch(r, 1)
-        for c in range(4, 8):
-            self.main_tab_grid_layout_1.setColumnStretch(c, 1)
-
         self.low_pass_filter_0 = filter.fir_filter_ccf(1, firdes.low_pass(
         	1, samp_rate / decim *interp, chan_filt_cutoff, chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0 = gmsk_ax25_rx_hier(
@@ -478,11 +521,12 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
             trigger_thresh=trigger_thresh,
         )
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate*rate_factor,True)
+        self.blocks_socket_pdu_0_2 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8000', 1024, False)
         self.blocks_multiply_xx_0_0_0 = blocks.multiply_vcc(1)
         self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
-        self.blocks_message_debug_0 = blocks.message_debug()
         self.analog_sig_source_x_0_0_0 = analog.sig_source_c(samp_rate *interp /decim, analog.GR_COS_WAVE, -1 * fine_offset, 1, 0)
         self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * ceres_offset, 1, 0)
+        self.analog_const_source_x_0 = analog.sig_source_f(0, analog.GR_CONST_WAVE, 0, 0, trigger_thresh)
         self.analog_agc2_xx_0 = analog.agc2_cc(10, 1e-1, 65536, 1)
         self.analog_agc2_xx_0.set_max_gain(65536)
 
@@ -491,11 +535,11 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.burst_rx_es_hier_0, 'meta'), (self.vcc_vstp_aggregator_simple_0, 'meta'))
+        self.msg_connect((self.burst_rx_es_hier_0, 'meta'), (self.pyqt_meta_text_output_0, 'pdus'))
+        self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.blocks_socket_pdu_0_2, 'pdus'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.vcc_qt_hex_text_tx_0, 'pdus'))
-        self.msg_connect((self.gmsk_ax25_rx_hier_0, 'ax25'), (self.vcc_vstp_aggregator_simple_0, 'raw'))
-        self.msg_connect((self.vcc_vstp_aggregator_simple_0, 'out'), (self.blocks_message_debug_0, 'print'))
         self.connect((self.analog_agc2_xx_0, 0), (self.low_pass_filter_0, 0))
+        self.connect((self.analog_const_source_x_0, 0), (self.qtgui_time_sink_x_0, 1))
         self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))
         self.connect((self.analog_sig_source_x_0_0_0, 0), (self.blocks_multiply_xx_0_0_0, 1))
         self.connect((self.blocks_multiply_xx_0_0, 0), (self.rational_resampler_xxx_1, 0))
@@ -508,6 +552,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.connect((self.burst_rx_es_hier_0, 0), (self.rational_resampler_xxx_2, 0))
         self.connect((self.burst_rx_es_hier_0, 1), (self.rational_resampler_xxx_3, 0))
         self.connect((self.fsk_burst_detector_0, 0), (self.burst_rx_es_hier_0, 1))
+        self.connect((self.fsk_burst_detector_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.gmsk_ax25_rx_hier_0, 0), (self.qtgui_freq_sink_x_1, 1))
         self.connect((self.low_pass_filter_0, 0), (self.blocks_multiply_xx_0_0_0, 0))
         self.connect((self.rational_resampler_xxx_1, 0), (self.analog_agc2_xx_0, 0))
@@ -545,6 +590,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.set_rx_offset(self.samp_rate/2.0)
         self.qtgui_waterfall_sink_x_0_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.rx_freq, self.samp_rate)
+        self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.qtgui_freq_sink_x_1_0_1.set_frequency_range(self.rx_freq, self.samp_rate)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate*self.interp/self.decim*self.interp_2/self.decim_2)
@@ -570,6 +616,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.trigger_thresh = trigger_thresh
         Qt.QMetaObject.invokeMethod(self._trigger_thresh_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.trigger_thresh)))
         self.burst_rx_es_hier_0.set_trigger_thresh(self.trigger_thresh)
+        self.analog_const_source_x_0.set_offset(self.trigger_thresh)
 
     def get_rx_offset(self):
         return self.rx_offset

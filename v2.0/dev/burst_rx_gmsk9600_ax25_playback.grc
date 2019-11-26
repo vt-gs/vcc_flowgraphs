@@ -655,7 +655,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>-2</value>
+      <value>2</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -796,7 +796,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -965,7 +965,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1101,7 +1101,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1113,7 +1113,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>host</key>
-      <value>10.42.0.21</value>
+      <value>0.0.0.0</value>
     </param>
     <param>
       <key>id</key>
@@ -1737,7 +1737,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2724,7 +2724,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2732,7 +2732,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value></value>
+      <value>main_tab@1:2,4,1,4</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3820,7 +3820,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>filename</key>
-      <value>/vtgs/captures/vcc/VCC_VTGS_20190805_182315.sigmf-data</value>
+      <value>/vtgs/captures/vcc/uva_keep/VCC_VTGS_20191123_060818.sigmf-data</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3910,7 +3910,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4053,7 +4053,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4137,6 +4137,18 @@ Wide enough for doppler spread</value>
     <sink_block_id>rational_resampler_xxx_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>burst_rx_es_hier_0</source_block_id>
+    <sink_block_id>pyqt_ctime_plot_0</sink_block_id>
+    <source_key>meta</source_key>
+    <sink_key>cpdus</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>burst_rx_es_hier_0</source_block_id>
+    <sink_block_id>pyqt_meta_text_output_0</sink_block_id>
+    <source_key>meta</source_key>
+    <sink_key>pdus</sink_key>
   </connection>
   <connection>
     <source_block_id>burst_rx_es_hier_0</source_block_id>
