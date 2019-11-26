@@ -92,7 +92,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.decim = decim = int(samp_rate/2000)
         self.chan_filt_trans = chan_filt_trans = 1000
         self.chan_filt_cutoff = chan_filt_cutoff = 24000
-        self.ceres_offset = ceres_offset = -40e3
+        self.ceres_offset = ceres_offset = 50e3
 
         ##################################################
         # Blocks
@@ -153,6 +153,13 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self._fine_offset_line_edit.returnPressed.connect(
         	lambda: self.set_fine_offset(eng_notation.str_to_num(str(self._fine_offset_line_edit.text().toAscii()))))
         self.top_grid_layout.addWidget(self._fine_offset_tool_bar)
+        self._filt_cut_tool_bar = Qt.QToolBar(self)
+        self._filt_cut_tool_bar.addWidget(Qt.QLabel("filt_cut"+": "))
+        self._filt_cut_line_edit = Qt.QLineEdit(str(self.filt_cut))
+        self._filt_cut_tool_bar.addWidget(self._filt_cut_line_edit)
+        self._filt_cut_line_edit.returnPressed.connect(
+        	lambda: self.set_filt_cut(eng_notation.str_to_num(str(self._filt_cut_line_edit.text().toAscii()))))
+        self.top_grid_layout.addWidget(self._filt_cut_tool_bar)
         self._ceres_offset_tool_bar = Qt.QToolBar(self)
         self._ceres_offset_tool_bar.addWidget(Qt.QLabel('Ceres Offset'+": "))
         self._ceres_offset_line_edit = Qt.QLineEdit(str(self.ceres_offset))
@@ -489,6 +496,8 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         for c in range(6, 8):
             self.main_tab_grid_layout_1.setColumnStretch(c, 1)
 
+        self.low_pass_filter_0_0 = filter.fir_filter_ccf(1, firdes.low_pass(
+        	1, samp_rate / decim *interp, filt_cut, chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0 = filter.fir_filter_ccf(1, firdes.low_pass(
         	1, samp_rate / decim *interp, chan_filt_cutoff, chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0 = gmsk_ax25_rx_hier(
@@ -506,13 +515,6 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
             interp=interp,
             samp_rate=samp_rate,
         )
-        self._filt_cut_tool_bar = Qt.QToolBar(self)
-        self._filt_cut_tool_bar.addWidget(Qt.QLabel("filt_cut"+": "))
-        self._filt_cut_line_edit = Qt.QLineEdit(str(self.filt_cut))
-        self._filt_cut_tool_bar.addWidget(self._filt_cut_line_edit)
-        self._filt_cut_line_edit.returnPressed.connect(
-        	lambda: self.set_filt_cut(eng_notation.str_to_num(str(self._filt_cut_line_edit.text().toAscii()))))
-        self.top_grid_layout.addWidget(self._filt_cut_tool_bar)
         self.burst_rx_es_hier_0 = burst_rx_es_hier(
             avg_len=100,
             baud=9600,
@@ -543,9 +545,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))
         self.connect((self.analog_sig_source_x_0_0_0, 0), (self.blocks_multiply_xx_0_0_0, 1))
         self.connect((self.blocks_multiply_xx_0_0, 0), (self.rational_resampler_xxx_1, 0))
-        self.connect((self.blocks_multiply_xx_0_0_0, 0), (self.burst_rx_es_hier_0, 0))
-        self.connect((self.blocks_multiply_xx_0_0_0, 0), (self.fsk_burst_detector_0, 0))
-        self.connect((self.blocks_multiply_xx_0_0_0, 0), (self.rational_resampler_xxx_1_0, 0))
+        self.connect((self.blocks_multiply_xx_0_0_0, 0), (self.low_pass_filter_0_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.blocks_multiply_xx_0_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_freq_sink_x_1_0_1, 0))
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
@@ -555,6 +555,9 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.connect((self.fsk_burst_detector_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.gmsk_ax25_rx_hier_0, 0), (self.qtgui_freq_sink_x_1, 1))
         self.connect((self.low_pass_filter_0, 0), (self.blocks_multiply_xx_0_0_0, 0))
+        self.connect((self.low_pass_filter_0_0, 0), (self.burst_rx_es_hier_0, 0))
+        self.connect((self.low_pass_filter_0_0, 0), (self.fsk_burst_detector_0, 0))
+        self.connect((self.low_pass_filter_0_0, 0), (self.rational_resampler_xxx_1_0, 0))
         self.connect((self.rational_resampler_xxx_1, 0), (self.analog_agc2_xx_0, 0))
         self.connect((self.rational_resampler_xxx_1_0, 0), (self.qtgui_freq_sink_x_1_0, 0))
         self.connect((self.rational_resampler_xxx_1_0, 0), (self.qtgui_waterfall_sink_x_0_0, 0))
@@ -594,6 +597,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_1_0_1.set_frequency_range(self.rx_freq, self.samp_rate)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate*self.interp/self.decim*self.interp_2/self.decim_2)
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0.set_quad_demod_gain((self.samp_rate/self.decim*self.interp/self.decim_2*self.interp_2)/(2*math.pi*self.fsk_dev/8.0))
         self.fsk_burst_detector_0.set_samp_rate(self.samp_rate)
@@ -666,6 +670,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.qtgui_waterfall_sink_x_0_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate*self.interp/self.decim*self.interp_2/self.decim_2)
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0.set_quad_demod_gain((self.samp_rate/self.decim*self.interp/self.decim_2*self.interp_2)/(2*math.pi*self.fsk_dev/8.0))
         self.fsk_burst_detector_0.set_interp(self.interp)
@@ -700,6 +705,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
     def set_filt_cut(self, filt_cut):
         self.filt_cut = filt_cut
         Qt.QMetaObject.invokeMethod(self._filt_cut_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.filt_cut)))
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
 
     def get_decim_2(self):
         return self.decim_2
@@ -719,6 +725,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
         self.qtgui_waterfall_sink_x_0_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate*self.interp/self.decim*self.interp_2/self.decim_2)
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.gmsk_ax25_rx_hier_0.set_quad_demod_gain((self.samp_rate/self.decim*self.interp/self.decim_2*self.interp_2)/(2*math.pi*self.fsk_dev/8.0))
         self.fsk_burst_detector_0.set_decim(self.decim)
@@ -730,6 +737,7 @@ class burst_rx_gmsk9600_ax25_playback(gr.top_block, Qt.QWidget):
 
     def set_chan_filt_trans(self, chan_filt_trans):
         self.chan_filt_trans = chan_filt_trans
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.filt_cut, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
 
     def get_chan_filt_cutoff(self):

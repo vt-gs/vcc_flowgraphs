@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.12'?>
+<?grc format='1' created='3.7.13'?>
 <flow_graph>
-  <timestamp>Mon Mar 12 23:34:27 2018</timestamp>
+  <timestamp>Mon Oct  7 23:05:40 2019</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value>1700,1700</value>
+      <value>1400,1400</value>
     </param>
     <param>
       <key>category</key>
@@ -21,12 +21,8 @@
       <value></value>
     </param>
     <param>
-      <key>copyright</key>
-      <value></value>
-    </param>
-    <param>
       <key>description</key>
-      <value>VCC Burst TX/RX, 9600 Baud GMSK, AX.25</value>
+      <value>GMSK 9600 baud half duplex radio</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -50,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>burst_trx_gmsk9600_ax25_n210</value>
+      <value>gs_sim_v1</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -86,11 +82,38 @@
     </param>
     <param>
       <key>title</key>
-      <value>VCC Burst TX/RX, 9600 Baud GMSK, AX.25, w/ PTT</value>
+      <value>VCC Ground Station Simulator</value>
     </param>
     <param>
       <key>placement</key>
       <value>(0,0)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(480, 508)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>baud</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>9600</value>
     </param>
   </block>
   <block>
@@ -109,7 +132,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 1156)</value>
+      <value>(272, 1028)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -133,45 +156,6 @@
     </param>
   </block>
   <block>
-    <key>variable_qtgui_entry</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>40e3</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(24, 140)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>main_tab@1:3,4,1,2</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>ceres_offset</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Ceres Offset</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>real</value>
-    </param>
-  </block>
-  <block>
     <key>variable</key>
     <param>
       <key>comment</key>
@@ -183,7 +167,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 356)</value>
+      <value>(856, 236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -210,7 +194,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 292)</value>
+      <value>(976, 236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -237,7 +221,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(280, 12)</value>
+      <value>(272, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -264,7 +248,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 884)</value>
+      <value>(88, 748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -287,65 +271,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(584, 76)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>fn</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"VCC_{:s}_{:s}".format(gs_id, ts_str)</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(584, 140)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>fp</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"/vtgs/captures/vcc/{:s}".format(fn)</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 908)</value>
+      <value>(912, 668)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -368,38 +298,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(440, 60)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gs_id</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>"VTGS"</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 12)</value>
+      <value>(352, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -426,7 +329,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 884)</value>
+      <value>(88, 692)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -457,7 +360,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1344, 1196)</value>
+      <value>(1008, 972)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -488,7 +391,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>401.08e6</value>
+      <value>0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -496,7 +399,46 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(144, 140)</value>
+      <value>(24, 124)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>main_tab@1:3,4,1,2</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>rx_fine_tune</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>RX Fine Tune</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>real</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_entry</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>401.12e6</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(144, 124)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -527,7 +469,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>20</value>
+      <value>40</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -535,7 +477,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 228)</value>
+      <value>(56, 212)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -570,7 +512,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 244)</value>
+      <value>(176, 228)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -597,7 +539,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 12)</value>
+      <value>(176, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -609,7 +551,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>float(250e3)</value>
+      <value>250000</value>
     </param>
   </block>
   <block>
@@ -628,7 +570,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 908)</value>
+      <value>(296, 524)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -652,33 +594,6 @@
     </param>
   </block>
   <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(584, 12)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>ts_str</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>dt.strftime(dt.utcnow(), "%Y%m%d_%H%M%S" )</value>
-    </param>
-  </block>
-  <block>
     <key>variable_qtgui_entry</key>
     <param>
       <key>comment</key>
@@ -694,7 +609,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1184, 1028)</value>
+      <value>(816, 828)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -725,7 +640,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>10</value>
+      <value>40</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -733,7 +648,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1184, 1108)</value>
+      <value>(960, 828)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -768,7 +683,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1304, 1124)</value>
+      <value>(1080, 844)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -781,60 +696,6 @@
     <param>
       <key>value</key>
       <value>samp_rate/2</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(504, 1156)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>tx_sel</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>[tx_tune, -1*man_tune]</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1248, 284)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>tx_tune</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>tx_freq - uplink_freq</value>
     </param>
   </block>
   <block>
@@ -853,7 +714,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 1236)</value>
+      <value>(608, 1036)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -937,76 +798,6 @@
     </param>
   </block>
   <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1144, 284)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>uplink_freq</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>tx_freq</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_qtgui_label</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>-1* tx_tune</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>formatter</key>
-      <value>None</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1328, 284)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>main_tab@2:2,1,1,1</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>uplink_offset</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value></value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>real</value>
-    </param>
-  </block>
-  <block>
     <key>analog_agc2_xx</key>
     <param>
       <key>attack_rate</key>
@@ -1034,7 +825,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 432)</value>
+      <value>(728, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1093,11 +884,11 @@
     </param>
     <param>
       <key>freq</key>
-      <value>-1 * tx_sel[tx_tune_sel]</value>
+      <value>man_tune</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(608, 1120)</value>
+      <value>(432, 984)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1156,11 +947,11 @@
     </param>
     <param>
       <key>freq</key>
-      <value>-1 * ceres_offset</value>
+      <value>-1 * rx_fine_tune</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(112, 448)</value>
+      <value>(112, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1215,7 +1006,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(808, 1088)</value>
+      <value>(680, 960)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1266,7 +1057,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(304, 448)</value>
+      <value>(352, 336)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1305,65 +1096,6 @@
     </param>
     <param>
       <key>comment</key>
-      <value>RF Front End Daemon</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(664, 1224)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>host</key>
-      <value>0.0.0.0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_socket_pdu_0</value>
-    </param>
-    <param>
-      <key>mtu</key>
-      <value>1024</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>port</key>
-      <value>8001</value>
-    </param>
-    <param>
-      <key>tcp_no_delay</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>"TCP_SERVER"</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_socket_pdu</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
       <value>Expects KISS Frames on input
 Sends KISS Frames on output
 &lt;FEND&gt;&lt;CMD&gt;&lt;DATA&gt;&lt;FEND&gt;
@@ -1379,7 +1111,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1136, 16)</value>
+      <value>(992, 20)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1387,11 +1119,11 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>host</key>
-      <value>10.42.0.21</value>
+      <value>0.0.0.0</value>
     </param>
     <param>
       <key>id</key>
-      <value>blocks_socket_pdu_0_2</value>
+      <value>blocks_socket_pdu_0</value>
     </param>
     <param>
       <key>mtu</key>
@@ -1442,7 +1174,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(464, 776)</value>
+      <value>(424, 568)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1466,7 +1198,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>samps_per_symb</key>
-      <value>10</value>
+      <value>samp_rate/decim*interp / baud</value>
     </param>
     <param>
       <key>baud</key>
@@ -1513,7 +1245,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 840)</value>
+      <value>(216, 632)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1560,7 +1292,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(856, 808)</value>
+      <value>(816, 568)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1580,7 +1312,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>samps_per_symb</key>
-      <value>5</value>
+      <value>(samp_rate/decim*interp / baud) / decim_2 * interp_2</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1596,7 +1328,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>samp_rate</key>
-      <value>48000</value>
+      <value>(samp_rate/decim*interp) / decim_2 * interp_2</value>
     </param>
   </block>
   <block>
@@ -1631,7 +1363,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 1024)</value>
+      <value>(248, 896)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1667,92 +1399,6 @@ DATA = AX.25 Frame</value>
     </param>
   </block>
   <block>
-    <key>gpredict_MsgPairToVar</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1208, 236)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gpredict_MsgPairToVar_1</value>
-    </param>
-    <param>
-      <key>target</key>
-      <value>uplink_freq</value>
-    </param>
-  </block>
-  <block>
-    <key>gpredict_doppler</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(976, 236)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gpredict_doppler_0</value>
-    </param>
-    <param>
-      <key>gpredict_port</key>
-      <value>7356</value>
-    </param>
-    <param>
-      <key>gpredict_host</key>
-      <value>0.0.0.0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>verbose</key>
-      <value>True</value>
-    </param>
-  </block>
-  <block>
     <key>import</key>
     <param>
       <key>alias</key>
@@ -1768,7 +1414,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(440, 12)</value>
+      <value>(424, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1820,7 +1466,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(920, 416)</value>
+      <value>(904, 300)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1875,7 +1521,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(792, 12)</value>
+      <value>(568, 16)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1994,7 +1640,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 676)</value>
+      <value>(680, 692)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2033,7 +1679,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 632)</value>
+      <value>(656, 736)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2046,41 +1692,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>id</key>
       <value>pyqt_meta_text_output_0</value>
-    </param>
-  </block>
-  <block>
-    <key>pyqt_text_output</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>rffe daemon feedback</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(856, 1256)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>main_tab@2:4,0,1,4</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pyqt_text_output_0</value>
     </param>
   </block>
   <block>
@@ -2131,7 +1742,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 744)</value>
+      <value>(1056, 504)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2430,7 +2041,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 616)</value>
+      <value>(424, 776)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2622,7 +2233,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>name</key>
-      <value>"Ceres Spectrum"</value>
+      <value>"Narrow Spectrum"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -2729,7 +2340,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1176, 1192)</value>
+      <value>(1008, 1048)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3028,7 +2639,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 256)</value>
+      <value>(344, 160)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3315,7 +2926,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 340)</value>
+      <value>(344, 252)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3538,7 +3149,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 700)</value>
+      <value>(424, 700)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3733,65 +3344,6 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>comment</key>
-      <value>reduce to 125k sample rate</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>fbw</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(344, 336)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rational_resampler_xxx_0</value>
-    </param>
-    <param>
-      <key>interp</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value></value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccc</value>
-    </param>
-  </block>
-  <block>
-    <key>rational_resampler_xxx</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
       <value>reduce to 96k sample rate</value>
     </param>
     <param>
@@ -3812,7 +3364,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(480, 440)</value>
+      <value>(544, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3871,7 +3423,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 696)</value>
+      <value>(216, 696)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3930,7 +3482,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 728)</value>
+      <value>(632, 488)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3989,7 +3541,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 816)</value>
+      <value>(632, 576)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4048,7 +3600,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 1192)</value>
+      <value>(816, 1048)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4080,436 +3632,6 @@ Wide enough for doppler spread</value>
     </param>
   </block>
   <block>
-    <key>rffe_ctl_tag_ptt_pdu</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>PTT Trigger to RFFE Daemon</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>eob_key</key>
-      <value>"tx_eob"</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(456, 1224)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>rffe_ctl_tag_ptt_pdu_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>ptt_mode</key>
-      <value>"TX"</value>
-    </param>
-    <param>
-      <key>sob_key</key>
-      <value>"tx_sob"</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>tx_time_key</key>
-      <value>"tx_time"</value>
-    </param>
-  </block>
-  <block>
-    <key>sigmf_sink</key>
-    <param>
-      <key>author</key>
-      <value>Zach Leffke</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>description</key>
-      <value>VCC TM/TC v1.0.0, GMSK9600, AX.25, w/ PTT</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>num_extra_fields</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>field_1_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_1_type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>field_1_value</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>field_10_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_10_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_10_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_11_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_11_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_11_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_12_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_12_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_12_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_13_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_13_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_13_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_14_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_14_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_14_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_15_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_15_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_15_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_16_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_16_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_16_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_17_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_17_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_17_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_18_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_18_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_18_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_19_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_19_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_19_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_2_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_2_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_2_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_20_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_20_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_20_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_21_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_21_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_21_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_22_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_22_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_22_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_23_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_23_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_23_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_24_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_24_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_24_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_25_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_25_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_25_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_3_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_3_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_3_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_4_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_4_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_4_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_5_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_5_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_5_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_6_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_6_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_6_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_7_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_7_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_7_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_8_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_8_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_8_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_9_key</key>
-      <value></value>
-    </param>
-    <param>
-      <key>field_9_type</key>
-      <value>string</value>
-    </param>
-    <param>
-      <key>field_9_value</key>
-      <value></value>
-    </param>
-    <param>
-      <key>filename</key>
-      <value>fp</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(304, 200)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>hardware</key>
-      <value>2X M2 400CP30, ARR Preamp, N210 w/ UBX</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>sigmf_sink_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>fc32</value>
-    </param>
-    <param>
-      <key>license</key>
-      <value>MIT</value>
-    </param>
-    <param>
-      <key>append</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>time_mode</key>
-      <value>gr_sigmf.sigmf_time_mode_absolute</value>
-    </param>
-  </block>
-  <block>
     <key>uhd_usrp_sink</key>
     <param>
       <key>alias</key>
@@ -4536,14 +3658,6 @@ Wide enough for doppler spread</value>
       <value>tx_gain</value>
     </param>
     <param>
-      <key>lo_export0</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source0</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant10</key>
       <value></value>
     </param>
@@ -4562,14 +3676,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain10</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export10</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source10</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant11</key>
@@ -4592,14 +3698,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export11</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source11</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant12</key>
       <value></value>
     </param>
@@ -4618,14 +3716,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain12</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export12</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source12</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant13</key>
@@ -4648,14 +3738,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export13</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source13</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant14</key>
       <value></value>
     </param>
@@ -4674,14 +3756,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain14</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export14</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source14</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant15</key>
@@ -4704,14 +3778,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export15</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source15</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant16</key>
       <value></value>
     </param>
@@ -4730,14 +3796,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain16</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export16</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source16</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant17</key>
@@ -4760,14 +3818,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export17</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source17</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant18</key>
       <value></value>
     </param>
@@ -4786,14 +3836,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain18</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export18</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source18</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant19</key>
@@ -4816,14 +3858,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export19</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source19</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant1</key>
       <value></value>
     </param>
@@ -4842,14 +3876,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain1</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export1</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source1</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant20</key>
@@ -4872,14 +3898,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export20</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source20</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant21</key>
       <value></value>
     </param>
@@ -4898,14 +3916,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain21</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export21</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source21</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant22</key>
@@ -4928,14 +3938,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export22</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source22</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant23</key>
       <value></value>
     </param>
@@ -4954,14 +3956,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain23</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export23</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source23</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant24</key>
@@ -4984,14 +3978,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export24</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source24</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant25</key>
       <value></value>
     </param>
@@ -5010,14 +3996,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain25</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export25</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source25</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant26</key>
@@ -5040,14 +4018,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export26</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source26</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant27</key>
       <value></value>
     </param>
@@ -5066,14 +4036,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain27</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export27</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source27</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant28</key>
@@ -5096,14 +4058,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export28</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source28</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant29</key>
       <value></value>
     </param>
@@ -5122,14 +4076,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain29</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export29</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source29</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant2</key>
@@ -5152,14 +4098,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export2</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source2</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant30</key>
       <value></value>
     </param>
@@ -5178,14 +4116,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain30</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export30</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source30</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant31</key>
@@ -5208,14 +4138,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export31</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source31</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant3</key>
       <value></value>
     </param>
@@ -5234,14 +4156,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain3</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export3</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source3</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant4</key>
@@ -5264,14 +4178,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export4</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source4</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant5</key>
       <value></value>
     </param>
@@ -5290,14 +4196,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain5</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export5</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source5</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant6</key>
@@ -5320,14 +4218,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export6</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source6</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant7</key>
       <value></value>
     </param>
@@ -5346,14 +4236,6 @@ Wide enough for doppler spread</value>
     <param>
       <key>gain7</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>lo_export7</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source7</key>
-      <value>internal</value>
     </param>
     <param>
       <key>ant8</key>
@@ -5376,14 +4258,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export8</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source8</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>ant9</key>
       <value></value>
     </param>
@@ -5404,14 +4278,6 @@ Wide enough for doppler spread</value>
       <value>0</value>
     </param>
     <param>
-      <key>lo_export9</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>lo_source9</key>
-      <value>internal</value>
-    </param>
-    <param>
       <key>clock_rate</key>
       <value>0.0</value>
     </param>
@@ -5425,7 +4291,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>dev_addr</key>
-      <value>"addr=192.168.10.6"</value>
+      <value>""</value>
     </param>
     <param>
       <key>dev_args</key>
@@ -5437,7 +4303,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 1028)</value>
+      <value>(816, 920)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5453,7 +4319,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>clock_source0</key>
-      <value>external</value>
+      <value></value>
     </param>
     <param>
       <key>sd_spec0</key>
@@ -5461,7 +4327,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>time_source0</key>
-      <value>external</value>
+      <value></value>
     </param>
     <param>
       <key>clock_source1</key>
@@ -5596,7 +4462,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>ant0</key>
-      <value>RX2</value>
+      <value>TX/RX</value>
     </param>
     <param>
       <key>bw0</key>
@@ -6772,7 +5638,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 312)</value>
+      <value>(56, 300)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -6788,7 +5654,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>clock_source0</key>
-      <value>external</value>
+      <value></value>
     </param>
     <param>
       <key>sd_spec0</key>
@@ -6796,7 +5662,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>time_source0</key>
-      <value>external</value>
+      <value></value>
     </param>
     <param>
       <key>clock_source1</key>
@@ -6947,7 +5813,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 1024)</value>
+      <value>(488, 896)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6982,7 +5848,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1112, 840)</value>
+      <value>(1072, 592)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -7009,7 +5875,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1128, 460)</value>
+      <value>(1080, 348)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7036,7 +5902,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1112, 876)</value>
+      <value>(1072, 660)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7063,7 +5929,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1304, 36)</value>
+      <value>(1160, 44)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7090,7 +5956,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(80, 804)</value>
+      <value>(40, 596)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7117,7 +5983,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(968, 36)</value>
+      <value>(816, 44)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7144,7 +6010,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 1068)</value>
+      <value>(48, 940)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -7197,12 +6063,6 @@ Wide enough for doppler spread</value>
   </connection>
   <connection>
     <source_block_id>blocks_socket_pdu_0</source_block_id>
-    <sink_block_id>pyqt_text_output_0</sink_block_id>
-    <source_key>pdus</source_key>
-    <sink_key>pdus</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_socket_pdu_0_2</source_block_id>
     <sink_block_id>virtual_sink_tx_kiss</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>in</sink_key>
@@ -7268,32 +6128,8 @@ Wide enough for doppler spread</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>gmsk_tx_burst_hier2_0</source_block_id>
-    <sink_block_id>rffe_ctl_tag_ptt_pdu_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>gpredict_doppler_0</source_block_id>
-    <sink_block_id>gpredict_MsgPairToVar_1</sink_block_id>
-    <source_key>freq</source_key>
-    <sink_key>inpair</sink_key>
-  </connection>
-  <connection>
     <source_block_id>low_pass_filter_0</source_block_id>
     <sink_block_id>virtual_sink_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>rational_resampler_xxx_0</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_1_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>rational_resampler_xxx_0</source_block_id>
-    <sink_block_id>qtgui_waterfall_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -7334,12 +6170,6 @@ Wide enough for doppler spread</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>rffe_ctl_tag_ptt_pdu_0</source_block_id>
-    <sink_block_id>blocks_socket_pdu_0</sink_block_id>
-    <source_key>ptt</source_key>
-    <sink_key>pdus</sink_key>
-  </connection>
-  <connection>
     <source_block_id>uhd_usrp_source_1</source_block_id>
     <sink_block_id>blocks_multiply_xx_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -7347,13 +6177,13 @@ Wide enough for doppler spread</value>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_1</source_block_id>
-    <sink_block_id>rational_resampler_xxx_0</sink_block_id>
+    <sink_block_id>qtgui_freq_sink_x_1_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_1</source_block_id>
-    <sink_block_id>sigmf_sink_0</sink_block_id>
+    <sink_block_id>qtgui_waterfall_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -7377,7 +6207,7 @@ Wide enough for doppler spread</value>
   </connection>
   <connection>
     <source_block_id>virtual_source_rx_kiss</source_block_id>
-    <sink_block_id>blocks_socket_pdu_0_2</sink_block_id>
+    <sink_block_id>blocks_socket_pdu_0</sink_block_id>
     <source_key>out</source_key>
     <sink_key>pdus</sink_key>
   </connection>
