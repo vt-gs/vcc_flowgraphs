@@ -9,7 +9,7 @@
 # Author: Zach Leffke, KJ4QLP
 # Description: Simulates a GMSK 9600 baud half duplex flight radio
 #
-# Generated: Thu Oct 10 13:31:59 2019
+# Generated: Fri Oct 11 13:16:38 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -85,11 +85,11 @@ class satsim_v1(gr.top_block, Qt.QWidget):
         self.tx_tune_sel = tx_tune_sel = 0
         self.tx_offset = tx_offset = samp_rate/2
         self.tx_gain = tx_gain = 40
-        self.tx_freq = tx_freq = 401.04e6
+        self.tx_freq = tx_freq = 401.08e6
         self.trigger_thresh = trigger_thresh = -2
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 40
-        self.rx_freq = rx_freq = 401.04e6
+        self.rx_freq = rx_freq = 401.08e6
         self.rx_fine_tune = rx_fine_tune = 0
         self.man_tune = man_tune = 0.0
         self.interp_2 = interp_2 = 1

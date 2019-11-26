@@ -1,11 +1,16 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+#
+# SPDX-License-Identifier: GPL-3.0
+#
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: VCC Ground Station Simulator
 # Author: Zach Leffke, KJ4QLP
 # Description: GMSK 9600 baud half duplex radio
-# GNU Radio version: 3.7.13.4
+#
+# Generated: Mon Nov 25 15:57:12 2019
+# GNU Radio version: 3.7.12.0
 ##################################################
 
 if __name__ == '__main__':
