@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: VCC Burst TX/RX, 9600 Baud GMSK, AX.25, w/ PTT
+# Title: VCC Single Channel Command - VT
 # Author: Zach Leffke, KJ4QLP
 # Description: VCC Burst TX/RX, 9600 Baud GMSK, AX.25
 # GNU Radio version: 3.7.13.5
@@ -51,9 +51,9 @@ from gnuradio import qtgui
 class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "VCC Burst TX/RX, 9600 Baud GMSK, AX.25, w/ PTT")
+        gr.top_block.__init__(self, "VCC Single Channel Command - VT")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("VCC Burst TX/RX, 9600 Baud GMSK, AX.25, w/ PTT")
+        self.setWindowTitle("VCC Single Channel Command - VT")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))

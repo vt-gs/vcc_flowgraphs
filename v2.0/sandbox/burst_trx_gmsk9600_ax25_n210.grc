@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>VCC Burst TX/RX, 9600 Baud GMSK, AX.25, w/ PTT</value>
+      <value>VCC Single Channel Command - VT</value>
     </param>
     <param>
       <key>placement</key>
