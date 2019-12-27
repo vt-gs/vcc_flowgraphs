@@ -9,7 +9,7 @@
 # Author: Zach Leffke, KJ4QLP
 # Description: GMSK 9600 baud half duplex radio
 #
-# Generated: Mon Nov 25 15:57:12 2019
+# Generated: Tue Nov 26 16:25:34 2019
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -89,7 +89,7 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.trigger_thresh = trigger_thresh = -2
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 40
-        self.rx_freq = rx_freq = 401.12e6
+        self.rx_freq = rx_freq = 401.04e6
         self.rx_fine_tune = rx_fine_tune = 0
         self.man_tune = man_tune = 0.0
         self.interp_2 = interp_2 = 1
