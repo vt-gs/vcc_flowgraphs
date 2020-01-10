@@ -3017,7 +3017,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -3750,7 +3750,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>filename</key>
-      <value>/vtgs/captures/vcc/VCC_VTGS_20191227_155437.sigmf-data</value>
+      <value>/vtgs/captures/vcc/VCC_VTGS_20200108_060515.sigmf-data</value>
     </param>
     <param>
       <key>_coordinate</key>

@@ -554,7 +554,7 @@ class burst_trx_gmsk9600_ax25_n210_uva(gr.top_block, Qt.QWidget):
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
         	0, #fc
         	samp_rate / decim*interp / decim_2 * interp_2, #bw
-        	"Ceres Spectrum", #name
+        	"Libertas Spectrum", #name
         	1 #number of inputs
         )
         self.qtgui_freq_sink_x_1_0.set_update_time(0.0010)
