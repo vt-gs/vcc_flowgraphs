@@ -353,7 +353,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>437.425e6</value>
+      <value>437.525e6</value>
     </param>
   </block>
   <block>
@@ -1686,7 +1686,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>deviation</key>
-      <value>2800</value>
+      <value>2400</value>
     </param>
   </block>
   <block>
@@ -1721,7 +1721,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>lpf_cutoff</key>
-      <value>10e3</value>
+      <value>7.2e3</value>
     </param>
     <param>
       <key>lpf_trans</key>
@@ -3756,7 +3756,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -4611,7 +4611,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>num_extra_fields</key>
