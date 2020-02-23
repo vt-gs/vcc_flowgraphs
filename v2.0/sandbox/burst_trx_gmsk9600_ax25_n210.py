@@ -655,7 +655,7 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
             samps_per_symb=10,
             trigger_thresh=trigger_thresh,
         )
-        self.blocks_socket_pdu_0_2 = blocks.socket_pdu("TCP_SERVER", '10.42.0.21', '8000', 1024, False)
+        self.blocks_socket_pdu_0_2 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8000', 1024, False)
         self.blocks_socket_pdu_0 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8001', 1024, True)
         self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)

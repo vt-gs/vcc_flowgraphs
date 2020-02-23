@@ -1383,7 +1383,7 @@ DATA = AX.25 Frame</value>
     </param>
     <param>
       <key>host</key>
-      <value>10.42.0.21</value>
+      <value>0.0.0.0</value>
     </param>
     <param>
       <key>id</key>
@@ -3311,7 +3311,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>

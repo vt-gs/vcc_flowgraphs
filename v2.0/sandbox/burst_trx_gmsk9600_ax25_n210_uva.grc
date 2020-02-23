@@ -1297,7 +1297,7 @@
     </param>
     <param>
       <key>comment</key>
-      <value>Center VCC-Ceres</value>
+      <value>Center libertas freq</value>
     </param>
     <param>
       <key>affinity</key>
@@ -2665,7 +2665,7 @@ Wide enough for doppler spread</value>
     </param>
     <param>
       <key>name</key>
-      <value>"Ceres Spectrum"</value>
+      <value>"Libertas Spectrum"</value>
     </param>
     <param>
       <key>nconnections</key>
