@@ -28,7 +28,7 @@ from burst_rx_es_hier import burst_rx_es_hier  # grc-generated hier_block
 from datetime import datetime as dt; import string; import math
 from fsk_burst_detector import fsk_burst_detector  # grc-generated hier_block
 from gmsk_ax25_rx_hier import gmsk_ax25_rx_hier  # grc-generated hier_block
-from gmsk_tx_burst_hier2 import gmsk_tx_burst_hier2  # grc-generated hier_block
+from gmsk_tx_burst_hier3 import gmsk_tx_burst_hier3  # grc-generated hier_block
 from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import eng_notation
@@ -46,7 +46,7 @@ import vcc
 from gnuradio import qtgui
 
 
-class gs_sim_v1(gr.top_block, Qt.QWidget):
+class gs_sim_v2(gr.top_block, Qt.QWidget):
 
     def __init__(self):
         gr.top_block.__init__(self, "VCC Ground Station Simulator")
@@ -69,7 +69,7 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "gs_sim_v1")
+        self.settings = Qt.QSettings("GNU Radio", "gs_sim_v2")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -80,11 +80,11 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.tx_tune_sel = tx_tune_sel = 0
         self.tx_offset = tx_offset = samp_rate/2
         self.tx_gain = tx_gain = 40
-        self.tx_freq = tx_freq = 401.04e6
+        self.tx_freq = tx_freq = 416.51e6
         self.trigger_thresh = trigger_thresh = -2
         self.rx_offset = rx_offset = samp_rate/2.0
         self.rx_gain = rx_gain = 40
-        self.rx_freq = rx_freq = 401.04e6
+        self.rx_freq = rx_freq = 416.51e6
         self.rx_fine_tune = rx_fine_tune = 0
         self.man_tune = man_tune = 0.0
         self.interp_2 = interp_2 = 1
@@ -95,7 +95,7 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.chan_filt_trans = chan_filt_trans = 1000
         self.chan_filt_cutoff = chan_filt_cutoff = 24000
         self.bb_gain = bb_gain = .75
-        self.baud = baud = 9600
+        self.baud = baud = 1200
 
         ##################################################
         # Blocks
@@ -377,6 +377,58 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
             self.main_tab_grid_layout_0.setRowStretch(r, 1)
         for c in range(0, 8):
             self.main_tab_grid_layout_0.setColumnStretch(c, 1)
+        self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
+        	1024, #size
+        	samp_rate, #samp_rate
+        	"Threshold", #name
+        	2 #number of inputs
+        )
+        self.qtgui_time_sink_x_0.set_update_time(0.010)
+        self.qtgui_time_sink_x_0.set_y_axis(-10, 10)
+
+        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
+
+        self.qtgui_time_sink_x_0.enable_tags(-1, True)
+        self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
+        self.qtgui_time_sink_x_0.enable_autoscale(False)
+        self.qtgui_time_sink_x_0.enable_grid(False)
+        self.qtgui_time_sink_x_0.enable_axis_labels(True)
+        self.qtgui_time_sink_x_0.enable_control_panel(False)
+        self.qtgui_time_sink_x_0.enable_stem_plot(False)
+
+        if not True:
+          self.qtgui_time_sink_x_0.disable_legend()
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "blue"]
+        styles = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        markers = [-1, -1, -1, -1, -1,
+                   -1, -1, -1, -1, -1]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in xrange(2):
+            if len(labels[i]) == 0:
+                self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_time_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_time_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_time_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_time_sink_x_0.set_line_style(i, styles[i])
+            self.qtgui_time_sink_x_0.set_line_marker(i, markers[i])
+            self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.main_tab_grid_layout_1.addWidget(self._qtgui_time_sink_x_0_win, 2, 4, 1, 4)
+        for r in range(2, 3):
+            self.main_tab_grid_layout_1.setRowStretch(r, 1)
+        for c in range(4, 8):
+            self.main_tab_grid_layout_1.setColumnStretch(c, 1)
         self.qtgui_freq_sink_x_1_0_1 = qtgui.freq_sink_c(
         	2048, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -575,14 +627,14 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
 
         self.low_pass_filter_0 = filter.fir_filter_ccf(1, firdes.low_pass(
         	1, samp_rate / decim *interp, chan_filt_cutoff, chan_filt_trans, firdes.WIN_HAMMING, 6.76))
-        self.gmsk_tx_burst_hier2_0 = gmsk_tx_burst_hier2(
-            bb_gain=bb_gain,
+        self.gmsk_tx_burst_hier3_0 = gmsk_tx_burst_hier3(
+            bb_gain=0.75,
             bt=.5,
             delay_enable=1,
             pad_front=0,
             pad_tail=0,
-            ptt_delay=.25,
-            samp_rate=samp_rate,
+            ptt_delay=.250,
+            samp_rate=250000,
         )
         self.gmsk_ax25_rx_hier_0 = gmsk_ax25_rx_hier(
             lpf_cutoff=7.2e3,
@@ -601,7 +653,7 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         )
         self.burst_rx_es_hier_0 = burst_rx_es_hier(
             avg_len=100,
-            baud=9600,
+            baud=baud,
             samp_rate=samp_rate/decim*interp,
             samps_per_symb=samp_rate/decim*interp / baud,
             trigger_thresh=trigger_thresh,
@@ -611,6 +663,7 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
         self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, -1 * rx_fine_tune, 1, 0)
         self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, man_tune, 1, 0)
+        self.analog_const_source_x_0 = analog.sig_source_f(0, analog.GR_CONST_WAVE, 0, 0, trigger_thresh)
         self.analog_agc2_xx_0 = analog.agc2_cc(10, 1e-1, 65536, 1)
         self.analog_agc2_xx_0.set_max_gain(65536)
 
@@ -619,12 +672,13 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.blocks_socket_pdu_0, 'pdus'), (self.gmsk_tx_burst_hier2_0, 'kiss/ax25'))
+        self.msg_connect((self.blocks_socket_pdu_0, 'pdus'), (self.gmsk_tx_burst_hier3_0, 'kiss/ax25'))
         self.msg_connect((self.burst_rx_es_hier_0, 'meta'), (self.pyqt_meta_text_output_0, 'pdus'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.blocks_socket_pdu_0, 'pdus'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.vcc_qt_hex_text_tx_0, 'pdus'))
-        self.msg_connect((self.gmsk_tx_burst_hier2_0, 'ax25'), (self.vcc_qt_hex_text_tx, 'pdus'))
+        self.msg_connect((self.gmsk_tx_burst_hier3_0, 'ax25'), (self.vcc_qt_hex_text_tx, 'pdus'))
         self.connect((self.analog_agc2_xx_0, 0), (self.low_pass_filter_0, 0))
+        self.connect((self.analog_const_source_x_0, 0), (self.qtgui_time_sink_x_0, 1))
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 1))
         self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))
         self.connect((self.blocks_multiply_xx_0, 0), (self.rational_resampler_xxx_4, 0))
@@ -633,8 +687,9 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.connect((self.burst_rx_es_hier_0, 0), (self.rational_resampler_xxx_2, 0))
         self.connect((self.burst_rx_es_hier_0, 1), (self.rational_resampler_xxx_3, 0))
         self.connect((self.fsk_burst_detector_0, 0), (self.burst_rx_es_hier_0, 1))
+        self.connect((self.fsk_burst_detector_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.gmsk_ax25_rx_hier_0, 0), (self.qtgui_freq_sink_x_1, 1))
-        self.connect((self.gmsk_tx_burst_hier2_0, 0), (self.blocks_multiply_xx_0, 0))
+        self.connect((self.gmsk_tx_burst_hier3_0, 0), (self.blocks_multiply_xx_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.burst_rx_es_hier_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.fsk_burst_detector_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.rational_resampler_xxx_1_0, 0))
@@ -649,7 +704,7 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.connect((self.uhd_usrp_source_1, 0), (self.qtgui_waterfall_sink_x_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "gs_sim_v1")
+        self.settings = Qt.QSettings("GNU Radio", "gs_sim_v2")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -665,12 +720,12 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
         self.qtgui_waterfall_sink_x_0_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_waterfall_sink_x_0.set_frequency_range(self.rx_freq, self.samp_rate)
+        self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.qtgui_freq_sink_x_1_0_1.set_frequency_range(self.rx_freq, self.samp_rate)
         self.qtgui_freq_sink_x_1_0_0.set_frequency_range(0, self.samp_rate/self.decim*self.interp/2)
         self.qtgui_freq_sink_x_1_0.set_frequency_range(0, self.samp_rate / self.decim*self.interp / self.decim_2 * self.interp_2)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate*self.interp/self.decim*self.interp_2/self.decim_2)
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate / self.decim *self.interp, self.chan_filt_cutoff, self.chan_filt_trans, firdes.WIN_HAMMING, 6.76))
-        self.gmsk_tx_burst_hier2_0.set_samp_rate(self.samp_rate)
         self.gmsk_ax25_rx_hier_0.set_quad_demod_gain((self.samp_rate/self.decim*self.interp/self.decim_2*self.interp_2)/(2*math.pi*self.fsk_dev/8.0))
         self.gmsk_ax25_rx_hier_0.set_samp_rate((self.samp_rate/self.decim*self.interp) / self.decim_2 * self.interp_2)
         self.gmsk_ax25_rx_hier_0.set_samps_per_symb((self.samp_rate/self.decim*self.interp / self.baud) / self.decim_2 * self.interp_2)
@@ -718,6 +773,7 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
         self.trigger_thresh = trigger_thresh
         Qt.QMetaObject.invokeMethod(self._trigger_thresh_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.trigger_thresh)))
         self.burst_rx_es_hier_0.set_trigger_thresh(self.trigger_thresh)
+        self.analog_const_source_x_0.set_offset(self.trigger_thresh)
 
     def get_rx_offset(self):
         return self.rx_offset
@@ -847,7 +903,6 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
     def set_bb_gain(self, bb_gain):
         self.bb_gain = bb_gain
         Qt.QMetaObject.invokeMethod(self._bb_gain_line_edit, "setText", Qt.Q_ARG("QString", eng_notation.num_to_str(self.bb_gain)))
-        self.gmsk_tx_burst_hier2_0.set_bb_gain(self.bb_gain)
 
     def get_baud(self):
         return self.baud
@@ -855,10 +910,11 @@ class gs_sim_v1(gr.top_block, Qt.QWidget):
     def set_baud(self, baud):
         self.baud = baud
         self.gmsk_ax25_rx_hier_0.set_samps_per_symb((self.samp_rate/self.decim*self.interp / self.baud) / self.decim_2 * self.interp_2)
+        self.burst_rx_es_hier_0.set_baud(self.baud)
         self.burst_rx_es_hier_0.set_samps_per_symb(self.samp_rate/self.decim*self.interp / self.baud)
 
 
-def main(top_block_cls=gs_sim_v1, options=None):
+def main(top_block_cls=gs_sim_v2, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
