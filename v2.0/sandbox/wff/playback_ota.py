@@ -6,7 +6,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Playback Ota
-# Generated: Sun Feb 23 10:24:43 2020
+# Generated: Sun Feb 23 15:36:32 2020
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -70,8 +70,8 @@ class playback_ota(gr.top_block, Qt.QWidget):
         ##################################################
         self.interp = interp = 96.0
         self.decim = decim = 2500.0
-        self.tx_offset = tx_offset = -1e3
-        self.tx_gain = tx_gain = 40
+        self.tx_offset = tx_offset = 0
+        self.tx_gain = tx_gain = 50
         self.tx_freq = tx_freq = 401.04e6
         self.samp_rate = samp_rate = 2.5e6 - 25
         self.resamp_1 = resamp_1 = interp / decim
@@ -210,7 +210,7 @@ class playback_ota(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 4):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/zleffke/vcc/captures/wff_troubleshoot/UVA_No-op_Sampled.dat', False)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/zleffke/vcc/captures/wff_troubleshoot/UVA_BadCmd_Sampled.dat', False)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
 
 
