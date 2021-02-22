@@ -6,7 +6,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Playback 2
-# Generated: Sun Feb 23 10:49:10 2020
+# Generated: Thu Mar 12 22:59:30 2020
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -88,6 +88,7 @@ class playback_2(gr.top_block, Qt.QWidget):
         self.resamp_2 = resamp_2 = interp_2 / decim_2
         self.resamp_1 = resamp_1 = interp / decim
         self.fsk_dev = fsk_dev = 10000
+        self.delay = delay = 1
         self.chan_filt_trans = chan_filt_trans = 1000
         self.chan_filt_cutoff = chan_filt_cutoff = 24000
 
@@ -127,6 +128,17 @@ class playback_2(gr.top_block, Qt.QWidget):
             self.main_tab_grid_layout_2.setRowStretch(r, 1)
         for c in range(0, 1):
             self.main_tab_grid_layout_2.setColumnStretch(c, 1)
+        self._delay_tool_bar = Qt.QToolBar(self)
+        self._delay_tool_bar.addWidget(Qt.QLabel("delay"+": "))
+        self._delay_line_edit = Qt.QLineEdit(str(self.delay))
+        self._delay_tool_bar.addWidget(self._delay_line_edit)
+        self._delay_line_edit.returnPressed.connect(
+        	lambda: self.set_delay(int(str(self._delay_line_edit.text().toAscii()))))
+        self.main_tab_grid_layout_3.addWidget(self._delay_tool_bar, 2, 0, 1, 2)
+        for r in range(2, 3):
+            self.main_tab_grid_layout_3.setRowStretch(r, 1)
+        for c in range(0, 2):
+            self.main_tab_grid_layout_3.setColumnStretch(c, 1)
         self.vcc_qt_hex_text_tx_0 = vcc.qt_hex_text()
         self._vcc_qt_hex_text_tx_0_win = self.vcc_qt_hex_text_tx_0;
         self.main_tab_grid_layout_1.addWidget(self._vcc_qt_hex_text_tx_0_win, 2, 4, 2, 4)
@@ -682,10 +694,10 @@ class playback_2(gr.top_block, Qt.QWidget):
         self.digital_binary_slicer_fb_0 = digital.binary_slicer_fb()
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, 2.5e6,True)
         self.blocks_socket_pdu_0_2 = blocks.socket_pdu("TCP_SERVER", '0.0.0.0', '8000', 1024, False)
-        self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/zleffke/vcc/captures/wff_troubleshoot/UVA_BadCmd_Sampled.dat', False)
+        self.blocks_multiply_conjugate_cc_0 = blocks.multiply_conjugate_cc(1)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/zleffke/vcc/captures/wff_troubleshoot/UVA_No-op_Sampled.dat', True)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, 0)
+        self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, delay)
         self.blocks_char_to_float_0_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
@@ -703,10 +715,10 @@ class playback_2(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.blocks_char_to_float_0_0, 0), (self.qtgui_time_sink_x_0_0_0, 0))
         self.connect((self.blocks_char_to_float_0_0_0, 0), (self.qtgui_time_sink_x_0_0_0_0, 0))
-        self.connect((self.blocks_delay_0, 0), (self.blocks_multiply_xx_0, 1))
+        self.connect((self.blocks_delay_0, 0), (self.blocks_multiply_conjugate_cc_0, 1))
         self.connect((self.blocks_file_source_0, 0), (self.rational_resampler_xxx_1, 0))
-        self.connect((self.blocks_multiply_xx_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
-        self.connect((self.blocks_multiply_xx_0, 0), (self.qtgui_waterfall_sink_x_1, 0))
+        self.connect((self.blocks_multiply_conjugate_cc_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
+        self.connect((self.blocks_multiply_conjugate_cc_0, 0), (self.qtgui_waterfall_sink_x_1, 0))
         self.connect((self.blocks_throttle_0, 0), (self.rational_resampler_xxx_0, 0))
         self.connect((self.digital_binary_slicer_fb_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.digital_binary_slicer_fb_0, 0), (self.kiss_nrzi_decode_0, 0))
@@ -718,7 +730,7 @@ class playback_2(gr.top_block, Qt.QWidget):
         self.connect((self.kiss_nrzi_decode_0, 0), (self.blocks_char_to_float_0_0, 0))
         self.connect((self.kiss_nrzi_decode_0, 0), (self.digital_descrambler_bb_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.blocks_delay_0, 0))
-        self.connect((self.low_pass_filter_0, 0), (self.blocks_multiply_xx_0, 0))
+        self.connect((self.low_pass_filter_0, 0), (self.blocks_multiply_conjugate_cc_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.rational_resampler_xxx_3, 0))
         self.connect((self.low_pass_filter_0_0, 0), (self.analog_quadrature_demod_cf_1_0, 0))
         self.connect((self.low_pass_filter_0_0, 0), (self.qtgui_freq_sink_x_1, 1))
@@ -866,6 +878,14 @@ class playback_2(gr.top_block, Qt.QWidget):
 
     def set_fsk_dev(self, fsk_dev):
         self.fsk_dev = fsk_dev
+
+    def get_delay(self):
+        return self.delay
+
+    def set_delay(self, delay):
+        self.delay = delay
+        Qt.QMetaObject.invokeMethod(self._delay_line_edit, "setText", Qt.Q_ARG("QString", str(self.delay)))
+        self.blocks_delay_0.set_dly(self.delay)
 
     def get_chan_filt_trans(self):
         return self.chan_filt_trans

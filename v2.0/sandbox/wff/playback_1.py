@@ -6,7 +6,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Playback 1
-# Generated: Fri Jan 10 23:00:42 2020
+# Generated: Thu Mar 12 22:46:18 2020
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -47,7 +47,7 @@ from gnuradio import qtgui
 
 class playback_1(gr.top_block, Qt.QWidget):
 
-    def __init__(self, samps_per_symb=5, lpf_cutoff=7.2e3, lpf_trans=1e3, samp_rate_0=48000, quad_demod_gain=6.1):
+    def __init__(self, lpf_cutoff=7.2e3, lpf_trans=1e3, quad_demod_gain=6.1, samp_rate_0=48000, samps_per_symb=5):
         gr.top_block.__init__(self, "Playback 1")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Playback 1")
@@ -75,11 +75,11 @@ class playback_1(gr.top_block, Qt.QWidget):
         ##################################################
         # Parameters
         ##################################################
-        self.samps_per_symb = samps_per_symb
         self.lpf_cutoff = lpf_cutoff
         self.lpf_trans = lpf_trans
-        self.samp_rate_0 = samp_rate_0
         self.quad_demod_gain = quad_demod_gain
+        self.samp_rate_0 = samp_rate_0
+        self.samps_per_symb = samps_per_symb
 
         ##################################################
         # Variables
@@ -430,13 +430,6 @@ class playback_1(gr.top_block, Qt.QWidget):
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
-    def get_samps_per_symb(self):
-        return self.samps_per_symb
-
-    def set_samps_per_symb(self, samps_per_symb):
-        self.samps_per_symb = samps_per_symb
-        self.digital_clock_recovery_mm_xx_0.set_omega(self.samps_per_symb*(1+0.0))
-
     def get_lpf_cutoff(self):
         return self.lpf_cutoff
 
@@ -451,18 +444,25 @@ class playback_1(gr.top_block, Qt.QWidget):
         self.lpf_trans = lpf_trans
         self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, self.lpf_cutoff, self.lpf_trans, firdes.WIN_HAMMING, 6.76))
 
-    def get_samp_rate_0(self):
-        return self.samp_rate_0
-
-    def set_samp_rate_0(self, samp_rate_0):
-        self.samp_rate_0 = samp_rate_0
-
     def get_quad_demod_gain(self):
         return self.quad_demod_gain
 
     def set_quad_demod_gain(self, quad_demod_gain):
         self.quad_demod_gain = quad_demod_gain
         self.analog_quadrature_demod_cf_1_0.set_gain(self.quad_demod_gain)
+
+    def get_samp_rate_0(self):
+        return self.samp_rate_0
+
+    def set_samp_rate_0(self, samp_rate_0):
+        self.samp_rate_0 = samp_rate_0
+
+    def get_samps_per_symb(self):
+        return self.samps_per_symb
+
+    def set_samps_per_symb(self, samps_per_symb):
+        self.samps_per_symb = samps_per_symb
+        self.digital_clock_recovery_mm_xx_0.set_omega(self.samps_per_symb*(1+0.0))
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -550,20 +550,20 @@ class playback_1(gr.top_block, Qt.QWidget):
 def argument_parser():
     parser = OptionParser(usage="%prog: [options]", option_class=eng_option)
     parser.add_option(
-        "", "--samps-per-symb", dest="samps_per_symb", type="eng_float", default=eng_notation.num_to_str(5),
-        help="Set MM Clk Rcvr Samps/Symb [default=%default]")
-    parser.add_option(
         "", "--lpf-cutoff", dest="lpf_cutoff", type="eng_float", default=eng_notation.num_to_str(7.2e3),
         help="Set LPF Cutoff [default=%default]")
     parser.add_option(
         "", "--lpf-trans", dest="lpf_trans", type="eng_float", default=eng_notation.num_to_str(1e3),
         help="Set LPF Trans Width [default=%default]")
     parser.add_option(
+        "", "--quad-demod-gain", dest="quad_demod_gain", type="eng_float", default=eng_notation.num_to_str(6.1),
+        help="Set Quad Demod Gain [default=%default]")
+    parser.add_option(
         "", "--samp-rate-0", dest="samp_rate_0", type="eng_float", default=eng_notation.num_to_str(48000),
         help="Set samp_rate_0 [default=%default]")
     parser.add_option(
-        "", "--quad-demod-gain", dest="quad_demod_gain", type="eng_float", default=eng_notation.num_to_str(6.1),
-        help="Set Quad Demod Gain [default=%default]")
+        "", "--samps-per-symb", dest="samps_per_symb", type="eng_float", default=eng_notation.num_to_str(5),
+        help="Set MM Clk Rcvr Samps/Symb [default=%default]")
     return parser
 
 
@@ -577,7 +577,7 @@ def main(top_block_cls=playback_1, options=None):
         Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
 
-    tb = top_block_cls(samps_per_symb=options.samps_per_symb, lpf_cutoff=options.lpf_cutoff, lpf_trans=options.lpf_trans, samp_rate_0=options.samp_rate_0, quad_demod_gain=options.quad_demod_gain)
+    tb = top_block_cls(lpf_cutoff=options.lpf_cutoff, lpf_trans=options.lpf_trans, quad_demod_gain=options.quad_demod_gain, samp_rate_0=options.samp_rate_0, samps_per_symb=options.samps_per_symb)
     tb.start()
     tb.show()
 
