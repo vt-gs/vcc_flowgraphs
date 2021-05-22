@@ -1,16 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-#
-# SPDX-License-Identifier: GPL-3.0
-#
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: VCC Burst TX/RX, 9600 Baud GMSK, AX.25, w/ PTT
 # Author: Zach Leffke, KJ4QLP
 # Description: VCC Burst TX/RX, 9600 Baud GMSK, AX.25
-#
-# Generated: Mon Oct  7 23:54:10 2019
-# GNU Radio version: 3.7.12.0
+# GNU Radio version: 3.7.13.4
 ##################################################
 
 if __name__ == '__main__':
@@ -682,7 +677,6 @@ class burst_trx_gmsk9600_ax25_n210(gr.top_block, Qt.QWidget):
         ##################################################
         self.msg_connect((self.blocks_socket_pdu_0, 'pdus'), (self.pyqt_text_output_0, 'pdus'))
         self.msg_connect((self.blocks_socket_pdu_0_2, 'pdus'), (self.gmsk_tx_burst_hier2_0, 'kiss/ax25'))
-        self.msg_connect((self.burst_rx_es_hier_0, 'brst_corr'), (self.pyqt_ctime_plot_0, 'cpdus'))
         self.msg_connect((self.burst_rx_es_hier_0, 'meta'), (self.pyqt_meta_text_output_0, 'pdus'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.blocks_socket_pdu_0_2, 'pdus'))
         self.msg_connect((self.gmsk_ax25_rx_hier_0, 'kiss'), (self.vcc_qt_hex_text_tx_0, 'pdus'))
